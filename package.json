@@ -5,7 +5,11 @@
   "license": "MIT",
   "module": "src/index.ts",
   "type": "module",
+  "scripts": {
+    "build": "bun run scripts/build.ts"
+  },
   "devDependencies": {
+    "bun-plugin-dts": "^0.2.1",
     "bun-types": "latest"
   },
   "peerDependencies": {
