@@ -97,13 +97,16 @@ export const BLACK_ROOK = "r";
 export const BLACK_QUEEN = "q";
 export const BLACK_KING = "k";
 
-export const PIECES = [
+export const WHITE_PIECES = [
   WHITE_PAWN,
   WHITE_KNIGHT,
   WHITE_BISHOP,
   WHITE_ROOK,
   WHITE_QUEEN,
   WHITE_KING,
+] as const;
+
+export const BLACK_PIECES = [
   BLACK_PAWN,
   BLACK_KNIGHT,
   BLACK_BISHOP,
@@ -111,6 +114,8 @@ export const PIECES = [
   BLACK_QUEEN,
   BLACK_KING,
 ] as const;
+
+export const PIECES = [...WHITE_PIECES, ...BLACK_PIECES] as const;
 
 // Positions
 export const EMPTY_POSITION = "8/8/8/8/8/8/8/8 w - - 0 1";
