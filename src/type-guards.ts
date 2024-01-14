@@ -1,5 +1,19 @@
 import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "./constants";
-import { Color, File, Piece, Rank, Square, SquareColor } from "./types";
+import { Color, File, Piece, Rank, Square, SquareColor, Vector } from "./types";
+
+/**
+ * Determines if the provided value is a Vector.
+ * @param value The value to check.
+ * @returns Returns true if the value is a Vector and false otherwise.
+ */
+export function isVector(value: unknown): value is Vector {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    typeof value[0] === "number" &&
+    typeof value[1] === "number"
+  );
+}
 
 /**
  * Determines if the provided value is a Color.

@@ -1,6 +1,50 @@
 import { describe, expect, it } from "bun:test";
 import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "./constants";
-import { isColor, isFile, isPiece, isRank, isSquare, isSquareColor } from "./type-guards";
+import { isColor, isFile, isPiece, isRank, isSquare, isSquareColor, isVector } from "./type-guards";
+
+describe("isVector", () => {
+  describe("when the value is not an array", () => {
+    it("returns false", () => {
+      expect(isVector({ x: 1, y: 2 })).toBe(false);
+    });
+  });
+
+  describe("when the value is an empty array", () => {
+    it("returns false", () => {
+      expect(isVector([])).toBe(false);
+    });
+  });
+
+  describe("when the value is an array with one number", () => {
+    it("returns false", () => {
+      expect(isVector([1])).toBe(false);
+    });
+  });
+
+  describe("when the value is an array with more than two numbers", () => {
+    it("returns false", () => {
+      expect(isVector([1, 2, 3])).toBe(false);
+    });
+  });
+
+  describe("when the first item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isVector(["1", 2])).toBe(false);
+    });
+  });
+
+  describe("when the second item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isVector([1, "2"])).toBe(false);
+    });
+  });
+
+  describe("when the value is an array with two numbers", () => {
+    it("returns false", () => {
+      expect(isVector([1, 2])).toBe(true);
+    });
+  });
+});
 
 describe("isColor", () => {
   describe("when the value is not a string", () => {
