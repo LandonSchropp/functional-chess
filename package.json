@@ -1,0 +1,14 @@
+{
+  "name": "functional-chess",
+  "description": "A collection of pure functions for manipulating FENs and other chess data structures.",
+  "keywords": ["chess", "fen"],
+  "license": "MIT",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
