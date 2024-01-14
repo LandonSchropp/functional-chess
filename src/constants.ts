@@ -1,10 +1,10 @@
 // Board
 export const BOARD_SIZE = 8;
 
-// Players
+// Colors
 export const WHITE = "white";
 export const BLACK = "black";
-export const PLAYERS = [WHITE, BLACK] as const;
+export const COLORS = [WHITE, BLACK] as const;
 
 // Square colors
 export const LIGHT = "light";

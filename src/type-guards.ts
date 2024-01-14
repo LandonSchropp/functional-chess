@@ -1,13 +1,13 @@
-import { FILES, PIECES, PLAYERS, RANKS, SQUARES, SQUARE_COLORS } from "./constants";
-import { File, Piece, Player, Rank, Square, SquareColor } from "./types";
+import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "./constants";
+import { Color, File, Piece, Rank, Square, SquareColor } from "./types";
 
 /**
- * Determines if the provided value is a Player.
+ * Determines if the provided value is a Color.
  * @param value The value to check.
- * @returns Returns true if the value is a Player and false otherwise.
+ * @returns Returns true if the value is a Color and false otherwise.
  */
-export function isPlayer(value: unknown): value is Player {
-  return PLAYERS.includes(value as Player);
+export function isColor(value: unknown): value is Color {
+  return COLORS.includes(value as Color);
 }
 
 /**
