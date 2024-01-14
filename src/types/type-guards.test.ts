@@ -40,7 +40,7 @@ describe("isVector", () => {
   });
 
   describe("when the value is an array with two numbers", () => {
-    it("returns false", () => {
+    it("returns true", () => {
       expect(isVector([1, 2])).toBe(true);
     });
   });
@@ -60,7 +60,7 @@ describe("isColor", () => {
   });
 
   describe("when the value is a color", () => {
-    it("returns false", () => {
+    it("returns true", () => {
       for (const color of COLORS) {
         expect(isColor(color)).toBe(true);
       }
@@ -82,7 +82,7 @@ describe("isFile", () => {
   });
 
   describe("when the value is a file", () => {
-    it("returns false", () => {
+    it("returns true", () => {
       for (const file of FILES) {
         expect(isFile(file)).toBe(true);
       }
@@ -104,7 +104,7 @@ describe("isRank", () => {
   });
 
   describe("when the value is a rank", () => {
-    it("returns false", () => {
+    it("returns true", () => {
       for (const rank of RANKS) {
         expect(isRank(rank)).toBe(true);
       }
@@ -126,7 +126,7 @@ describe("isSquareColor", () => {
   });
 
   describe("when the value is a squareColor", () => {
-    it("returns false", () => {
+    it("returns true", () => {
       for (const squareColor of SQUARE_COLORS) {
         expect(isSquareColor(squareColor)).toBe(true);
       }
@@ -148,7 +148,7 @@ describe("isSquare", () => {
   });
 
   describe("when the value is a square", () => {
-    it("returns false", () => {
+    it("returns true", () => {
       for (const square of SQUARES) {
         expect(isSquare(square)).toBe(true);
       }
