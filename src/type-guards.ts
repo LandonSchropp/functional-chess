@@ -11,21 +11,21 @@ export function isColor(value: unknown): value is Color {
 }
 
 /**
- * Determines if the provided value is a Rank.
- * @param value The value to check.
- * @returns Returns true if the value is a Rank and false otherwise.
- */
-export function isRank(value: unknown): value is Rank {
-  return RANKS.includes(value as Rank);
-}
-
-/**
  * Determines if the provided value is a File.
  * @param value The value to check.
  * @returns Returns true if the value is a File and false otherwise.
  */
 export function isFile(value: unknown): value is File {
   return FILES.includes(value as File);
+}
+
+/**
+ * Determines if the provided value is a Rank.
+ * @param value The value to check.
+ * @returns Returns true if the value is a Rank and false otherwise.
+ */
+export function isRank(value: unknown): value is Rank {
+  return RANKS.includes(value as Rank);
 }
 
 /**
