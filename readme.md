@@ -1,10 +1,12 @@
 # ♟️  Functional Chess ♟️ 
 
-A collection of chess [pure functions](https://en.wikipedia.org/wiki/Pure_function) written in
+A collection of [✨ pure functions ✨](https://en.wikipedia.org/wiki/Pure_function) for manipulating
+[FEN](https://en.wikipedia.org/wiki/Fen) strings and other chess data structures. Written in
 [TypeScript](http://typescriptlang.org/).
 
 ## Development
 
-This project is written in [Bun](https://bun.sh/). You can use it with a few helpful scripts:
+This project is written using [Bun](https://bun.sh/). You can use several helpful commands when
+developing.
 
 * `bun install`: Install dependencies.
