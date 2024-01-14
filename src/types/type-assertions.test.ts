@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "./constants";
+import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "../constants";
 import {
   assertColor,
   assertFile,

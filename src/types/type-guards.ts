@@ -1,4 +1,4 @@
-import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "./constants";
+import { COLORS, FILES, PIECES, RANKS, SQUARES, SQUARE_COLORS } from "../constants";
 import { Color, File, Piece, Rank, Square, SquareColor, Vector } from "./types";
 
 /**
