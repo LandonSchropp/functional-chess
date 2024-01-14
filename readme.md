@@ -1,8 +1,8 @@
 # ♟️  Functional Chess ♟️ 
 
 A collection of [✨ pure functions ✨](https://en.wikipedia.org/wiki/Pure_function) for manipulating
-[FEN](https://en.wikipedia.org/wiki/Fen) strings and other chess data structures. Written in
-[TypeScript](http://typescriptlang.org/).
+[Forsyth–Edwards Notation (FEN)](https://en.wikipedia.org/wiki/Fen) strings and other chess data
+structures. Written in [TypeScript](http://typescriptlang.org/).
 
 ## Development
 
