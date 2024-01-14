@@ -6,12 +6,15 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun run scripts/build.ts"
+    "build": "bun run scripts/build.ts",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.1",
     "bun-plugin-dts": "^0.2.1",
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
