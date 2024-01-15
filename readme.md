@@ -10,3 +10,7 @@ This project is written using [Bun](https://bun.sh/). You can use several helpfu
 developing.
 
 * `bun install`: Install dependencies.
+* `bun build`: Compile the project to the `dist` folder.
+* `bun check-types`: Ensure all of the types are correct.
+* `bun test`: Run all of the tests.
+* `bun lint`: Run the linter.
