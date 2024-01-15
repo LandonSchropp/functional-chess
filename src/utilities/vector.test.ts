@@ -1,6 +1,6 @@
-import { describe, it, expect } from "bun:test";
+import { describe, expect, it } from "bun:test";
 import { BOARD_SIZE } from "../constants";
-import { isVectorInBounds } from "./is-vector-in-bounds";
+import { isVectorInBounds } from "./vector";
 
 describe("isVectorOutOfBounds", () => {
   describe("when the file coordinate is below 0", () => {

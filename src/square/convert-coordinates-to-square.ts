@@ -1,5 +1,5 @@
 import { Square, Vector } from "../types";
-import { isVectorInBounds } from "../vectors/is-vector-in-bounds";
+import { isVectorInBounds } from "../utilities/vector";
 
 const A_CHAR_CODE = 97;
 

@@ -1,5 +1,5 @@
 import { Square, Vector } from "../types";
-import { isVectorInBounds } from "../vectors/is-vector-in-bounds";
+import { isVectorInBounds } from "../utilities/vector";
 import { convertCoordinatesToSquare } from "./convert-coordinates-to-square";
 import { convertSquareToCoordinates } from "./convert-square-to-coordinates";
 
