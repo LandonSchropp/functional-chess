@@ -1,10 +1,7 @@
 {
   "name": "functional-chess",
   "description": "A collection of pure functions for manipulating FENs and other chess data structures.",
-  "keywords": [
-    "chess",
-    "fen"
-  ],
+  "keywords": ["chess", "fen"],
   "license": "MIT",
   "module": "src/index.ts",
   "type": "module",
@@ -12,6 +9,7 @@
     "build": "bun run scripts/build.ts",
     "check-types": "tsc --noEmit",
     "lint": "biome check .",
+    "preinstall": "npx only-allow bun",
     "prepare": "husky install"
   },
   "devDependencies": {
