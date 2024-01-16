@@ -1,1 +1,1 @@
-export * from "./get-board-from-fen";
+export * from "./get-board";

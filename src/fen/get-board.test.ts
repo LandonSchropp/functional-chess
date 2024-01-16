@@ -16,12 +16,12 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK,
 } from "../constants";
-import { getBoardFromFen } from "./get-board-from-fen";
+import { getBoard } from "./get-board";
 
 describe("getBoardFromFen", () => {
   describe("when the board is empty", () => {
     it("returns an empty 2D array", () => {
-      const actual = getBoardFromFen(EMPTY_POSITION);
+      const actual = getBoard(EMPTY_POSITION);
       const expected = times(8, () => Array.from({ length: 8 }, () => null)) as typeof actual;
 
       expect(actual).toEqual(expected);
@@ -29,7 +29,7 @@ describe("getBoardFromFen", () => {
   });
 
   describe("when the board is not empty", () => {
-    const actual = getBoardFromFen(STARTING_POSITION);
+    const actual = getBoard(STARTING_POSITION);
     const expected = [
       [
         WHITE_ROOK,
