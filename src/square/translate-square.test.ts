@@ -1,5 +1,4 @@
 import { describe, expect, it } from "bun:test";
-import { BOARD_SIZE } from "../constants";
 import { translateSquare } from "./translate-square";
 
 describe("translateSquare", () => {
