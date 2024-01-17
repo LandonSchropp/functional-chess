@@ -1,3 +1,4 @@
+import { OutOfBoundsError } from "../errors";
 import { Square, Vector } from "../types";
 import { isVectorInBounds } from "../utilities/vector";
 
@@ -11,7 +12,7 @@ const A_CHAR_CODE = 97;
  */
 export function convertCoordinatesToSquare([file, rank]: Vector): Square {
   if (!isVectorInBounds([file, rank])) {
-    throw new Error(`Invalid coordinates: [${file}, ${rank}]`);
+    throw new OutOfBoundsError(`Invalid coordinates: [${file}, ${rank}]`);
   }
 
   return `${String.fromCharCode(A_CHAR_CODE + file)}${rank + 1}` as Square;

@@ -41,7 +41,7 @@ function assertType<T>(
 ): (value: unknown) => asserts value is T {
   return (value: unknown) => {
     if (guard(value) === false) {
-      throw new Error(`Expected '${value}' to have type ${typeName}.`);
+      throw new TypeError(`Expected '${value}' to have type ${typeName}.`);
     }
   };
 }

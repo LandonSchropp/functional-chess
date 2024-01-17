@@ -1,3 +1,4 @@
+import { OutOfBoundsError } from "../errors";
 import { Square, Vector } from "../types";
 import { isVectorInBounds } from "../utilities/vector";
 import { convertCoordinatesToSquare } from "./convert-coordinates-to-square";
@@ -17,7 +18,7 @@ export function translateSquare(square: Square, vector: Vector) {
   const translatedCoordinates: Vector = [file + vector[0], rank + vector[1]];
 
   if (!isVectorInBounds(translatedCoordinates)) {
-    throw new Error(
+    throw new OutOfBoundsError(
       `When the square ${square} is translated by the vector ${vector}, the resulting ` +
         `coordinates are out of bounds: [${translatedCoordinates[0]}, ${translatedCoordinates[1]}]`,
     );
