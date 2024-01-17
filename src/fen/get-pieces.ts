@@ -1,4 +1,4 @@
-import { flatten, isNil, pipe, reject } from "remeda";
+import { filter, flatten, isNil, pipe } from "remeda";
 import { Piece, Square } from "../types";
 import { getBoard } from "./get-board";
 
@@ -12,7 +12,7 @@ export function getPieces(fen: string): { square: Square; piece: Piece }[] {
   return pipe(
     fen,
     getBoard,
-    flatten,
-    reject(({ piece }) => isNil(piece)),
-  );
+    flatten(),
+    filter(({ piece }) => !isNil(piece)),
+  ) as { square: Square; piece: Piece }[];
 }
