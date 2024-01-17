@@ -11,6 +11,7 @@ import {
   FILES,
   PIECES,
   RANKS,
+  SIDES,
   SQUARES,
   SQUARE_COLORS,
   WHITE_BISHOP,
@@ -32,6 +33,7 @@ import {
   isQueen,
   isRank,
   isRook,
+  isSide,
   isSquare,
   isSquareColor,
   isVector,
@@ -359,6 +361,28 @@ describe("isWhitePiece", () => {
     it("returns true", () => {
       for (const piece of WHITE_PIECES) {
         expect(isWhitePiece(piece)).toBe(true);
+      }
+    });
+  });
+});
+
+describe("isSide", () => {
+  describe("when the value is not a string", () => {
+    it("returns false", () => {
+      expect(isSide(1234)).toBe(false);
+    });
+  });
+
+  describe("when the value is not a side", () => {
+    it("returns false", () => {
+      expect(isSide("banana")).toBe(false);
+    });
+  });
+
+  describe("when the value is a side", () => {
+    it("returns true", () => {
+      for (const side of SIDES) {
+        expect(isSide(side)).toBe(true);
       }
     });
   });

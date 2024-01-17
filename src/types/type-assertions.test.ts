@@ -11,6 +11,7 @@ import {
   FILES,
   PIECES,
   RANKS,
+  SIDES,
   SQUARES,
   SQUARE_COLORS,
   WHITE_BISHOP,
@@ -33,6 +34,7 @@ import {
   assertQueen,
   assertRank,
   assertRook,
+  assertSide,
   assertSquare,
   assertSquareColor,
   assertVector,
@@ -290,6 +292,22 @@ describe("assertBlackPiece", () => {
     it("does not throw an error", () => {
       for (const piece of BLACK_PIECES) {
         expect(() => assertBlackPiece(piece)).not.toThrow();
+      }
+    });
+  });
+});
+
+describe("assertSide", () => {
+  describe("when the value is not a side", () => {
+    it("throws an error", () => {
+      expect(() => assertSide("banana")).toThrow("Expected 'banana' to have type Side.");
+    });
+  });
+
+  describe("when the value is a side", () => {
+    it("does not throw an error", () => {
+      for (const side of SIDES) {
+        expect(() => assertSide(side)).not.toThrow();
       }
     });
   });

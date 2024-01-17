@@ -117,6 +117,14 @@ export const BLACK_PIECES = [
 
 export const PIECES = [...WHITE_PIECES, ...BLACK_PIECES] as const;
 
+// Sides
+export const WHITE_KINGSIDE = "K";
+export const WHITE_QUEENSIDE = "Q";
+export const BLACK_KINGSIDE = "k";
+export const BLACK_QUEENSIDE = "q";
+
+export const SIDES = [WHITE_KINGSIDE, WHITE_QUEENSIDE, BLACK_KINGSIDE, BLACK_QUEENSIDE] as const;
+
 // Positions
 export const EMPTY_POSITION = "8/8/8/8/8/8/8/8 w - - 0 1";
 export const STARTING_POSITION = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";

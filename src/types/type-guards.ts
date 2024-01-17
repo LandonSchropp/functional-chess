@@ -10,6 +10,7 @@ import {
   FILES,
   PIECES,
   RANKS,
+  SIDES,
   SQUARES,
   SQUARE_COLORS,
   WHITE_BISHOP,
@@ -20,7 +21,7 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK,
 } from "../constants";
-import { Color, File, Piece, Rank, Square, SquareColor, Vector } from "./types";
+import { Color, File, Piece, Rank, Side, Square, SquareColor, Vector } from "./types";
 
 /**
  * Determines if the provided value is a Vector.
@@ -160,4 +161,13 @@ export function isWhitePiece(value: unknown): value is (typeof WHITE_PIECES)[num
  */
 export function isBlackPiece(value: unknown): value is (typeof BLACK_PIECES)[number] {
   return BLACK_PIECES.includes(value as (typeof BLACK_PIECES)[number]);
+}
+
+/**
+ * Determines if the provided value is a Side.
+ * @param value The value to check.
+ * @returns Returns true if the value is a Side and false otherwise.
+ */
+export function isSide(value: unknown): value is Side {
+  return SIDES.includes(value as Side);
 }

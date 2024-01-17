@@ -24,6 +24,7 @@ import {
   isQueen,
   isRank,
   isRook,
+  isSide,
   isSquare,
   isSquareColor,
   isVector,
@@ -154,3 +155,10 @@ export const assertBlackPiece = assertType(
   isBlackPiece,
   `"${BLACK_PAWN}", "${BLACK_KNIGHT}", "${BLACK_BISHOP}", "${BLACK_ROOK}", "${BLACK_QUEEN}", or "${BLACK_KING}"`,
 );
+
+/**
+ * Asserts that the provided value is a Side.
+ * @param value The value to check.
+ * @throws Throws an error if the value is not a Side.
+ */
+export const assertSide = assertType(isSide, "Side");
