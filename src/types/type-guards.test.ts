@@ -1,4 +1,4 @@
-import { describe, expect, it } from "bun:test";
+import { beforeEach, describe, expect, it } from "bun:test";
 import {
   BLACK_BISHOP,
   BLACK_KING,
@@ -28,6 +28,7 @@ import {
   isFile,
   isKing,
   isKnight,
+  isMove,
   isPawn,
   isPiece,
   isQueen,
@@ -39,6 +40,8 @@ import {
   isVector,
   isWhitePiece,
 } from "./type-guards";
+
+import { Move } from "./types";
 
 describe("isVector", () => {
   describe("when the value is not an array", () => {
@@ -384,6 +387,173 @@ describe("isSide", () => {
       for (const side of SIDES) {
         expect(isSide(side)).toBe(true);
       }
+    });
+  });
+});
+
+describe("isMove", () => {
+  let move: Record<string, unknown>;
+
+  beforeEach(() => {
+    move = {
+      piece: WHITE_KNIGHT,
+      from: "g1",
+      to: "f3",
+      capture: null,
+      promotion: null,
+      algebraic: "Nf3",
+    };
+  });
+
+  describe("when the value is not an object", () => {
+    it("returns false", () => {
+      expect(isMove(1234)).toBe(false);
+    });
+  });
+
+  describe("when the value is null", () => {
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object does not contain a piece property", () => {
+    // biome-ignore lint: lint/performance/noDelete
+    beforeEach(() => delete move.piece);
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when piece is not a Piece", () => {
+    beforeEach(() => {
+      move.piece = "banana";
+    });
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object does not contain a from property", () => {
+    // biome-ignore lint: lint/performance/noDelete
+    beforeEach(() => delete move.from);
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when from is not a Square", () => {
+    beforeEach(() => {
+      move.from = "banana";
+    });
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object does not contain a to property", () => {
+    // biome-ignore lint: lint/performance/noDelete
+    beforeEach(() => delete move.to);
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when to is not a Square", () => {
+    beforeEach(() => {
+      move.to = "banana";
+    });
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object does not contain a capture property", () => {
+    // biome-ignore lint: lint/performance/noDelete
+    beforeEach(() => delete move.capture);
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when capture is not a Piece or null", () => {
+    beforeEach(() => {
+      move.capture = "banana";
+    });
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object does not contain a promotion property", () => {
+    // biome-ignore lint: lint/performance/noDelete
+    beforeEach(() => delete move.promotion);
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when promotion is not a Piece or null", () => {
+    beforeEach(() => {
+      move.promotion = "banana";
+    });
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object does not contain a algebraic property", () => {
+    // biome-ignore lint: lint/performance/noDelete
+    beforeEach(() => delete move.algebraic);
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when algebraic is not a string", () => {
+    beforeEach(() => {
+      move.algebraic = 1234;
+    });
+
+    it("returns false", () => {
+      expect(isMove(null)).toBe(false);
+    });
+  });
+
+  describe("when the object contains all required properties", () => {
+    it("returns true", () => {
+      expect(isMove(move)).toBe(true);
+    });
+
+    describe("when the capture is a Piece", () => {
+      beforeEach(() => {
+        move.capture = BLACK_PAWN;
+      });
+
+      it("returns true", () => {
+        expect(isMove(move)).toBe(true);
+      });
+    });
+
+    describe("when the promotion is a Piece", () => {
+      beforeEach(() => {
+        move.promotion = WHITE_KNIGHT;
+      });
+
+      it("returns true", () => {
+        expect(isMove(move)).toBe(true);
+      });
     });
   });
 });

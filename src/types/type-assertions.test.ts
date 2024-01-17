@@ -29,6 +29,7 @@ import {
   assertFile,
   assertKing,
   assertKnight,
+  assertMove,
   assertPawn,
   assertPiece,
   assertQueen,
@@ -309,6 +310,29 @@ describe("assertSide", () => {
       for (const side of SIDES) {
         expect(() => assertSide(side)).not.toThrow();
       }
+    });
+  });
+});
+
+describe("assertMove", () => {
+  describe("when the value is not a move", () => {
+    it("throws an error", () => {
+      expect(() => assertMove("banana")).toThrow("Expected 'banana' to have type Move.");
+    });
+  });
+
+  describe("when the value is a move", () => {
+    it("does not throw an error", () => {
+      const move = {
+        piece: WHITE_KNIGHT,
+        from: "g1",
+        to: "f3",
+        capture: null,
+        promotion: null,
+        algebraic: "Nf3",
+      };
+
+      expect(() => assertMove(move)).not.toThrow();
     });
   });
 });

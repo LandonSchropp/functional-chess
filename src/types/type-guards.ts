@@ -21,7 +21,7 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK,
 } from "../constants";
-import { Color, File, Piece, Rank, Side, Square, SquareColor, Vector } from "./types";
+import { Color, File, Move, Piece, Rank, Side, Square, SquareColor, Vector } from "./types";
 
 /**
  * Determines if the provided value is a Vector.
@@ -170,4 +170,28 @@ export function isBlackPiece(value: unknown): value is (typeof BLACK_PIECES)[num
  */
 export function isSide(value: unknown): value is Side {
   return SIDES.includes(value as Side);
+}
+
+/**
+ * Determines if the provided value is a Move.
+ * @param value The value to check.
+ * @returns Returns true if the value is a Move and false otherwise.
+ */
+export function isMove(value: unknown): value is Move {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "piece" in value &&
+    isPiece(value.piece) &&
+    "from" in value &&
+    isSquare(value.from) &&
+    "to" in value &&
+    isSquare(value.to) &&
+    "capture" in value &&
+    (isPiece(value.capture) || value.capture === null) &&
+    "promotion" in value &&
+    (isPiece(value.promotion) || value.promotion === null) &&
+    "algebraic" in value &&
+    typeof value.algebraic === "string"
+  );
 }

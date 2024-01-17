@@ -11,3 +11,26 @@ export type SquareColor = (typeof SQUARE_COLORS)[number];
 export type Square = (typeof SQUARES)[number];
 export type Piece = (typeof PIECES)[number];
 export type Side = (typeof SIDES)[number];
+
+/*
+ * Represents a move on a chessboard.
+ */
+export type Move = {
+  /** The piece that was moved. */
+  piece: Piece;
+
+  /** The square the piece was moved from. */
+  from: Square;
+
+  /** The square the piece was moved to. */
+  to: Square;
+
+  /** The piece that was captures, if applicable. */
+  capture: Piece | null;
+
+  /** The piece the pawn was promoted to, if applicable. */
+  promotion: Piece | null;
+
+  /** The algebraic notation of the move. */
+  algebraic: string;
+};

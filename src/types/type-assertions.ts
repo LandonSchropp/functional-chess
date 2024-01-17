@@ -19,6 +19,7 @@ import {
   isFile,
   isKing,
   isKnight,
+  isMove,
   isPawn,
   isPiece,
   isQueen,
@@ -162,3 +163,10 @@ export const assertBlackPiece = assertType(
  * @throws Throws an error if the value is not a Side.
  */
 export const assertSide = assertType(isSide, "Side");
+
+/**
+ * Asserts that the provided value is a Move.
+ * @param value The value to check.
+ * @throws Throws an error if the value is not a Move.
+ */
+export const assertMove = assertType(isMove, "Move");
