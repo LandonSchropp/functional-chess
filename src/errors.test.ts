@@ -6,6 +6,7 @@ const ERRORS = [
   [InvalidFenError, "InvalidFenError"],
 ] as const;
 
+// TODO: Convert this to describe.each.
 for (const [ErrorClass, errorClassName] of ERRORS) {
   describe(errorClassName, () => {
     let error: Error;
