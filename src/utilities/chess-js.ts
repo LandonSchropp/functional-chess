@@ -4,6 +4,7 @@ import { Chess } from "chess.js";
  * Creates an instance of Chess.js using a non-validated FEN.
  * @param fen The FEN string to parse.
  * @returns An instance of Chess.js.
+ * @private
  */
 export function createChess(fen: string): Chess {
   const chess = new Chess();
