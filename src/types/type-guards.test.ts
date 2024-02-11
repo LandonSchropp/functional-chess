@@ -39,7 +39,6 @@ import {
   isVector,
   isWhitePiece,
 } from "./type-guards";
-import { Move } from "./types";
 import { beforeEach, describe, expect, it } from "bun:test";
 
 describe("isVector", () => {
