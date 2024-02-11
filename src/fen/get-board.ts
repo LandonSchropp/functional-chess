@@ -1,7 +1,7 @@
 import { map, pipe, reverse } from "remeda";
 import { BOARD_SIZE } from "../constants";
 import { convertCoordinatesToSquare } from "../square";
-import { Piece, Square } from "../types";
+import { Board } from "../types";
 import { chessJsPieceToPiece, createChess } from "../utilities/chess-js";
 
 /**
@@ -12,7 +12,7 @@ import { chessJsPieceToPiece, createChess } from "../utilities/chess-js";
  * If the square in the FEN is empty, the corresponding value in the array has its piece set to
  * `null`.
  */
-export function getBoard(fen: string): { square: Square; piece: Piece | null }[][] {
+export function getBoard(fen: string): Board {
   return pipe(
     createChess(fen).board(),
     map.indexed((rank, rankIndex) => {
@@ -22,5 +22,5 @@ export function getBoard(fen: string): { square: Square; piece: Piece | null }[]
       }));
     }),
     reverse(),
-  );
+  ) as Board;
 }
