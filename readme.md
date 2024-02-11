@@ -15,6 +15,8 @@ Here's why it stands out:
 - **🚀 Functional:** This library embraces the power of pure functions, offering the inherent
   benefits of immutability and side-effect-free programming. This results in more predictable and
   easier-to-debug code.
+- **🐇 Speed:** Under the hood, this library uses an [0x88](https://en.wikipedia.org/wiki/0x88)
+  implementation, a super fast and efficient way of reading and manipulating chess positions.
 - **🧬 Compatibility:** This library eliminates the hassle of managing object instances, making it a
   much better fit for frontend frameworks like React. The simplicity of this approach is a makes it
   a perfect fit for various state management approaches, enhancing flexibility and ease of use.
