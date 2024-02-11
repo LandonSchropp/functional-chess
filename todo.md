@@ -83,3 +83,7 @@ These functions deal with squares, independent of a FEN.
 - [ ] Set up Prettier
 - [ ] Set up ESLint
 - [ ] Set up NPM package
+- [ ] Make the library handle both 0x88 boards _and_ strings. The idea is if you need performance,
+      first parse your board into an 0x88 board, and then run the code. If you want ease-of-use,
+      then use FEN strings. This will make it handy for people to use whichever representation best
+      matches their use case.
