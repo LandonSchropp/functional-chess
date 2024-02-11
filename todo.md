@@ -76,3 +76,10 @@ These functions deal with squares, independent of a FEN.
 - [ ] `getRank`
 - [ ] `getVectorBetweenSquares`
 - [ ] `translateSquare`
+
+## Other
+
+- [ ] Set up code coverage
+- [ ] Set up Prettier
+- [ ] Set up ESLint
+- [ ] Set up NPM package
