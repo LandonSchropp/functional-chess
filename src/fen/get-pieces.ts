@@ -1,6 +1,6 @@
-import { filter, flatten, isNil, pipe } from "remeda";
 import { Piece, Square } from "../types";
 import { getBoard } from "./get-board";
+import { filter, flatten, isNil, pipe } from "remeda";
 
 /**
  * Returns an array all of the pieces in the FEN.

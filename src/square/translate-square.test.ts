@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { translateSquare } from "./translate-square";
+import { describe, expect, it } from "bun:test";
 
 describe("translateSquare", () => {
   describe("when the translated square is out of bounds", () => {

@@ -1,8 +1,8 @@
-import { map, pipe, reverse } from "remeda";
 import { BOARD_SIZE } from "../constants";
 import { convertCoordinatesToSquare } from "../square";
 import { Board } from "../types";
 import { chessJsPieceToPiece, createChess } from "../utilities/chess-js";
+import { map, pipe, reverse } from "remeda";
 
 /**
  * Returns a 2D array of the board.

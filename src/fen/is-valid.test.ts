@@ -1,6 +1,6 @@
-import { describe, expect, it } from "bun:test";
 import { STARTING_POSITION } from "../constants";
 import { isValid } from "./is-valid";
+import { describe, expect, it } from "bun:test";
 
 describe("isValid", () => {
   describe("when the FEN is invalid", () => {

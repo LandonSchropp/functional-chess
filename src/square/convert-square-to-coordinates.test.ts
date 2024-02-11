@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { convertSquareToCoordinates } from "./convert-square-to-coordinates";
+import { describe, expect, it } from "bun:test";
 
 describe("convertSquareToCoordinates", () => {
   it("returns the coordinates of the square", () => {

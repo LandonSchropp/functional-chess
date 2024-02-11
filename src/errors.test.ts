@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "bun:test";
 import { InvalidFenError, OutOfBoundsError } from "./errors";
+import { beforeEach, describe, expect, it } from "bun:test";
 
 const ERRORS = [
   [OutOfBoundsError, "OutOfBoundsError"],

@@ -12,8 +12,6 @@
     "outDir": "dist",
     "resolveJsonModule": true,
     "declaration": true,
-    "types": [
-      "bun-types" 
-    ],
+    "types": ["bun-types"]
   }
 }
