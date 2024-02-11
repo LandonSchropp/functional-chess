@@ -1,4 +1,3 @@
-import { describe, expect, it } from "bun:test";
 import {
   BLACK_BISHOP,
   BLACK_KING,
@@ -16,6 +15,7 @@ import {
   WHITE_ROOK,
 } from "../constants";
 import { getBoard } from "./get-board";
+import { describe, expect, it } from "bun:test";
 
 describe("getBoardFromFen", () => {
   describe("when the board is empty", () => {

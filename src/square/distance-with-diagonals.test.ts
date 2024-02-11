@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { distanceWithDiagonals } from "./distance-with-diagonals";
+import { describe, expect, it } from "bun:test";
 
 describe("distanceWithDiagonals", () => {
   it("returns the number of squares a rook would travel between two squares", () => {

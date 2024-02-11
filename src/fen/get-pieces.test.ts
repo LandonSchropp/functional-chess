@@ -1,5 +1,3 @@
-import { describe, expect, it } from "bun:test";
-import { prop, sortBy } from "remeda";
 import {
   BLACK_BISHOP,
   BLACK_KING,
@@ -17,6 +15,8 @@ import {
   WHITE_ROOK,
 } from "../constants";
 import { getPieces } from "./get-pieces";
+import { describe, expect, it } from "bun:test";
+import { prop, sortBy } from "remeda";
 
 describe("getPiecesFromFen", () => {
   describe("when the pieces is empty", () => {

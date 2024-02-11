@@ -1,6 +1,6 @@
-import { describe, expect, it } from "bun:test";
 import { STARTING_POSITION, WHITE_BISHOP } from "../constants";
 import { getPiece } from "./get-piece";
+import { describe, expect, it } from "bun:test";
 
 describe("getPiece", () => {
   describe("when the square has a piece", () => {

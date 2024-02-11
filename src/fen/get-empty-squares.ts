@@ -1,6 +1,6 @@
-import { filter, flatten, isNil, map, pipe, prop } from "remeda";
 import { Square } from "../types";
 import { getBoard } from "./get-board";
+import { filter, flatten, isNil, map, pipe, prop } from "remeda";
 
 /**
  * Returns the empty squares in the FEN.

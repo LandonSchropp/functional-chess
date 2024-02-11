@@ -1,4 +1,3 @@
-import { beforeEach, describe, expect, it } from "bun:test";
 import {
   BLACK_BISHOP,
   BLACK_KING,
@@ -40,8 +39,8 @@ import {
   isVector,
   isWhitePiece,
 } from "./type-guards";
-
 import { Move } from "./types";
+import { beforeEach, describe, expect, it } from "bun:test";
 
 describe("isVector", () => {
   describe("when the value is not an array", () => {

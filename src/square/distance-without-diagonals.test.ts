@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { distanceWithoutDiagonals } from "./distance-without-diagonals";
+import { describe, expect, it } from "bun:test";
 
 describe("distanceWithoutDiagonals", () => {
   it("returns the number of squares a rook would travel between two squares", () => {

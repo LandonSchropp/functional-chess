@@ -1,7 +1,7 @@
-import { describe, expect, it } from "bun:test";
-import { sortBy } from "remeda";
 import { EMPTY_POSITION, SQUARES, STARTING_POSITION } from "../constants";
 import { getEmptySquares } from "./get-empty-squares";
+import { describe, expect, it } from "bun:test";
+import { sortBy } from "remeda";
 
 const sort = sortBy((string: string) => string);
 

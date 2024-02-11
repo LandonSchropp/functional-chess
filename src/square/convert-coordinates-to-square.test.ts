@@ -1,6 +1,6 @@
-import { describe, expect, it } from "bun:test";
 import { BOARD_SIZE } from "../constants";
 import { convertCoordinatesToSquare } from "./convert-coordinates-to-square";
+import { describe, expect, it } from "bun:test";
 
 describe("convertSquareToCoordinates", () => {
   describe("when the file coordinate is below 0", () => {

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { getFile } from "./get-file";
+import { describe, expect, it } from "bun:test";
 
 describe("getFile", () => {
   it("returns the file of the square", () => {

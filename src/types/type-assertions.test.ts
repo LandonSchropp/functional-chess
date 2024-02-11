@@ -1,4 +1,3 @@
-import { describe, expect, it } from "bun:test";
 import {
   BLACK_BISHOP,
   BLACK_KING,
@@ -41,6 +40,7 @@ import {
   assertVector,
   assertWhitePiece,
 } from "./type-assertions";
+import { describe, expect, it } from "bun:test";
 
 describe("assertVector", () => {
   describe("when the value is not a vector", () => {

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { getVectorBetweenSquares } from "./get-vector-between-squares";
+import { describe, expect, it } from "bun:test";
 
 describe("getVectorBetweenSquares", () => {
   it("returns the vector between the two squares", () => {

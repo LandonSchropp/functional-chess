@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { getRank } from "./get-rank";
+import { describe, expect, it } from "bun:test";
 
 describe("getRank", () => {
   it("returns the rank of the square", () => {
