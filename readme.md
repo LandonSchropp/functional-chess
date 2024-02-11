@@ -4,6 +4,8 @@ This library is a collection of ✨ [pure functions](https://en.wikipedia.org/wi
 for manipulating [Forsyth–Edwards Notation (FEN)](https://en.wikipedia.org/wiki/Fen) strings and
 other chess data structures. It's written in [TypeScript](http://typescriptlang.org/).
 
+⚠️  This library is a work in progress! It's not ready for use yet. ⚠️ 
+
 ## Usage
 
 TODO: Fill out this section once the library is deployed.
