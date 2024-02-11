@@ -2,20 +2,36 @@
 
 ## FEN
 
+These functions related to FEN strings.
+
 ### Validation
 
+These functions can be used to validate different aspects of a FEN string.
+
+- [ ] `isParsable`
 - [ ] `isValid`
+- [ ] `isLegalMove`
+
+### Position Representations
+
+These functions will return different representations of the current position as a whole.
+
+- [ ] `getBoard`
+- [ ] `getAscii`
+- [ ] `getPieces`
 
 ### Position Accessors
 
-- [x] `getBoard`
-- [x] `getPieces`
-- [x] `getPiece`
-- [x] `getEmptySquares`
+These functions can be used to get specific information about the current position.
+
+- [ ] `getPiece`
+- [ ] `getEmptySquares`
 - [ ] `getAllLegalMoves`
 - [ ] `getLegalMoves`
 
 ### Position Predicates
+
+These predicate functions can answer questions about the current position.
 
 - [ ] `isCheckmate`
 - [ ] `isDraw`
@@ -24,13 +40,16 @@
 
 ### Position Mutators
 
-- [ ] `isLegalMove`
+These functions will change the position in the FEN.
+
 - [ ] `movePiece`
 - [ ] `setPiece`
 - [ ] `removePiece`
 - [ ] `reverse`
 
-### Non-Position Accessors
+### Non-Position Accessors and Mutators
+
+These functions update parts of the FEN that are not related to the position.
 
 - [ ] `getColor`
 - [ ] `setColor`
@@ -47,11 +66,13 @@
 
 ## Square
 
-- [x] `convertCoordinatesToSquare`
-- [x] `convertSquareToCoordinates`
-- [x] `distanceWithDiagonals`
-- [x] `distanceWithoutDiagonals`
-- [x] `getFile`
-- [x] `getRank`
-- [x] `getVectorBetweenSquares`
-- [x] `translateSquare`
+These functions deal with squares, independent of a FEN.
+
+- [ ] `convertCoordinatesToSquare`
+- [ ] `convertSquareToCoordinates`
+- [ ] `distanceWithDiagonals`
+- [ ] `distanceWithoutDiagonals`
+- [ ] `getFile`
+- [ ] `getRank`
+- [ ] `getVectorBetweenSquares`
+- [ ] `translateSquare`
