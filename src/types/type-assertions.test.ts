@@ -158,7 +158,7 @@ describe("assertPawn", () => {
   describe("when the value is not a pawn", () => {
     it("throws an error", () => {
       expect(() => assertPawn(WHITE_KNIGHT)).toThrow(
-        `Expected \'${WHITE_KNIGHT}\' to have type "${WHITE_PAWN}" or "${BLACK_PAWN}".`,
+        `Expected '${WHITE_KNIGHT}' to have type "${WHITE_PAWN}" or "${BLACK_PAWN}".`,
       );
     });
   });
@@ -175,7 +175,7 @@ describe("assertKnight", () => {
   describe("when the value is not a knight", () => {
     it("throws an error", () => {
       expect(() => assertKnight(WHITE_PAWN)).toThrow(
-        `Expected \'${WHITE_PAWN}\' to have type "${WHITE_KNIGHT}" or "${BLACK_KNIGHT}".`,
+        `Expected '${WHITE_PAWN}' to have type "${WHITE_KNIGHT}" or "${BLACK_KNIGHT}".`,
       );
     });
   });
@@ -192,7 +192,7 @@ describe("assertBishop", () => {
   describe("when the value is not a bishop", () => {
     it("throws an error", () => {
       expect(() => assertBishop(WHITE_PAWN)).toThrow(
-        `Expected \'${WHITE_PAWN}\' to have type "${WHITE_BISHOP}" or "${BLACK_BISHOP}".`,
+        `Expected '${WHITE_PAWN}' to have type "${WHITE_BISHOP}" or "${BLACK_BISHOP}".`,
       );
     });
   });
@@ -209,7 +209,7 @@ describe("assertRook", () => {
   describe("when the value is not a rook", () => {
     it("throws an error", () => {
       expect(() => assertRook(WHITE_PAWN)).toThrow(
-        `Expected \'${WHITE_PAWN}\' to have type "${WHITE_ROOK}" or "${BLACK_ROOK}".`,
+        `Expected '${WHITE_PAWN}' to have type "${WHITE_ROOK}" or "${BLACK_ROOK}".`,
       );
     });
   });
@@ -226,7 +226,7 @@ describe("assertQueen", () => {
   describe("when the value is not a queen", () => {
     it("throws an error", () => {
       expect(() => assertQueen(WHITE_PAWN)).toThrow(
-        `Expected \'${WHITE_PAWN}\' to have type "${WHITE_QUEEN}" or "${BLACK_QUEEN}".`,
+        `Expected '${WHITE_PAWN}' to have type "${WHITE_QUEEN}" or "${BLACK_QUEEN}".`,
       );
     });
   });
@@ -243,7 +243,7 @@ describe("assertKing", () => {
   describe("when the value is not a king", () => {
     it("throws an error", () => {
       expect(() => assertKing(WHITE_PAWN)).toThrow(
-        `Expected \'${WHITE_PAWN}\' to have type "${WHITE_KING}" or "${BLACK_KING}".`,
+        `Expected '${WHITE_PAWN}' to have type "${WHITE_KING}" or "${BLACK_KING}".`,
       );
     });
   });
@@ -261,7 +261,7 @@ describe("assertWhitePiece", () => {
     it("throws an error", () => {
       for (const piece of BLACK_PIECES) {
         expect(() => assertWhitePiece(piece)).toThrow(
-          `Expected \'${piece}\' to have type "${WHITE_PAWN}", "${WHITE_KNIGHT}", ` +
+          `Expected '${piece}' to have type "${WHITE_PAWN}", "${WHITE_KNIGHT}", ` +
             `"${WHITE_BISHOP}", "${WHITE_ROOK}", "${WHITE_QUEEN}", or "${WHITE_KING}".`,
         );
       }
@@ -282,7 +282,7 @@ describe("assertBlackPiece", () => {
     it("throws an error", () => {
       for (const piece of WHITE_PIECES) {
         expect(() => assertBlackPiece(piece)).toThrow(
-          `Expected \'${piece}\' to have type "${BLACK_PAWN}", "${BLACK_KNIGHT}", ` +
+          `Expected '${piece}' to have type "${BLACK_PAWN}", "${BLACK_KNIGHT}", ` +
             `"${BLACK_BISHOP}", "${BLACK_ROOK}", "${BLACK_QUEEN}", or "${BLACK_KING}".`,
         );
       }
