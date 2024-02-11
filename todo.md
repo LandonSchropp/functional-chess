@@ -1,9 +1,12 @@
-## Validation
+# Todo
+
+## FEN
+
+### Validation
 
 - [ ] `isValid`
-- [ ] `isLegal`
 
-## Pieces
+### Position Accessors
 
 - [x] `getBoard`
 - [x] `getPieces`
@@ -12,7 +15,22 @@
 - [ ] `getAllLegalMoves`
 - [ ] `getLegalMoves`
 
-## Non-Position Fields
+### Position Predicates
+
+- [ ] `isCheckmate`
+- [ ] `isDraw`
+- [ ] `isInsufficientMaterial`
+- [ ] `isStalemate`
+
+### Position Mutators
+
+- [ ] `isLegalMove`
+- [ ] `movePiece`
+- [ ] `setPiece`
+- [ ] `removePiece`
+- [ ] `reverse`
+
+### Non-Position Accessors
 
 - [ ] `getColor`
 - [ ] `setColor`
@@ -27,17 +45,13 @@
 - [ ] `getFullMoveNumber()`
 - [ ] `setFullMoveNumber()`
 
-## Position Predicates
+## Square
 
-- [ ] `isCheckmate`
-- [ ] `isDraw`
-- [ ] `isInsufficientMaterial`
-- [ ] `isStalemate`
-
-## Editing Position
-
-- [ ] `isLegalMove`
-- [ ] `movePiece`
-- [ ] `setPiece`
-- [ ] `removePiece`
-- [ ] `reverse`
+- [x] `convertCoordinatesToSquare`
+- [x] `convertSquareToCoordinates`
+- [x] `distanceWithDiagonals`
+- [x] `distanceWithoutDiagonals`
+- [x] `getFile`
+- [x] `getRank`
+- [x] `getVectorBetweenSquares`
+- [x] `translateSquare`
