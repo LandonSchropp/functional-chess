@@ -15,6 +15,11 @@ import {
 import { invert } from "../internal/readonly-map";
 
 /**
+ * This constant represents the width of a 0x88 board.
+ */
+export const BOARD_WIDTH_0x88 = 16;
+
+/**
  * A readonly object that converts a string square into its 0x88 representation.
  */
 // prettier-ignore
@@ -86,6 +91,28 @@ export const PIECE_0x88_TO_PIECE = invert(PIECE_TO_PIECE_0x88);
 export const PIECES_0x88 = Object.values(PIECE_TO_PIECE_0x88);
 
 /**
- * This constant represents the width of a 0x88 board.
+ * A readonly map that converts a 0x88 piece to its ASCII character representation.
  */
-export const BOARD_WIDTH_0x88 = 16;
+export const PIECE_0x88_TO_PIECE_ASCII = invert({
+  ...PIECE_TO_PIECE_0x88,
+  ".": EMPTY_SQUARE_0x88,
+} as const);
+
+/**
+ * A readonly map that converts a 0x88 piece to its unicode character representation.
+ */
+export const PIECE_0x88_TO_PIECE_UNICODE = invert({
+  "♟︎": WHITE_PAWN_0x88,
+  "♞": WHITE_KNIGHT_0x88,
+  "♝": WHITE_BISHOP_0x88,
+  "♜": WHITE_ROOK_0x88,
+  "♛": WHITE_QUEEN_0x88,
+  "♚": WHITE_KING_0x88,
+  "♙": BLACK_PAWN_0x88,
+  "♘": BLACK_KNIGHT_0x88,
+  "♗": BLACK_BISHOP_0x88,
+  "♖": BLACK_ROOK_0x88,
+  "♕": BLACK_QUEEN_0x88,
+  "♔": BLACK_KING_0x88,
+  "·": EMPTY_SQUARE_0x88,
+} as const);
