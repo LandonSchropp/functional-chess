@@ -1,6 +1,6 @@
 import { OutOfBoundsError } from "../errors";
+import { isVectorInBounds } from "../internal/vector";
 import { Square, Vector } from "../types";
-import { isVectorInBounds } from "../utilities/vector";
 
 const A_CHAR_CODE = 97;
 

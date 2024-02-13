@@ -1,6 +1,6 @@
 import { OutOfBoundsError } from "../errors";
+import { isVectorInBounds } from "../internal/vector";
 import { Square, Vector } from "../types";
-import { isVectorInBounds } from "../utilities/vector";
 import { convertCoordinatesToSquare } from "./convert-coordinates-to-square";
 import { convertSquareToCoordinates } from "./convert-square-to-coordinates";
 

@@ -12,7 +12,7 @@ import {
   BLACK_QUEEN,
   BLACK_KING,
 } from "../constants";
-import { invert } from "../utilities/readonly-map";
+import { invert } from "../internal/readonly-map";
 
 /**
  * A readonly object that converts a string square into its 0x88 representation.
