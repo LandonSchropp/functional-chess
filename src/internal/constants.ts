@@ -39,6 +39,11 @@ export const SQUARE_0x88_TO_SQUARE = invert(SQUARE_TO_SQUARE_0x88);
  */
 export const SQUARES_0x88 = Object.values(SQUARE_TO_SQUARE_0x88);
 
+/**
+ * An empty 0x88 square;
+ */
+export const EMPTY_SQUARE_0x88 = 0;
+
 export const WHITE_PAWN_0x88 = 1;
 export const WHITE_KNIGHT_0x88 = 2;
 export const WHITE_BISHOP_0x88 = 3;
@@ -73,9 +78,14 @@ export const PIECE_TO_PIECE_0x88 = {
 /**
  * A readonly map that converts a 0x88 piece to its string representation.
  */
-export const PIECES_0x88_TO_PIECES = invert(PIECE_TO_PIECE_0x88);
+export const PIECE_0x88_TO_PIECE = invert(PIECE_TO_PIECE_0x88);
 
 /**
  * An array of all of the possible 0x88 pieces.
  */
 export const PIECES_0x88 = Object.values(PIECE_TO_PIECE_0x88);
+
+/**
+ * This constant represents the width of a 0x88 board.
+ */
+export const BOARD_WIDTH_0x88 = 16;
