@@ -30,16 +30,19 @@ Here's why it stands out:
 
 TODO: Fill out this section once the library is deployed.
 
-## Inspiration
+## Inspiration and Resources
 
-This library is inspired by many other wonderful open source projects.
+This library is inspired by many other wonderful resources and projects.
 
-- [Chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md) is a fantastic
-  object-oriented chess library. Much of the implementation and many of the test cases in this
-  library were directly inspired from Chess.js.
-- [Chess Programming Wiki](https://www.chessprogramming.org/Main_Page): This project is an
-  invaluable resource for anyone who would like to try their hand at chess programming. It features
-  invaluable guidance on many different subjects the helps to shape this library.
+- [0x88 MOVE GENERATOR
+  (Wukong)](https://youtube.com/playlist?list=PLmN0neTso3JzhJP35hwPHJi4FZgw5Ior0) This is a
+  wonderful YouTube video series that goes in-depth on how to implement a chess move generator in C.
+- [Chess.js](https://github.com/jhlywa/chess.js) is a fantastic object-oriented chess library. Much
+  of the implementation and many of the test cases in this library were directly inspired from
+  Chess.js.
+- [Chess Programming Wiki](https://www.chessprogramming.org): This project is an invaluable resource
+  for anyone who would like to try their hand at chess programming. It features invaluable guidance
+  on many different subjects the helps to shape this library.
 
 ## Development
 
