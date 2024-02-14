@@ -1,4 +1,5 @@
 {
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "printWidth": 100
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-jsdoc"],
+  "printWidth": 100,
+  "tsdoc": true
 }
