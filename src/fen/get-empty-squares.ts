@@ -4,6 +4,7 @@ import { filter, flatten, isNil, map, pipe, prop } from "remeda";
 
 /**
  * Returns the empty squares in the FEN.
+ *
  * @param fen The FEN to parse.
  * @returns The empty squares in the FEN.
  */

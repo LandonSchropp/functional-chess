@@ -6,12 +6,13 @@ import { convertSquareToCoordinates } from "./convert-square-to-coordinates";
 
 /**
  * Translates the square by the provided vector.
+ *
+ * @example TranslateSquare("e5", [1, 2]); // "f7"
+ *
  * @param square The square to translate.
  * @param vector A vector indicating how to translate the file and rank of the square.
  * @returns The new square after applying the translation.
  * @throws Throws an error if the newly translated square is out of bounds.
- * @example
- * translateSquare("e5", [1, 2]); // "f7"
  */
 export function translateSquare(square: Square, vector: Vector) {
   const [file, rank] = convertSquareToCoordinates(square);

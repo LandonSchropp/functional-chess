@@ -3,6 +3,7 @@ import { convertSquareToCoordinates } from "./convert-square-to-coordinates";
 
 /**
  * Returns the vector between one square and another.
+ *
  * @param from The square to get the vector from.
  * @param to The square to get the vector to.
  * @returns The vector between the two squares.

@@ -10,9 +10,7 @@ import {
 import { Board0x88, EmptySquare0x88, Piece0x88 } from "../internal/types";
 import { isPiece } from "../types";
 
-/**
- * A regular expression to match a FEN string. This is not meant to be comprehensive.
- */
+/** A regular expression to match a FEN string. This is not meant to be comprehensive. */
 const FEN_REGEX = new RegExp(
   [
     "^",
@@ -38,10 +36,11 @@ const UNOCCUPIED_SQUARES = Array.from(
 
 /**
  * Returns the index of a square for an 0x88 board.
+ *
+ * @private
  * @param rankIndex - The rank index.
  * @param fileIndex - The file index.
  * @returns The index of the square.
- * @private
  */
 export function getIndex0x88(rankIndex: number, fileIndex: number): number {
   return rankIndex * BOARD_WIDTH_0x88 + fileIndex;
@@ -49,11 +48,12 @@ export function getIndex0x88(rankIndex: number, fileIndex: number): number {
 
 /**
  * Returns a piece from a 0x88 board.
+ *
+ * @private
  * @param board - The 0x88 board.
  * @param rankIndex - The rank index.
  * @param fileIndex - The file index.
  * @returns An 0x88 piece or an 0x88 empty square.
- * @private
  */
 export function getPiece0x88(
   board: Board0x88,
@@ -65,9 +65,10 @@ export function getPiece0x88(
 
 /**
  * Converts a 0x88 board to its ASCII string representation.
+ *
+ * @private
  * @param board - The 0x88 board.
  * @returns The ASCII string representation of the 0x88 board.
- * @private
  */
 export function toAscii(board: Board0x88): string {
   return Array.from({ length: BOARD_SIZE }, (_, rankIndex) => {
@@ -81,9 +82,10 @@ export function toAscii(board: Board0x88): string {
 
 /**
  * Converts a 0x88 board to its unicode string representation.
+ *
+ * @private
  * @param board - The 0x88 board.
  * @returns The unicode string representation of the 0x88 board.
- * @private
  */
 export function toUnicode(board: Board0x88): string {
   return Array.from({ length: BOARD_SIZE }, (_, rankIndex) => {
@@ -122,6 +124,7 @@ function parseRank(fen: string, rank: string): (Piece0x88 | EmptySquare0x88)[] {
 
 /**
  * Parses a FEN string into a 0x88 board.
+ *
  * @param fen - The FEN string.
  * @returns The 0x88 board.
  */

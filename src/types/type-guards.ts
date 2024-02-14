@@ -25,6 +25,7 @@ import { Color, File, Move, Piece, Rank, Side, Square, SquareColor, Vector } fro
 
 /**
  * Determines if the provided value is a Vector.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Vector and false otherwise.
  */
@@ -39,6 +40,7 @@ export function isVector(value: unknown): value is Vector {
 
 /**
  * Determines if the provided value is a Color.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Color and false otherwise.
  */
@@ -48,6 +50,7 @@ export function isColor(value: unknown): value is Color {
 
 /**
  * Determines if the provided value is a File.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a File and false otherwise.
  */
@@ -57,6 +60,7 @@ export function isFile(value: unknown): value is File {
 
 /**
  * Determines if the provided value is a Rank.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Rank and false otherwise.
  */
@@ -66,6 +70,7 @@ export function isRank(value: unknown): value is Rank {
 
 /**
  * Determines if the provided value is a SquareColor.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a SquareColor and false otherwise.
  */
@@ -75,6 +80,7 @@ export function isSquareColor(value: unknown): value is SquareColor {
 
 /**
  * Determines if the provided value is a Square.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Square and false otherwise.
  */
@@ -84,6 +90,7 @@ export function isSquare(value: unknown): value is Square {
 
 /**
  * Determines if the provided value is a Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Piece and false otherwise.
  */
@@ -93,6 +100,7 @@ export function isPiece(value: unknown): value is Piece {
 
 /**
  * Determines if the provided value is pawn Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a pawn Piece.
  */
@@ -102,6 +110,7 @@ export function isPawn(value: unknown): value is typeof WHITE_PAWN | typeof BLAC
 
 /**
  * Determines if the provided value is knight Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a knight Piece.
  */
@@ -111,6 +120,7 @@ export function isKnight(value: unknown): value is typeof WHITE_KNIGHT | typeof 
 
 /**
  * Determines if the provided value is bishop Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a bishop Piece.
  */
@@ -120,6 +130,7 @@ export function isBishop(value: unknown): value is typeof WHITE_BISHOP | typeof 
 
 /**
  * Determines if the provided value is rook Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a rook Piece.
  */
@@ -129,6 +140,7 @@ export function isRook(value: unknown): value is typeof WHITE_ROOK | typeof BLAC
 
 /**
  * Determines if the provided value is queen Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a queen Piece.
  */
@@ -138,6 +150,7 @@ export function isQueen(value: unknown): value is typeof WHITE_QUEEN | typeof BL
 
 /**
  * Determines if the provided value is king Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a king Piece.
  */
@@ -147,6 +160,7 @@ export function isKing(value: unknown): value is typeof WHITE_KING | typeof BLAC
 
 /**
  * Determines if the provided value is a white Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a white Piece.
  */
@@ -156,6 +170,7 @@ export function isWhitePiece(value: unknown): value is (typeof WHITE_PIECES)[num
 
 /**
  * Determines if the provided value is a black Piece.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a black Piece.
  */
@@ -165,6 +180,7 @@ export function isBlackPiece(value: unknown): value is (typeof BLACK_PIECES)[num
 
 /**
  * Determines if the provided value is a Side.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Side and false otherwise.
  */
@@ -174,6 +190,7 @@ export function isSide(value: unknown): value is Side {
 
 /**
  * Determines if the provided value is a Move.
+ *
  * @param value The value to check.
  * @returns Returns true if the value is a Move and false otherwise.
  */

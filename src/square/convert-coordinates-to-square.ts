@@ -6,6 +6,7 @@ const A_CHAR_CODE = 97;
 
 /**
  * Converts the coordinates to a square.
+ *
  * @param square The coordinates to convert, with the file first and the rank second.
  * @returns The square represented by the coordinates.
  * @throws Throws an error if the coordinates are invalid.

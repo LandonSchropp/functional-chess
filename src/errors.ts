@@ -1,6 +1,4 @@
-/**
- * The square in an operation was outside the bounds of a chessboard.
- */
+/** The square in an operation was outside the bounds of a chessboard. */
 export class OutOfBoundsError extends Error {
   constructor(message?: string | undefined) {
     super(message);

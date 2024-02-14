@@ -4,6 +4,7 @@ const A_CHAR_CODE = 97;
 
 /**
  * Converts a square to its coordinates.
+ *
  * @param square The square to convert.
  * @returns The coordinates of the square, with the file first and the rank second.
  */

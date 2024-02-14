@@ -14,14 +14,10 @@ import {
 } from "../constants";
 import { invert } from "../internal/readonly-map";
 
-/**
- * This constant represents the width of a 0x88 board.
- */
+/** This constant represents the width of a 0x88 board. */
 export const BOARD_WIDTH_0x88 = 16;
 
-/**
- * A readonly object that converts a string square into its 0x88 representation.
- */
+/** A readonly object that converts a string square into its 0x88 representation. */
 // prettier-ignore
 export const SQUARE_TO_SQUARE_0x88 = {
   a8: 0x70, b8: 0x71, c8: 0x72, d8: 0x73, e8: 0x74, f8: 0x75, g8: 0x76, h8: 0x77,
@@ -34,19 +30,13 @@ export const SQUARE_TO_SQUARE_0x88 = {
   a1: 0x00, b1: 0x01, c1: 0x02, d1: 0x03, e1: 0x04, f1: 0x05, g1: 0x06, h1: 0x07,
 } as const;
 
-/**
- * A readonly map that converts a 0x88 square to its string representation.
- */
+/** A readonly map that converts a 0x88 square to its string representation. */
 export const SQUARE_0x88_TO_SQUARE = invert(SQUARE_TO_SQUARE_0x88);
 
-/**
- * An array of all of the possible 0x88 squares.
- */
+/** An array of all of the possible 0x88 squares. */
 export const SQUARES_0x88 = Object.values(SQUARE_TO_SQUARE_0x88);
 
-/**
- * An empty 0x88 square;
- */
+/** An empty 0x88 square; */
 export const EMPTY_SQUARE_0x88 = 0;
 
 export const WHITE_PAWN_0x88 = 1;
@@ -62,9 +52,7 @@ export const BLACK_ROOK_0x88 = 10;
 export const BLACK_QUEEN_0x88 = 11;
 export const BLACK_KING_0x88 = 12;
 
-/**
- * A readonly object that converts a string piece into its 0x88 representation.
- */
+/** A readonly object that converts a string piece into its 0x88 representation. */
 export const PIECE_TO_PIECE_0x88 = {
   [WHITE_PAWN]: WHITE_PAWN_0x88,
   [WHITE_KNIGHT]: WHITE_KNIGHT_0x88,
@@ -80,27 +68,19 @@ export const PIECE_TO_PIECE_0x88 = {
   [BLACK_KING]: BLACK_KING_0x88,
 } as const;
 
-/**
- * A readonly map that converts a 0x88 piece to its string representation.
- */
+/** A readonly map that converts a 0x88 piece to its string representation. */
 export const PIECE_0x88_TO_PIECE = invert(PIECE_TO_PIECE_0x88);
 
-/**
- * An array of all of the possible 0x88 pieces.
- */
+/** An array of all of the possible 0x88 pieces. */
 export const PIECES_0x88 = Object.values(PIECE_TO_PIECE_0x88);
 
-/**
- * A readonly map that converts a 0x88 piece to its ASCII character representation.
- */
+/** A readonly map that converts a 0x88 piece to its ASCII character representation. */
 export const PIECE_0x88_TO_PIECE_ASCII = invert({
   ...PIECE_TO_PIECE_0x88,
   ".": EMPTY_SQUARE_0x88,
 } as const);
 
-/**
- * A readonly map that converts a 0x88 piece to its unicode character representation.
- */
+/** A readonly map that converts a 0x88 piece to its unicode character representation. */
 export const PIECE_0x88_TO_PIECE_UNICODE = invert({
   "♟︎": WHITE_PAWN_0x88,
   "♞": WHITE_KNIGHT_0x88,

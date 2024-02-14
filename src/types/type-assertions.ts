@@ -32,9 +32,7 @@ import {
   isWhitePiece,
 } from "./type-guards";
 
-/**
- * A helper function or creating type assertions.
- */
+/** A helper function or creating type assertions. */
 function assertType<T>(
   guard: (value: unknown) => value is T,
   typeName: string,
@@ -48,6 +46,7 @@ function assertType<T>(
 
 /**
  * Asserts that the provided value is a Vector.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Vector.
  */
@@ -55,6 +54,7 @@ export const assertVector = assertType(isVector, "Vector");
 
 /**
  * Asserts that the provided value is a Rank.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Rank.
  */
@@ -62,6 +62,7 @@ export const assertRank = assertType(isRank, "Rank");
 
 /**
  * Asserts that the provided value is a File.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a File.
  */
@@ -69,6 +70,7 @@ export const assertFile = assertType(isFile, "File");
 
 /**
  * Asserts that the provided value is a SquareColor.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a SquareColor.
  */
@@ -76,6 +78,7 @@ export const assertSquareColor = assertType(isSquareColor, "SquareColor");
 
 /**
  * Asserts that the provided value is a Square.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Square.
  */
@@ -83,6 +86,7 @@ export const assertSquare = assertType(isSquare, "Square");
 
 /**
  * Asserts that the provided value is a Color.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Color.
  */
@@ -90,6 +94,7 @@ export const assertColor = assertType(isColor, "Color");
 
 /**
  * Asserts that the provided value is a Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Piece.
  */
@@ -97,6 +102,7 @@ export const assertPiece = assertType(isPiece, "Piece");
 
 /**
  * Asserts that the provided value is a pawn Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a pawn Piece.
  */
@@ -104,6 +110,7 @@ export const assertPawn = assertType(isPawn, `"${WHITE_PAWN}" or "${BLACK_PAWN}"
 
 /**
  * Asserts that the provided value is a knight Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a knight Piece.
  */
@@ -111,6 +118,7 @@ export const assertKnight = assertType(isKnight, `"${WHITE_KNIGHT}" or "${BLACK_
 
 /**
  * Asserts that the provided value is a bishop Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a bishop Piece.
  */
@@ -118,6 +126,7 @@ export const assertBishop = assertType(isBishop, `"${WHITE_BISHOP}" or "${BLACK_
 
 /**
  * Asserts that the provided value is a rook Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a rook Piece.
  */
@@ -125,6 +134,7 @@ export const assertRook = assertType(isRook, `"${WHITE_ROOK}" or "${BLACK_ROOK}"
 
 /**
  * Asserts that the provided value is a queen Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a queen Piece.
  */
@@ -132,6 +142,7 @@ export const assertQueen = assertType(isQueen, `"${WHITE_QUEEN}" or "${BLACK_QUE
 
 /**
  * Asserts that the provided value is a king Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a king Piece.
  */
@@ -139,6 +150,7 @@ export const assertKing = assertType(isKing, `"${WHITE_KING}" or "${BLACK_KING}"
 
 /**
  * Asserts that the provided value is a white Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a white Piece.
  */
@@ -149,6 +161,7 @@ export const assertWhitePiece = assertType(
 
 /**
  * Asserts that the provided value is a black Piece.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a black Piece.
  */
@@ -159,6 +172,7 @@ export const assertBlackPiece = assertType(
 
 /**
  * Asserts that the provided value is a Side.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Side.
  */
@@ -166,6 +180,7 @@ export const assertSide = assertType(isSide, "Side");
 
 /**
  * Asserts that the provided value is a Move.
+ *
  * @param value The value to check.
  * @throws Throws an error if the value is not a Move.
  */

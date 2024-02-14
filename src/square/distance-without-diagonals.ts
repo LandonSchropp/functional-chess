@@ -6,6 +6,7 @@ import { getVectorBetweenSquares } from "./get-vector-between-squares";
  * squares a rook would have to move to get from one square to another. In mathematical terms, this
  * is known as the [taxicab distance or Manhattan
  * distance](https://en.wikipedia.org/wiki/Taxicab_geometry).
+ *
  * @param square1 The first square.
  * @param square2 The second square.
  * @returns This distance between the two squares with no diagonal moves.
