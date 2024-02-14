@@ -14,6 +14,15 @@ import {
 } from "../constants";
 import { invert } from "../internal/readonly-map";
 
+/** The 0x88 representation of white. */
+export const WHITE_0x88 = 0b01;
+
+/** The 0x88 representation of black. */
+export const BLACK_0x88 = 0b10;
+
+/** An array of the 0x88 colors. */
+export const COLORS_0x88 = [WHITE_0x88, BLACK_0x88];
+
 /** This constant represents the width of a 0x88 board. */
 export const BOARD_WIDTH_0x88 = 16;
 
@@ -96,3 +105,23 @@ export const PIECE_0x88_TO_PIECE_UNICODE = invert({
   "♔": BLACK_KING_0x88,
   "·": EMPTY_SQUARE_0x88,
 } as const);
+
+/** The 0x88 representation of white's kingside. */
+export const WHITE_KINGSIDE_0x88 = 0b0001;
+
+/** The 0x88 representation of white'q`. */
+export const WHITE_QUEENSIDE_0x88 = 0b0010;
+
+/** The 0x88 representation of black's kingside. */
+export const BLACK_KINGSIDE_0x88 = 0b0100;
+
+/** The 0x88 representation of black'q`. */
+export const BLACK_QUEENSIDE_0x88 = 0b1000;
+
+/** An array of the 0x88 colors. */
+export const SIDES_0x88 = [
+  WHITE_KINGSIDE_0x88,
+  WHITE_QUEENSIDE_0x88,
+  BLACK_KINGSIDE_0x88,
+  BLACK_QUEENSIDE_0x88,
+];
