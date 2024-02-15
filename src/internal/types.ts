@@ -24,8 +24,8 @@ export type Board0x88 = Uint8Array;
 
 /** A parsed FEN */
 export type Fen0x88 = [
-  board: Board0x88,
-  turn: Color0x88,
+  position: Board0x88,
+  color: Color0x88,
   castling: number,
   enPassant: Square0x88 | EmptySquare0x88,
   halfMove: number,
