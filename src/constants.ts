@@ -6,11 +6,6 @@ export const WHITE = "white";
 export const BLACK = "black";
 export const COLORS = [WHITE, BLACK] as const;
 
-// Square colors
-export const LIGHT = "light";
-export const DARK = "dark";
-export const SQUARE_COLORS = [LIGHT, DARK] as const;
-
 // Ranks and files
 export const FILES = ["a", "b", "c", "d", "e", "f", "g", "h"] as const;
 export const RANKS = ["1", "2", "3", "4", "5", "6", "7", "8"] as const;

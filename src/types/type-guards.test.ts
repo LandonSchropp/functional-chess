@@ -12,7 +12,6 @@ import {
   RANKS,
   SIDES,
   SQUARES,
-  SQUARE_COLORS,
   WHITE_BISHOP,
   WHITE_KING,
   WHITE_KNIGHT,
@@ -35,7 +34,6 @@ import {
   isRook,
   isSide,
   isSquare,
-  isSquareColor,
   isVector,
   isWhitePiece,
 } from "./type-guards";
@@ -146,28 +144,6 @@ describe("isRank", () => {
     it("returns true", () => {
       for (const rank of RANKS) {
         expect(isRank(rank)).toBe(true);
-      }
-    });
-  });
-});
-
-describe("isSquareColor", () => {
-  describe("when the value is not a string", () => {
-    it("returns false", () => {
-      expect(isSquareColor(1234)).toBe(false);
-    });
-  });
-
-  describe("when the value is not a squareColor", () => {
-    it("returns false", () => {
-      expect(isSquareColor("banana")).toBe(false);
-    });
-  });
-
-  describe("when the value is a squareColor", () => {
-    it("returns true", () => {
-      for (const squareColor of SQUARE_COLORS) {
-        expect(isSquareColor(squareColor)).toBe(true);
       }
     });
   });

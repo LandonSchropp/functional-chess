@@ -12,7 +12,6 @@ import {
   RANKS,
   SIDES,
   SQUARES,
-  SQUARE_COLORS,
   WHITE_BISHOP,
   WHITE_KING,
   WHITE_KNIGHT,
@@ -21,7 +20,7 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK,
 } from "../constants";
-import { Color, File, Move, Piece, Rank, Side, Square, SquareColor, Vector } from "./types";
+import { Color, File, Move, Piece, Rank, Side, Square, Vector } from "./types";
 
 /**
  * Determines if the provided value is a Vector.
@@ -66,16 +65,6 @@ export function isFile(value: unknown): value is File {
  */
 export function isRank(value: unknown): value is Rank {
   return RANKS.includes(value as Rank);
-}
-
-/**
- * Determines if the provided value is a SquareColor.
- *
- * @param value The value to check.
- * @returns Returns true if the value is a SquareColor and false otherwise.
- */
-export function isSquareColor(value: unknown): value is SquareColor {
-  return SQUARE_COLORS.includes(value as SquareColor);
 }
 
 /**

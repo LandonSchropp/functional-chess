@@ -27,7 +27,6 @@ import {
   isRook,
   isSide,
   isSquare,
-  isSquareColor,
   isVector,
   isWhitePiece,
 } from "./type-guards";
@@ -67,14 +66,6 @@ export const assertRank = assertType(isRank, "Rank");
  * @throws Throws an error if the value is not a File.
  */
 export const assertFile = assertType(isFile, "File");
-
-/**
- * Asserts that the provided value is a SquareColor.
- *
- * @param value The value to check.
- * @throws Throws an error if the value is not a SquareColor.
- */
-export const assertSquareColor = assertType(isSquareColor, "SquareColor");
 
 /**
  * Asserts that the provided value is a Square.

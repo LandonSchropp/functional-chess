@@ -1,4 +1,4 @@
-import { COLORS, FILES, PIECES, RANKS, SIDES, SQUARES, SQUARE_COLORS } from "../constants";
+import { COLORS, FILES, PIECES, RANKS, SIDES, SQUARES } from "../constants";
 
 // Match
 export type Vector = [number, number];
@@ -7,7 +7,6 @@ export type Vector = [number, number];
 export type Color = (typeof COLORS)[number];
 export type File = (typeof FILES)[number];
 export type Rank = (typeof RANKS)[number];
-export type SquareColor = (typeof SQUARE_COLORS)[number];
 export type Square = (typeof SQUARES)[number];
 export type Piece = (typeof PIECES)[number];
 export type Side = (typeof SIDES)[number];

@@ -12,7 +12,6 @@ import {
   RANKS,
   SIDES,
   SQUARES,
-  SQUARE_COLORS,
   WHITE_BISHOP,
   WHITE_KING,
   WHITE_KNIGHT,
@@ -36,7 +35,6 @@ import {
   assertRook,
   assertSide,
   assertSquare,
-  assertSquareColor,
   assertVector,
   assertWhitePiece,
 } from "./type-assertions";
@@ -99,24 +97,6 @@ describe("assertRank", () => {
     it("does not throw an error", () => {
       for (const rank of RANKS) {
         expect(() => assertRank(rank)).not.toThrow();
-      }
-    });
-  });
-});
-
-describe("assertSquareColor", () => {
-  describe("when the value is not a squareColor", () => {
-    it("throws an error", () => {
-      expect(() => assertSquareColor("banana")).toThrow(
-        "Expected 'banana' to have type SquareColor.",
-      );
-    });
-  });
-
-  describe("when the value is a squareColor", () => {
-    it("does not throw an error", () => {
-      for (const squareColor of SQUARE_COLORS) {
-        expect(() => assertSquareColor(squareColor)).not.toThrow();
       }
     });
   });
