@@ -27,7 +27,7 @@ export const WHITE_0x88 = 0b01;
 export const BLACK_0x88 = 0b10;
 
 /** An array of the 0x88 colors. */
-export const COLORS_0x88 = [WHITE_0x88, BLACK_0x88];
+export const COLORS_0x88 = [WHITE_0x88, BLACK_0x88] as const;
 
 /** A readonly object that converts a string color into its 0x88 representation. */
 export const COLOR_TO_COLOR_0x88 = {
@@ -139,7 +139,7 @@ export const SIDES_0x88 = [
   WHITE_QUEENSIDE_0x88,
   BLACK_KINGSIDE_0x88,
   BLACK_QUEENSIDE_0x88,
-];
+] as const;
 
 /** A readonly object that converts a string side into its 0x88 representation. */
 export const SIDE_TO_SIDE_0x88 = {
