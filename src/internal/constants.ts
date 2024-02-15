@@ -11,6 +11,12 @@ import {
   BLACK_ROOK,
   BLACK_QUEEN,
   BLACK_KING,
+  BLACK,
+  WHITE,
+  BLACK_KINGSIDE,
+  BLACK_QUEENSIDE,
+  WHITE_KINGSIDE,
+  WHITE_QUEENSIDE,
 } from "../constants";
 import { invert } from "../internal/readonly-map";
 
@@ -22,6 +28,15 @@ export const BLACK_0x88 = 0b10;
 
 /** An array of the 0x88 colors. */
 export const COLORS_0x88 = [WHITE_0x88, BLACK_0x88];
+
+/** A readonly object that converts a string color into its 0x88 representation. */
+export const COLOR_TO_COLOR_0x88 = {
+  [WHITE]: WHITE_0x88,
+  [BLACK]: BLACK_0x88,
+} as const;
+
+/** A readonly map that converts a 0x88 color to its string representation. */
+export const COLOR_0x88_TO_COLOR = invert(COLOR_TO_COLOR_0x88);
 
 /** This constant represents the width of a 0x88 board. */
 export const BOARD_WIDTH_0x88 = 16;
@@ -125,3 +140,14 @@ export const SIDES_0x88 = [
   BLACK_KINGSIDE_0x88,
   BLACK_QUEENSIDE_0x88,
 ];
+
+/** A readonly object that converts a string side into its 0x88 representation. */
+export const SIDE_TO_SIDE_0x88 = {
+  [WHITE_KINGSIDE]: WHITE_KINGSIDE_0x88,
+  [WHITE_QUEENSIDE]: WHITE_QUEENSIDE_0x88,
+  [BLACK_KINGSIDE]: BLACK_KINGSIDE_0x88,
+  [BLACK_QUEENSIDE]: BLACK_QUEENSIDE_0x88,
+} as const;
+
+/** A readonly map that converts a 0x88 side to its string representation. */
+export const SIDE_0x88_TO_SIDE = invert(SIDE_TO_SIDE_0x88);
