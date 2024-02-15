@@ -4,6 +4,15 @@
 
 These functions related to FEN strings.
 
+### Internal
+
+These functions are required internally in order to make the library work.
+
+- [ ] `parseFen`
+- [ ] `unparseFen`
+- [ ] `transformFen`
+- [ ] `deriveFromFen`
+
 ### Validation
 
 These functions can be used to validate different aspects of a FEN string.
