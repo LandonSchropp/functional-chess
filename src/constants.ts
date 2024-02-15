@@ -2,8 +2,8 @@
 export const BOARD_SIZE = 8;
 
 // Colors
-export const WHITE = "white";
-export const BLACK = "black";
+export const WHITE = "w";
+export const BLACK = "b";
 export const COLORS = [WHITE, BLACK] as const;
 
 // Ranks and files
