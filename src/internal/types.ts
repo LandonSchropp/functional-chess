@@ -1,5 +1,9 @@
 import { COLORS_0x88, EMPTY_SQUARE_0x88, PIECES_0x88, SIDES_0x88, SQUARES_0x88 } from "./constants";
 
+type Tuple<T, N extends number, R extends T[] = []> = R["length"] extends N
+  ? R
+  : Tuple<T, N, [T, ...R]>;
+
 /** A 0x88 color. */
 export type Color0x88 = (typeof COLORS_0x88)[number];
 
@@ -20,7 +24,7 @@ export type EmptySquare0x88 = typeof EMPTY_SQUARE_0x88;
  *
  * @private
  */
-export type Board0x88 = Uint8Array;
+export type Board0x88 = Tuple<Piece0x88 | EmptySquare0x88, 128>;
 
 /** A parsed FEN */
 export type Fen0x88 = [

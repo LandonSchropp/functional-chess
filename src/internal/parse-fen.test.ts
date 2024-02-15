@@ -27,6 +27,7 @@ import {
   SQUARE_TO_SQUARE_0x88,
 } from "./constants";
 import { parseFen } from "./parse-fen";
+import { Board0x88 } from "./types";
 import { expect, it, describe } from "bun:test";
 
 const WHITESPACE = "\t \n\r\v\f";
@@ -34,7 +35,7 @@ const WHITESPACE = "\t \n\r\v\f";
 // TODO: Remove this when Bun released the fix for the issue #8243
 const TypedInvalidFenError = InvalidFenError as unknown as Error;
 
-const STARTING_POSITION_BOARD_0x88 = new Uint8Array([
+const STARTING_POSITION_BOARD_0x88: Board0x88 = [
   WHITE_ROOK_0x88,
   WHITE_KNIGHT_0x88,
   WHITE_BISHOP_0x88,
@@ -43,12 +44,12 @@ const STARTING_POSITION_BOARD_0x88 = new Uint8Array([
   WHITE_BISHOP_0x88,
   WHITE_KNIGHT_0x88,
   WHITE_ROOK_0x88,
-  ...Array.from({ length: BOARD_WIDTH_0x88 - BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
-  ...Array.from({ length: BOARD_SIZE }, () => WHITE_PAWN_0x88),
-  ...Array.from({ length: BOARD_WIDTH_0x88 - BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
-  ...Array.from({ length: BOARD_WIDTH_0x88 * 4 }, () => EMPTY_SQUARE_0x88),
-  ...Array.from({ length: BOARD_SIZE }, () => BLACK_PAWN_0x88),
-  ...Array.from({ length: BOARD_WIDTH_0x88 - BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
+  ...new Array(BOARD_SIZE).fill(WHITE_PAWN_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 * 4).fill(EMPTY_SQUARE_0x88),
+  ...new Array(BOARD_SIZE).fill(BLACK_PAWN_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
   BLACK_ROOK_0x88,
   BLACK_KNIGHT_0x88,
   BLACK_BISHOP_0x88,
@@ -57,8 +58,8 @@ const STARTING_POSITION_BOARD_0x88 = new Uint8Array([
   BLACK_BISHOP_0x88,
   BLACK_KNIGHT_0x88,
   BLACK_ROOK_0x88,
-  ...Array.from({ length: BOARD_WIDTH_0x88 - BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
-]);
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
+];
 
 describe("parseFen", () => {
   describe("when the FEN has less than 6 parts", () => {
@@ -140,15 +141,12 @@ describe("parseFen", () => {
       const fen = "7k/8/8/8/8/8/8/K7 w - - 0 1";
 
       expect(parseFen(fen)).toEqual([
-        new Uint8Array([
+        [
           WHITE_KING_0x88,
-          ...Array.from(
-            { length: BOARD_WIDTH_0x88 * BOARD_SIZE - BOARD_SIZE - 2 },
-            () => EMPTY_SQUARE_0x88,
-          ),
+          ...new Array(BOARD_WIDTH_0x88 * BOARD_SIZE - BOARD_SIZE - 2).fill(EMPTY_SQUARE_0x88),
           BLACK_KING_0x88,
-          ...Array.from({ length: BOARD_WIDTH_0x88 - BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
-        ]),
+          ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
+        ] as Board0x88,
         WHITE_0x88,
         0b0000,
         EMPTY_SQUARE_0x88,
@@ -161,9 +159,7 @@ describe("parseFen", () => {
   describe("when the position is empty", () => {
     it("parses the FEN", () => {
       expect(parseFen(EMPTY_POSITION)).toEqual([
-        new Uint8Array(
-          Array.from({ length: BOARD_WIDTH_0x88 * BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
-        ),
+        new Array(BOARD_WIDTH_0x88 * BOARD_SIZE).fill(EMPTY_SQUARE_0x88) as Board0x88,
         WHITE_0x88,
         0b0000,
         EMPTY_SQUARE_0x88,
@@ -179,12 +175,12 @@ describe("parseFen", () => {
         "KKKKKKKK/KKKKKKKK/KKKKKKKK/KKKKKKKK/KKKKKKKK/KKKKKKKK/KKKKKKKK/KKKKKKKK w - - 0 1";
 
       expect(parseFen(fen)).toEqual([
-        new Uint8Array(
-          Array.from({ length: BOARD_SIZE }, () => [
-            ...Array.from({ length: BOARD_SIZE }, () => WHITE_KING_0x88),
-            ...Array.from({ length: BOARD_WIDTH_0x88 - BOARD_SIZE }, () => EMPTY_SQUARE_0x88),
-          ]).flat(),
-        ),
+        new Array(BOARD_SIZE)
+          .fill([
+            ...new Array(BOARD_SIZE).fill(WHITE_KING_0x88),
+            ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
+          ])
+          .flat() as Board0x88,
         WHITE_0x88,
         0b0000,
         EMPTY_SQUARE_0x88,

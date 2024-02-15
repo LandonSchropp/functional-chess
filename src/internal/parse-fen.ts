@@ -42,19 +42,17 @@ function parseRank(fen: string, rank: string): (Piece0x88 | EmptySquare0x88)[] {
 }
 
 export function parsePosition(fen: string, position: string): Board0x88 {
-  const board = new Uint8Array(
-    position
-      .split("/")
-      .map((rank) => parseRank(fen, rank))
-      .toReversed()
-      .flat(),
-  );
+  const board = position
+    .split("/")
+    .map((rank) => parseRank(fen, rank))
+    .toReversed()
+    .flat();
 
   if (board.length !== BOARD_WIDTH_0x88 * BOARD_SIZE) {
     throw new InvalidFenError(`The FEN '${fen}' does not have ${BOARD_SIZE} ranks.`);
   }
 
-  return board;
+  return board as Board0x88;
 }
 
 function parseColor(fen: string, color: string): Color0x88 {
