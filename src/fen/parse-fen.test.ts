@@ -25,9 +25,9 @@ import {
   WHITE_0x88,
   BLACK_0x88,
   SQUARE_TO_SQUARE_0x88,
-} from "./constants";
+} from "../internal/constants";
+import { Board0x88 } from "../internal/types";
 import { parseFen } from "./parse-fen";
-import { Board0x88 } from "./types";
 import { expect, it, describe } from "bun:test";
 
 const WHITESPACE = "\t \n\r\v\f";
@@ -59,7 +59,7 @@ const STARTING_POSITION_BOARD_0x88: Board0x88 = [
   BLACK_KNIGHT_0x88,
   BLACK_ROOK_0x88,
   ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_SQUARE_0x88),
-];
+] as Board0x88;
 
 describe("parseFen", () => {
   describe("when the FEN has less than 6 parts", () => {

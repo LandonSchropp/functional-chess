@@ -1,13 +1,13 @@
 import { BOARD_SIZE } from "../constants";
 import {
-  COLOR_0x88_TO_COLOR,
+  SQUARE_TO_SQUARE_0x88,
   EMPTY_SQUARE_0x88,
   PIECE_0x88_TO_PIECE,
   SIDES_0x88,
   SIDE_0x88_TO_SIDE,
-  SQUARE_TO_SQUARE_0x88,
-} from "./constants";
-import { Board0x88, Fen0x88 } from "./types";
+  COLOR_0x88_TO_COLOR,
+} from "../internal/constants";
+import { Board0x88, Fen0x88 } from "../internal/types";
 import { invert } from "remeda";
 
 const EN_PASSANT_SQUARE_0x88_TO_SQUARE = invert({

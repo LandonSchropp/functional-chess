@@ -1,15 +1,22 @@
 import { BOARD_SIZE } from "../constants";
 import { InvalidFenError } from "../errors";
-import { isColor, isPiece, isSide, isSquare } from "../types";
 import {
-  PIECE_TO_PIECE_0x88,
-  EMPTY_SQUARE_0x88,
   BOARD_WIDTH_0x88,
+  EMPTY_SQUARE_0x88,
+  PIECE_TO_PIECE_0x88,
   COLOR_TO_COLOR_0x88,
   SIDE_TO_SIDE_0x88,
   SQUARE_TO_SQUARE_0x88,
-} from "./constants";
-import { Piece0x88, EmptySquare0x88, Board0x88, Color0x88, Fen0x88, Square0x88 } from "./types";
+} from "../internal/constants";
+import {
+  EmptySquare0x88,
+  Piece0x88,
+  Board0x88,
+  Color0x88,
+  Square0x88,
+  Fen0x88,
+} from "../internal/types";
+import { isColor, isPiece, isSide, isSquare } from "../types";
 
 const UNOCCUPIED_SQUARES = Array.from(
   { length: BOARD_WIDTH_0x88 - BOARD_SIZE },
@@ -122,7 +129,8 @@ function parseFullMove(fen: string, fullMove: string): number {
 }
 
 /**
- * Parses a FEN string into a Fen0x88.
+ * Parses a FEN string into a Fen0x88. This allows you to use the parsed FEN with outer FEN
+ * functions with high performance from avoiding converting the FEN to a string at every step.
  *
  * @param fen - The FEN string.
  * @returns The Fen0x88.
