@@ -1,23 +1,6 @@
-import { toAscii, toUnicode } from "./0x88";
+import { toUnicode } from "./0x88";
 import { expect, it, describe } from "bun:test";
 import dedent from "ts-dedent";
-
-describe("toAscii", () => {
-  it("returns the ASCII string representation of a board", () => {
-    const expected = dedent`
-      rnbqkbnr
-      pppppppp
-      ........
-      ........
-      ........
-      ........
-      PPPPPPPP
-      RNBQKBNR
-    `;
-
-    expect(toAscii(STARTING_POSITION_BOARD_0x88)).toBe(expected);
-  });
-});
 
 describe("toUnicode", () => {
   it("returns the UNICODE string representation of a board", () => {

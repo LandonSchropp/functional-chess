@@ -25,10 +25,10 @@ These functions will return different representations of the current position as
 
 - [x] `parseFen`
 - [x] `toFen`
-- [ ] `getBoard`
-- [ ] `getAscii`
-- [ ] `getUnicode`
-- [ ] `getPieces`
+- [ ] `toBoard`
+- [x] `toAscii`
+- [ ] `toUnicode`
+- [ ] `toPieces`
 
 ### Position Accessors
 

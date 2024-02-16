@@ -101,12 +101,6 @@ export const PIECE_0x88_TO_PIECE = invert(PIECE_TO_PIECE_0x88);
 /** An array of all of the possible 0x88 pieces. */
 export const PIECES_0x88 = Object.values(PIECE_TO_PIECE_0x88);
 
-/** A readonly map that converts a 0x88 piece to its ASCII character representation. */
-export const PIECE_0x88_TO_PIECE_ASCII = invert({
-  ...PIECE_TO_PIECE_0x88,
-  ".": EMPTY_SQUARE_0x88,
-} as const);
-
 /** A readonly map that converts a 0x88 piece to its unicode character representation. */
 export const PIECE_0x88_TO_PIECE_UNICODE = invert({
   "♟︎": WHITE_PAWN_0x88,
