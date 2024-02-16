@@ -1,22 +1,7 @@
 import { BOARD_SIZE } from "../constants";
-import {
-  BOARD_WIDTH_0x88,
-  PIECE_0x88_TO_PIECE_ASCII,
-  PIECE_0x88_TO_PIECE_UNICODE,
-} from "../internal/constants";
+import { PIECE_0x88_TO_PIECE_ASCII, PIECE_0x88_TO_PIECE_UNICODE } from "../internal/constants";
 import { Board0x88, EmptySquare0x88, Piece0x88 } from "../internal/types";
-
-/**
- * Returns the index of a square for an 0x88 board.
- *
- * @private
- * @param rankIndex - The rank index.
- * @param fileIndex - The file index.
- * @returns The index of the square.
- */
-export function getIndex0x88(rankIndex: number, fileIndex: number): number {
-  return rankIndex * BOARD_WIDTH_0x88 + fileIndex;
-}
+import { getIndex0x88 } from "./get-index-0x88";
 
 /**
  * Returns a piece from a 0x88 board.
