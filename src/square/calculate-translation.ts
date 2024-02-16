@@ -2,13 +2,13 @@ import { Square, Vector } from "../types";
 import { convertSquareToCoordinates } from "./convert-square-to-coordinates";
 
 /**
- * Returns the vector between one square and another.
+ * Returns the translation vector from one square to another.
  *
- * @param from The square to get the vector from.
- * @param to The square to get the vector to.
- * @returns The vector between the two squares.
+ * @param from The square to get the translation from.
+ * @param to The square to get the translation to.
+ * @returns The translation between the two squares.
  */
-export function getVectorBetweenSquares(from: Square, to: Square): Vector {
+export function calculateTranslation(from: Square, to: Square): Vector {
   const [fromFile, fromRank] = convertSquareToCoordinates(from);
   const [toFile, toRank] = convertSquareToCoordinates(to);
 

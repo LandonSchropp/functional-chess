@@ -83,14 +83,14 @@ These functions update parts of the FEN that are not related to the position.
 
 These functions deal with squares, independent of a FEN.
 
-- [ ] `convertCoordinatesToSquare`
-- [ ] `convertSquareToCoordinates`
-- [ ] `distanceWithDiagonals`
-- [ ] `distanceWithoutDiagonals`
-- [ ] `getFile`
-- [ ] `getRank`
-- [ ] `getVectorBetweenSquares`
-- [ ] `translateSquare`
+- [x] `calculateDiagonalDistance`
+- [x] `calculateOrthagonalDistance`
+- [x] `calculateTranslation`
+- [x] `convertCoordinatesToSquare`
+- [x] `convertSquareToCoordinates`
+- [x] `getFile`
+- [x] `getRank`
+- [x] `translateSquare`
 
 ## Other
 
