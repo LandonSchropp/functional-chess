@@ -9,7 +9,7 @@ These functions related to FEN strings.
 These functions are required internally in order to make the library work.
 
 - [x] `transformFen`
-- [ ] `deriveFromFen`
+- [x] `deriveFromFen`
 
 ### Validation
 
@@ -27,6 +27,7 @@ These functions will return different representations of the current position as
 - [x] `toFen`
 - [ ] `getBoard`
 - [ ] `getAscii`
+- [ ] `getUnicode`
 - [ ] `getPieces`
 
 ### Position Accessors
