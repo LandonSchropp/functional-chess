@@ -8,9 +8,7 @@ These functions related to FEN strings.
 
 These functions are required internally in order to make the library work.
 
-- [ ] `parseFen`
-- [ ] `unparseFen`
-- [ ] `transformFen`
+- [x] `transformFen`
 - [ ] `deriveFromFen`
 
 ### Validation
@@ -25,6 +23,8 @@ These functions can be used to validate different aspects of a FEN string.
 
 These functions will return different representations of the current position as a whole.
 
+- [x] `parseFen`
+- [x] `toFen`
 - [ ] `getBoard`
 - [ ] `getAscii`
 - [ ] `getPieces`
