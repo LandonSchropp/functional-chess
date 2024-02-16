@@ -101,23 +101,6 @@ export const PIECE_0x88_TO_PIECE = invert(PIECE_TO_PIECE_0x88);
 /** An array of all of the possible 0x88 pieces. */
 export const PIECES_0x88 = Object.values(PIECE_TO_PIECE_0x88);
 
-/** A readonly map that converts a 0x88 piece to its unicode character representation. */
-export const PIECE_0x88_TO_PIECE_UNICODE = invert({
-  "♟︎": WHITE_PAWN_0x88,
-  "♞": WHITE_KNIGHT_0x88,
-  "♝": WHITE_BISHOP_0x88,
-  "♜": WHITE_ROOK_0x88,
-  "♛": WHITE_QUEEN_0x88,
-  "♚": WHITE_KING_0x88,
-  "♙": BLACK_PAWN_0x88,
-  "♘": BLACK_KNIGHT_0x88,
-  "♗": BLACK_BISHOP_0x88,
-  "♖": BLACK_ROOK_0x88,
-  "♕": BLACK_QUEEN_0x88,
-  "♔": BLACK_KING_0x88,
-  "·": EMPTY_SQUARE_0x88,
-} as const);
-
 /** The 0x88 representation of white's kingside. */
 export const WHITE_KINGSIDE_0x88 = 0b0001;
 

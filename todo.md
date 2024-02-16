@@ -32,7 +32,7 @@ These functions will return different representations of the FEN as a whole.
 - [x] `toFen`
 - [ ] `toBoard`
 - [x] `toAscii`
-- [ ] `toUnicode`
+- [x] `toUnicode`
 
 ### Position Accessors
 
