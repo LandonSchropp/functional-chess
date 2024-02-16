@@ -17,12 +17,13 @@ Here's why it stands out:
   easier-to-debug code.
 - **🐇 Speed:** Under the hood, this library uses an [0x88](https://en.wikipedia.org/wiki/0x88)
   implementation, a super fast and efficient way of reading and manipulating chess positions.
-- **🧬 Compatibility:** This library eliminates the hassle of managing object instances, making it a
-  much better fit for frontend frameworks like React. The simplicity of this approach is a makes it
-  a perfect fit for various state management approaches, enhancing flexibility and ease of use.
-- **🚦 Test-driven:** With 100% code coverage, this library is build for reliability and peace of
-  mind. You can rely on Chess Functions without fearing unexpected failures.
-- **🌐 Modern:** Built on web standards, this library supports both ESM and Common.js modules,
+- **🧬 Compatibility:** Chess Functions eliminates the hassle of managing object instances, making
+  it a much better fit for frontend frameworks like React. The simplicity of this approach is a
+  makes it a perfect fit for various state management approaches, enhancing flexibility and ease of
+  use.
+- **🚦 Test-driven:** With 100% code coverage, this library aims to be reliability and give you
+  peace of mind. You can rely on Chess Functions without fearing unexpected failures.
+- **🌐 Modern:** Built on web standards, Chess Functions supports both ESM and Common.js modules,
   ensuring compatibility across Node.js, Bun, Deno, and modern web browsers. Since it's written in
   TypeScript, it comes with type definitions out of the box.
 
