@@ -19,22 +19,27 @@ These functions can be used to validate different aspects of a FEN string.
 - [ ] `isValid`
 - [ ] `isLegalMove`
 
-### Position Representations
+### Parsing
 
-These functions will return different representations of the current position as a whole.
+These functions can be used to parse the FEN.
 
 - [x] `parseFen`
+
+### Position Representations
+
+These functions will return different representations of the FEN as a whole.
+
 - [x] `toFen`
 - [ ] `toBoard`
 - [x] `toAscii`
 - [ ] `toUnicode`
-- [ ] `toPieces`
 
 ### Position Accessors
 
 These functions can be used to get specific information about the current position.
 
 - [ ] `getPiece`
+- [ ] `getPieces`
 - [ ] `getEmptySquares`
 - [ ] `getAllLegalMoves`
 - [ ] `getLegalMoves`
