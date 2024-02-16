@@ -20,6 +20,9 @@ import {
 } from "../constants";
 import { invert } from "../internal/readonly-map";
 
+/** The number 0x88 that's used to detect out-of-bounds values. */
+export const OUT_OF_BOUNDS_0x88 = 0x88 as const;
+
 /** The 0x88 representation of white. */
 export const WHITE_0x88 = 0b01;
 
