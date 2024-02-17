@@ -95,7 +95,8 @@ These functions deal with squares, independent of a FEN.
 ## Other
 
 - [ ] Set up code coverage
-- [ ] Set up Prettier
-- [ ] Set up ESLint
+- [x] Set up Prettier
+- [x] Set up ESLint
 - [ ] Set up NPM package
 - [x] Make the library handle both 0x88 boards _and_ strings
+- [ ] Create a documentation site
