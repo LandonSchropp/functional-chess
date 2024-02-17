@@ -10,7 +10,7 @@ export class OutOfBoundsError extends Error {
  * The FEN string could not be parsed. This is different from an invalid FEN string, which has an
  * illegal position.
  */
-export class InvalidFenError extends Error {
+export class UnparsableFenError extends Error {
   constructor(message?: string | undefined) {
     super(message);
     this.name = this.constructor.name;

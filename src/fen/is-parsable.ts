@@ -1,4 +1,4 @@
-import { InvalidFenError } from "../errors";
+import { UnparsableFenError } from "../errors";
 import { parseFen } from "./parse-fen";
 
 /**
@@ -13,6 +13,6 @@ export function isParsable(fen: string): boolean {
     parseFen(fen);
     return true;
   } catch (error) {
-    return !(error instanceof InvalidFenError);
+    return !(error instanceof UnparsableFenError);
   }
 }

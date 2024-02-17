@@ -6,7 +6,7 @@ import {
   WHITE,
   WHITE_PAWN,
 } from "../constants";
-import { InvalidFenError } from "../errors";
+import { UnparsableFenError } from "../errors";
 import {
   WHITE_ROOK_0x88,
   WHITE_KNIGHT_0x88,
@@ -33,7 +33,7 @@ import { expect, it, describe } from "bun:test";
 const WHITESPACE = "\t \n\r\v\f";
 
 // TODO: Remove this when Bun released the fix for the issue #8243
-const TypedInvalidFenError = InvalidFenError as unknown as Error;
+const TypedInvalidFenError = UnparsableFenError as unknown as Error;
 
 const STARTING_POSITION_BOARD_0x88: Board0x88 = [
   WHITE_ROOK_0x88,

@@ -1,9 +1,9 @@
-import { InvalidFenError, OutOfBoundsError } from "./errors";
+import { UnparsableFenError, OutOfBoundsError } from "./errors";
 import { beforeEach, describe, expect, it } from "bun:test";
 
 const ERRORS = [
   [OutOfBoundsError, "OutOfBoundsError"],
-  [InvalidFenError, "InvalidFenError"],
+  [UnparsableFenError, "UnparsableFenError"],
 ] as const;
 
 // TODO: Convert this to describe.each.
