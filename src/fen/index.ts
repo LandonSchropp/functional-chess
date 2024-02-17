@@ -1,4 +1,5 @@
 export * from "./get-piece";
+export * from "./is-parsable";
 export * from "./parse-fen";
 export * from "./remove-piece";
 export * from "./set-piece";

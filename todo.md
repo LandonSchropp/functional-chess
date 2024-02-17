@@ -15,7 +15,7 @@ These functions are required internally in order to make the library work.
 
 These functions can be used to validate different aspects of a FEN string.
 
-- [ ] `isParsable`
+- [x] `isParsable`
 - [ ] `isValid`
 - [ ] `isLegalMove`
 
