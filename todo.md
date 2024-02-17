@@ -30,7 +30,7 @@ These functions can be used to parse the FEN.
 These functions will return different representations of the FEN as a whole.
 
 - [x] `toFen`
-- [ ] `toBoard`
+- [x] `toBoard`
 - [x] `toAscii`
 - [x] `toUnicode`
 
@@ -70,7 +70,7 @@ These functions update parts of the FEN that are not related to the position.
 - [ ] `getColor`
 - [ ] `setColor`
 - [ ] `getCastlingRights()`
-- [ ] `setCastlingRight(sides: Side[])`
+- [ ] `setCastlingRight(side: Side, canCastle: boolean)`
 - [ ] `setCastlingRights(sides: Side[])`
 - [ ] `getEnPassantTargetSquare()`
 - [ ] `setEnPassantTargetSquare(value)`

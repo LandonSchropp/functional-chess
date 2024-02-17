@@ -36,5 +36,8 @@ export type Move = {
 
 type Tuple8<T> = [T, T, T, T, T, T, T, T];
 
-/** A chessboard represented as a 2D array. */
-export type Board = Tuple8<Tuple8<{ square: Square; piece: Piece | null }>>;
+/**
+ * A chessboard represented as a 2D array. Please note, the coordinates 0, 0 represent the _bottom
+ * left_ of the board.
+ */
+export type Board = Tuple8<Tuple8<Piece | null>>;
