@@ -59,7 +59,7 @@ These predicate functions can answer questions about the current position.
 These functions will change the position in the FEN.
 
 - [ ] `movePiece`
-- [ ] `setPiece`
+- [x] `setPiece`
 - [ ] `removePiece`
 - [ ] `reverse`
 
