@@ -60,7 +60,7 @@ These functions will change the position in the FEN.
 
 - [ ] `movePiece`
 - [x] `setPiece`
-- [ ] `removePiece`
+- [x] `removePiece`
 - [ ] `swapColors`
 
 ### Non-Position Accessors and Mutators

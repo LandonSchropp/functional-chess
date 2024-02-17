@@ -1,5 +1,6 @@
 export * from "./get-piece";
 export * from "./parse-fen";
+export * from "./remove-piece";
 export * from "./set-piece";
 export * from "./to-ascii";
 export * from "./to-board";
