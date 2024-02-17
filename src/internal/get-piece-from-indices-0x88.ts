@@ -2,7 +2,8 @@ import { getSquareFromIndices0x88 } from "./get-square-from-indices-0x88";
 import { Board0x88, Piece0x88, EmptySquare0x88 } from "./types";
 
 /**
- * Returns a piece from a 0x88 board.
+ * Returns a piece from a 0x88 board. This function intentionally does not check if the indices are
+ * in bounds because it's an internal function.
  *
  * @private
  * @param board - The 0x88 board.

@@ -15,9 +15,5 @@ describe("getPieceFromIndices", () => {
     describe("when the square is empty", () => {
       expect(getPieceFromIndices0x88(BOARD, 2, 0)).toBe(EMPTY_SQUARE_0x88);
     });
-
-    describe("when the square is off the board", () => {
-      expect(() => getPieceFromIndices0x88(BOARD, 8, 8)).toThrow(Error);
-    });
   });
 });

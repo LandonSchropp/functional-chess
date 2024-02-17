@@ -19,10 +19,4 @@ describe("getIndex0x88", () => {
       expect(getSquareFromIndices0x88(1, 3)).toEqual(19);
     });
   });
-
-  describe("when the square is out of bounds", () => {
-    it("throws an error", () => {
-      expect(() => getSquareFromIndices0x88(8, 3)).toThrow(Error);
-    });
-  });
 });
