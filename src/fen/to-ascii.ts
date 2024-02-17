@@ -1,7 +1,7 @@
 import { BOARD_SIZE } from "../constants";
 import { EMPTY_SQUARE_0x88, PIECE_TO_PIECE_0x88 } from "../internal/constants";
+import { convertIndicesToSquare0x88 } from "../internal/convert-indices-to-square-0x88";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { getSquareFromIndices0x88 } from "../internal/get-square-from-indices-0x88";
 import { invert } from "../internal/readonly-map";
 import { Fen0x88 } from "../internal/types";
 
@@ -20,7 +20,7 @@ export const toAscii = deriveFromFen((fen: Fen0x88): string => {
   return Array.from({ length: BOARD_SIZE }, (_, rankIndex) => {
     return Array.from({ length: BOARD_SIZE }, (_, fileIndex) => {
       return PIECE_0x88_TO_PIECE_ASCII.get(
-        fen[0][getSquareFromIndices0x88(BOARD_SIZE - rankIndex - 1, fileIndex)],
+        fen[0][convertIndicesToSquare0x88(BOARD_SIZE - rankIndex - 1, fileIndex)],
       );
     }).join("");
   }).join("\n");

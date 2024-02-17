@@ -10,6 +10,6 @@ import { Square0x88 } from "./types";
  * @param fileIndex - The file index.
  * @returns The index of the square.
  */
-export function getSquareFromIndices0x88(rankIndex: number, fileIndex: number): Square0x88 {
+export function convertIndicesToSquare0x88(rankIndex: number, fileIndex: number): Square0x88 {
   return (rankIndex * BOARD_WIDTH_0x88 + fileIndex) as Square0x88;
 }
