@@ -23,6 +23,8 @@ Here's why it stands out:
   use.
 - **🚦 Test-driven:** With 100% code coverage, this library aims to be reliability and give you
   peace of mind. You can rely on Chess Functions without fearing unexpected failures.
+- **No dependencies:** This package has _zero depenencies_. It's very lightweight, making it easy to
+  incorporate into your project.
 - **🌐 Modern:** Built on web standards, Chess Functions supports both ESM and Common.js modules,
   ensuring compatibility across Node.js, Bun, Deno, and modern web browsers. Since it's written in
   TypeScript, it comes with type definitions out of the box.
