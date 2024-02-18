@@ -1,4 +1,5 @@
 export * from "./get-piece";
+export * from "./get-pieces-with-squares";
 export * from "./is-parsable";
 export * from "./parse-fen";
 export * from "./remove-piece";

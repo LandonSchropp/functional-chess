@@ -39,7 +39,7 @@ These functions will return different representations of the FEN as a whole.
 These functions can be used to get specific information about the current position.
 
 - [x] `getPiece`
-- [ ] `getPieces`
+- [x] `getPiecesWithSquares`
 - [ ] `getEmptySquares`
 - [ ] `getAllLegalMoves`
 - [ ] `getLegalMoves`
