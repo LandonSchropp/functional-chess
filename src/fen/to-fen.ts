@@ -1,18 +1,24 @@
 import { BOARD_SIZE } from "../constants";
 import {
   SQUARE_TO_SQUARE_0x88,
-  EMPTY_SQUARE_0x88,
-  PIECE_0x88_TO_PIECE,
+  EMPTY_EN_PASSANT_SQUARE_0x88,
   SIDES_0x88,
   SIDE_0x88_TO_SIDE,
   COLOR_0x88_TO_COLOR,
+  EMPTY_SQUARE_0x88,
+  PIECE_TO_PIECE_0x88,
 } from "../internal/constants";
+import { invertToArray } from "../internal/object";
 import { Board0x88, Fen0x88 } from "../internal/types";
-import { invert } from "remeda";
 
-const EN_PASSANT_SQUARE_0x88_TO_SQUARE = invert({
+const PIECE_0x88_TO_FEN_PIECE = invertToArray({
+  ...PIECE_TO_PIECE_0x88,
+  "1": EMPTY_SQUARE_0x88,
+});
+
+const EN_PASSANT_SQUARE_0x88_TO_SQUARE = invertToArray({
   ...SQUARE_TO_SQUARE_0x88,
-  "-": EMPTY_SQUARE_0x88,
+  "-": EMPTY_EN_PASSANT_SQUARE_0x88,
 });
 
 function unparsePosition(position: Board0x88): string {
@@ -23,7 +29,7 @@ function unparsePosition(position: Board0x88): string {
 
     for (let fileIndex = 0; fileIndex < BOARD_SIZE; fileIndex++) {
       const square = position[rankIndex * 16 + fileIndex];
-      rank += square === EMPTY_SQUARE_0x88 ? "1" : PIECE_0x88_TO_PIECE.get(square)!;
+      rank += PIECE_0x88_TO_FEN_PIECE[square];
     }
 
     ranks.push(rank.replace(/1+/g, (match) => match.length.toString()));

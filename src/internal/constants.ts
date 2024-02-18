@@ -17,6 +17,7 @@ import {
   BLACK_QUEENSIDE,
   WHITE_KINGSIDE,
   WHITE_QUEENSIDE,
+  BOARD_SIZE,
 } from "../constants";
 import { invert } from "../internal/readonly-map";
 
@@ -63,8 +64,8 @@ export const SQUARE_0x88_TO_SQUARE = invert(SQUARE_TO_SQUARE_0x88);
 /** An array of all of the possible 0x88 squares. */
 export const SQUARES_0x88 = Object.values(SQUARE_TO_SQUARE_0x88);
 
-/** An empty 0x88 square; */
-export const EMPTY_SQUARE_0x88 = 0;
+/** An empty 0x88 en passant square in a FEN. */
+export const EMPTY_EN_PASSANT_SQUARE_0x88 = BOARD_WIDTH_0x88 * BOARD_SIZE;
 
 export const WHITE_PAWN_0x88 = 1;
 export const WHITE_KNIGHT_0x88 = 2;
@@ -78,6 +79,10 @@ export const BLACK_BISHOP_0x88 = 9;
 export const BLACK_ROOK_0x88 = 10;
 export const BLACK_QUEEN_0x88 = 11;
 export const BLACK_KING_0x88 = 12;
+
+/** Represents the lack of a piece. */
+// TODO: Rename this to EMPTY_PIECE_0x88 so it's more clear that it's not a square.
+export const EMPTY_SQUARE_0x88 = 0;
 
 /** A readonly object that converts a string piece into its 0x88 representation. */
 export const PIECE_TO_PIECE_0x88 = {
