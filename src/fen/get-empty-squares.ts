@@ -18,7 +18,7 @@ export const getEmptySquares = deriveFromFen((fen: Fen0x88): Square[] => {
     }
 
     if (!fen[0][square]) {
-      emptySquares.push(SQUARE_0x88_TO_SQUARE.get(square as Square0x88)!);
+      emptySquares.push(SQUARE_0x88_TO_SQUARE[square as Square0x88]!);
     }
   }
 

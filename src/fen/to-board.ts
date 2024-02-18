@@ -22,7 +22,7 @@ export const toBoard = deriveFromFen((fen: Fen0x88): Board => {
       const piece = fen[0][convertIndicesToSquare0x88(BOARD_SIZE - rankIndex - 1, fileIndex)];
 
       if (piece !== EMPTY_SQUARE_0x88) {
-        board[BOARD_SIZE - rankIndex - 1][fileIndex] = PIECE_0x88_TO_PIECE.get(piece)!;
+        board[BOARD_SIZE - rankIndex - 1][fileIndex] = PIECE_0x88_TO_PIECE[piece]!;
       }
     }
   }

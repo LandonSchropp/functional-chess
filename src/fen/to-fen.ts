@@ -44,7 +44,7 @@ function unparseCastling(castling: number): string {
   }
 
   return SIDES_0x88.filter((side) => castling & side)
-    .map((side) => SIDE_0x88_TO_SIDE.get(side))
+    .map((side) => SIDE_0x88_TO_SIDE[side])
     .join("");
 }
 
@@ -57,7 +57,7 @@ function unparseCastling(castling: number): string {
 export function toFen(fen: Fen0x88): string {
   return [
     unparsePosition(fen[0]),
-    COLOR_0x88_TO_COLOR.get(fen[1]),
+    COLOR_0x88_TO_COLOR[fen[1]],
     unparseCastling(fen[2]),
     EN_PASSANT_SQUARE_0x88_TO_SQUARE[fen[3]],
     fen[4],

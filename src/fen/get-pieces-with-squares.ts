@@ -4,7 +4,7 @@ import {
   SQUARE_0x88_TO_SQUARE,
 } from "../internal/constants";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88, Piece0x88, Square0x88 } from "../internal/types";
+import { Fen0x88 } from "../internal/types";
 import { Piece, Square } from "../types";
 
 type PieceWithSquare = { square: Square; piece: Piece };
@@ -26,8 +26,8 @@ export const getPiecesWithSquares = deriveFromFen((fen: Fen0x88): PieceWithSquar
 
     if (fen[0][square]) {
       piecesWithSquares.push({
-        square: SQUARE_0x88_TO_SQUARE.get(square as Square0x88)!,
-        piece: PIECE_0x88_TO_PIECE.get(fen[0][square] as Piece0x88)!,
+        square: SQUARE_0x88_TO_SQUARE[square]!,
+        piece: PIECE_0x88_TO_PIECE[fen[0][square]]!,
       });
     }
   }

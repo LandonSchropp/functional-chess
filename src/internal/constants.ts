@@ -19,7 +19,7 @@ import {
   WHITE_QUEENSIDE,
   BOARD_SIZE,
 } from "../constants";
-import { invert } from "../internal/readonly-map";
+import { invertToArray } from "./object";
 
 /** The number 0x88 that's used to detect out-of-bounds values. */
 export const OUT_OF_BOUNDS_0x88 = 0x88 as const;
@@ -40,7 +40,7 @@ export const COLOR_TO_COLOR_0x88 = {
 } as const;
 
 /** A readonly map that converts a 0x88 color to its string representation. */
-export const COLOR_0x88_TO_COLOR = invert(COLOR_TO_COLOR_0x88);
+export const COLOR_0x88_TO_COLOR = invertToArray(COLOR_TO_COLOR_0x88);
 
 /** This constant represents the width of a 0x88 board. */
 export const BOARD_WIDTH_0x88 = 16;
@@ -59,7 +59,7 @@ export const SQUARE_TO_SQUARE_0x88 = {
 } as const;
 
 /** A readonly map that converts a 0x88 square to its string representation. */
-export const SQUARE_0x88_TO_SQUARE = invert(SQUARE_TO_SQUARE_0x88);
+export const SQUARE_0x88_TO_SQUARE = invertToArray(SQUARE_TO_SQUARE_0x88);
 
 /** An array of all of the possible 0x88 squares. */
 export const SQUARES_0x88 = Object.values(SQUARE_TO_SQUARE_0x88);
@@ -101,7 +101,7 @@ export const PIECE_TO_PIECE_0x88 = {
 } as const;
 
 /** A readonly map that converts a 0x88 piece to its string representation. */
-export const PIECE_0x88_TO_PIECE = invert(PIECE_TO_PIECE_0x88);
+export const PIECE_0x88_TO_PIECE = invertToArray(PIECE_TO_PIECE_0x88);
 
 /** An array of all of the possible 0x88 pieces. */
 export const PIECES_0x88 = Object.values(PIECE_TO_PIECE_0x88);
@@ -135,4 +135,4 @@ export const SIDE_TO_SIDE_0x88 = {
 } as const;
 
 /** A readonly map that converts a 0x88 side to its string representation. */
-export const SIDE_0x88_TO_SIDE = invert(SIDE_TO_SIDE_0x88);
+export const SIDE_0x88_TO_SIDE = invertToArray(SIDE_TO_SIDE_0x88);

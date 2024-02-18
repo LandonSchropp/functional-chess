@@ -16,5 +16,5 @@ import { Piece, Square } from "../types";
  */
 export const getPiece = deriveFromFen((fen: Fen0x88, square: Square): Piece | null => {
   const piece0x88 = fen[0][SQUARE_TO_SQUARE_0x88[square]];
-  return piece0x88 === EMPTY_SQUARE_0x88 ? null : PIECE_0x88_TO_PIECE.get(piece0x88)!;
+  return piece0x88 === EMPTY_SQUARE_0x88 ? null : PIECE_0x88_TO_PIECE[piece0x88]!;
 });
