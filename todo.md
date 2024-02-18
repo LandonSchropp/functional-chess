@@ -40,7 +40,7 @@ These functions can be used to get specific information about the current positi
 
 - [x] `getPiece`
 - [x] `getPiecesWithSquares`
-- [ ] `getEmptySquares`
+- [x] `getEmptySquares`
 - [ ] `getAllLegalMoves`
 - [ ] `getLegalMoves`
 

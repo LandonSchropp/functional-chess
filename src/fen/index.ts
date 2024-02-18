@@ -8,3 +8,4 @@ export * from "./to-ascii";
 export * from "./to-board";
 export * from "./to-fen";
 export * from "./to-unicode";
+export * from "./get-empty-squares";
