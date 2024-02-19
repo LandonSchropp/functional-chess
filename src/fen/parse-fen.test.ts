@@ -275,7 +275,7 @@ describe("parseFen", () => {
 
   describe("when the FEN's castling rights contain an invalid character", () => {
     it("raises an InvalidFenError", () => {
-      const fen = STARTING_POSITION.replace("K", "x");
+      const fen = STARTING_POSITION.replace("KQkq", "x");
       expect(() => parseFen(fen)).toThrow(TypedInvalidFenError);
     });
   });
@@ -312,7 +312,6 @@ describe("parseFen", () => {
       expect(parseFen(fen)[4]).toEqual(50);
     });
   });
-
   describe("when the FEN's half move clock is a negative number", () => {
     it("raises an InvalidFenError", () => {
       const fen = STARTING_POSITION.replace("0", "-1");
