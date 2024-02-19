@@ -1,3 +1,4 @@
+export * from "./get-castling-right";
 export * from "./get-castling-rights";
 export * from "./get-color";
 export * from "./get-empty-squares";

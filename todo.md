@@ -68,7 +68,7 @@ These functions update parts of the FEN that are not related to the position.
 
 - [x] `getColor`
 - [x] `setColor`
-- [ ] `getCastlingRight`
+- [x] `getCastlingRight`
 - [x] `getCastlingRights`
 - [ ] `setCastlingRight`
 - [x] `setCastlingRights`
