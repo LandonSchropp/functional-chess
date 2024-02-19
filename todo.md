@@ -52,7 +52,6 @@ These predicate functions can answer questions about the current position.
 - [ ] `isDraw`
 - [ ] `isInsufficientMaterial`
 - [ ] `isStalemate`
-- [ ] `canCastle(side: Side)`
 
 ### Position Mutators
 
@@ -69,6 +68,7 @@ These functions update parts of the FEN that are not related to the position.
 
 - [x] `getColor`
 - [ ] `setColor`
+- [ ] `getCastlingRight`
 - [x] `getCastlingRights`
 - [ ] `setCastlingRight`
 - [ ] `setCastlingRights`
@@ -76,7 +76,7 @@ These functions update parts of the FEN that are not related to the position.
 - [ ] `setEnPassantSquare`
 - [x] `getHalfMoveClock`
 - [ ] `setHalfMoveClock`
-- [ ] `getFullMoveNumber`
+- [x] `getFullMoveNumber`
 - [ ] `setFullMoveNumber`
 
 ## Square
