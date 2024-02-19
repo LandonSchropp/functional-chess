@@ -81,8 +81,7 @@ export const BLACK_QUEEN_0x88 = 11;
 export const BLACK_KING_0x88 = 12;
 
 /** Represents the lack of a piece. */
-// TODO: Rename this to EMPTY_PIECE_0x88 so it's more clear that it's not a square.
-export const EMPTY_SQUARE_0x88 = 0;
+export const EMPTY_PIECE_0x88 = 0;
 
 /** A readonly object that converts a string piece into its 0x88 representation. */
 export const PIECE_TO_PIECE_0x88 = {

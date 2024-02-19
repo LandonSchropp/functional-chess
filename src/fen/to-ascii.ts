@@ -1,5 +1,5 @@
 import { BOARD_SIZE } from "../constants";
-import { EMPTY_SQUARE_0x88, PIECE_TO_PIECE_0x88 } from "../internal/constants";
+import { EMPTY_PIECE_0x88, PIECE_TO_PIECE_0x88 } from "../internal/constants";
 import { convertIndicesToSquare0x88 } from "../internal/convert-indices-to-square-0x88";
 import { deriveFromFen } from "../internal/derive-from-fen";
 import { invertToArray } from "../internal/object";
@@ -7,7 +7,7 @@ import { Fen0x88 } from "../internal/types";
 
 export const PIECE_0x88_TO_PIECE_ASCII = invertToArray({
   ...PIECE_TO_PIECE_0x88,
-  ".": EMPTY_SQUARE_0x88,
+  ".": EMPTY_PIECE_0x88,
 } as const);
 
 /**

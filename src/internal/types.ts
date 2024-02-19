@@ -1,7 +1,7 @@
 import {
   COLORS_0x88,
   EMPTY_EN_PASSANT_SQUARE_0x88,
-  EMPTY_SQUARE_0x88,
+  EMPTY_PIECE_0x88,
   PIECES_0x88,
   SIDES_0x88,
   SQUARES_0x88,
@@ -24,7 +24,7 @@ export type Piece0x88 = (typeof PIECES_0x88)[number];
 export type Side0x88 = (typeof SIDES_0x88)[number];
 
 /** A 0x88 empty piece */
-export type EmptySquare0x88 = typeof EMPTY_SQUARE_0x88;
+export type EmptyPiece0x88 = typeof EMPTY_PIECE_0x88;
 
 /** A 0x88 empty en passant square */
 export type EmptyEnPassantSquare0x88 = typeof EMPTY_EN_PASSANT_SQUARE_0x88;
@@ -37,7 +37,7 @@ export type EnPassantSquare = Square0x88 | EmptyEnPassantSquare0x88;
  *
  * @private
  */
-export type Board0x88 = Tuple<Piece0x88 | EmptySquare0x88, 128>;
+export type Board0x88 = Tuple<Piece0x88 | EmptyPiece0x88, 128>;
 
 /** A parsed FEN represented with integers. */
 export type Fen0x88 = [

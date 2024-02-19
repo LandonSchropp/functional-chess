@@ -2,7 +2,7 @@ import { BOARD_SIZE } from "../constants";
 import { UnparsableFenError } from "../errors";
 import {
   BOARD_WIDTH_0x88,
-  EMPTY_SQUARE_0x88,
+  EMPTY_PIECE_0x88,
   PIECE_TO_PIECE_0x88,
   COLOR_TO_COLOR_0x88,
   SIDE_TO_SIDE_0x88,
@@ -10,7 +10,7 @@ import {
   EMPTY_EN_PASSANT_SQUARE_0x88,
 } from "../internal/constants";
 import {
-  EmptySquare0x88,
+  EmptyPiece0x88,
   Piece0x88,
   Board0x88,
   Color0x88,
@@ -21,17 +21,17 @@ import { isColor, isPiece, isSide, isSquare } from "../types";
 
 const UNOCCUPIED_SQUARES = Array.from(
   { length: BOARD_WIDTH_0x88 - BOARD_SIZE },
-  () => EMPTY_SQUARE_0x88,
-) as EmptySquare0x88[];
+  () => EMPTY_PIECE_0x88,
+) as EmptyPiece0x88[];
 
-function parseRank(fen: string, rank: string): (Piece0x88 | EmptySquare0x88)[] {
-  const pieces: (Piece0x88 | EmptySquare0x88)[] = rank.split("").flatMap((char) => {
+function parseRank(fen: string, rank: string): (Piece0x88 | EmptyPiece0x88)[] {
+  const pieces: (Piece0x88 | EmptyPiece0x88)[] = rank.split("").flatMap((char) => {
     if (isPiece(char)) {
       return PIECE_TO_PIECE_0x88[char];
     }
 
     if (/[1-8]/.test(char)) {
-      return Array.from({ length: Number(char) }, () => EMPTY_SQUARE_0x88);
+      return Array.from({ length: Number(char) }, () => EMPTY_PIECE_0x88);
     }
 
     throw new UnparsableFenError(
