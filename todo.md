@@ -69,15 +69,15 @@ These functions update parts of the FEN that are not related to the position.
 
 - [x] `getColor`
 - [ ] `setColor`
-- [ ] `getCastlingRights()`
-- [ ] `setCastlingRight(side: Side, canCastle: boolean)`
-- [ ] `setCastlingRights(sides: Side[])`
-- [ ] `getEnPassantSquare()`
-- [ ] `setEnPassantSquare()`
-- [ ] `getHalfMoveClock()`
-- [ ] `setHalfMoveClock()`
-- [ ] `getFullMoveNumber()`
-- [ ] `setFullMoveNumber()`
+- [x] `getCastlingRights`
+- [ ] `setCastlingRight`
+- [ ] `setCastlingRights`
+- [ ] `getEnPassantSquare`
+- [ ] `setEnPassantSquare`
+- [ ] `getHalfMoveClock`
+- [ ] `setHalfMoveClock`
+- [ ] `getFullMoveNumber`
+- [ ] `setFullMoveNumber`
 
 ## Square
 
