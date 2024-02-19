@@ -12,6 +12,7 @@ export * from "./remove-piece";
 export * from "./set-castling-rights";
 export * from "./set-color";
 export * from "./set-en-passant-square";
+export * from "./set-half-move-clock";
 export * from "./set-piece";
 export * from "./to-ascii";
 export * from "./to-board";
