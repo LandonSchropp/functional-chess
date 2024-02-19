@@ -77,7 +77,7 @@ These functions update parts of the FEN that are not related to the position.
 - [x] `getHalfMoveClock`
 - [x] `setHalfMoveClock`
 - [x] `getFullMoveNumber`
-- [ ] `setFullMoveNumber`
+- [x] `setFullMoveNumber`
 
 ## Square
 
