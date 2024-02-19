@@ -2,7 +2,7 @@
 
 ## FEN
 
-These functions related to FEN strings.
+These functions are related to FEN strings.
 
 ### Internal
 
@@ -67,7 +67,7 @@ These functions will change the position in the FEN.
 These functions update parts of the FEN that are not related to the position.
 
 - [x] `getColor`
-- [ ] `setColor`
+- [x] `setColor`
 - [ ] `getCastlingRight`
 - [x] `getCastlingRights`
 - [ ] `setCastlingRight`

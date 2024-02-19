@@ -10,6 +10,7 @@ export * from "./is-parsable";
 export * from "./parse-fen";
 export * from "./remove-piece";
 export * from "./set-castling-rights";
+export * from "./set-color";
 export * from "./set-piece";
 export * from "./to-ascii";
 export * from "./to-board";
