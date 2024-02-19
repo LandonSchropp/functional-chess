@@ -4,7 +4,7 @@
 
 These functions are related to FEN strings.
 
-### Internal
+### ✅ Internal
 
 These functions are required internally in order to make the library work.
 
@@ -19,13 +19,13 @@ These functions can be used to validate different aspects of a FEN string.
 - [ ] `isValid`
 - [ ] `isLegalMove`
 
-### Parsing
+### ✅ Parsing
 
 These functions can be used to parse the FEN.
 
 - [x] `parseFen`
 
-### Position Representations
+### ✅ Position Representations
 
 These functions will return different representations of the FEN as a whole.
 
@@ -62,15 +62,15 @@ These functions will change the position in the FEN.
 - [x] `removePiece`
 - [ ] `swapColors`
 
-### Non-Position Accessors and Mutators
+### ✅ Non-Position Accessors and Mutators
 
 These functions update parts of the FEN that are not related to the position.
 
 - [x] `getColor`
 - [x] `setColor`
 - [x] `getCastlingRight`
+- [x] `setCastlingRight`
 - [x] `getCastlingRights`
-- [ ] `setCastlingRight`
 - [x] `setCastlingRights`
 - [x] `getEnPassantSquare`
 - [x] `setEnPassantSquare`
@@ -79,7 +79,7 @@ These functions update parts of the FEN that are not related to the position.
 - [x] `getFullMoveNumber`
 - [x] `setFullMoveNumber`
 
-## Square
+## ✅ Square
 
 These functions deal with squares, independent of a FEN.
 
@@ -99,4 +99,3 @@ These functions deal with squares, independent of a FEN.
 - [x] Set up ESLint
 - [ ] Set up NPM package
 - [x] Make the library handle both 0x88 boards _and_ strings
-- [ ] Create a documentation site
