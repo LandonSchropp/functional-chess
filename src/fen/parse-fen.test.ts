@@ -265,10 +265,10 @@ describe("parseFen", () => {
 
   describe("when the FEN's castling rights contain some of the sides", () => {
     it("sets the castling rights of the FEN to the correct bits", () => {
-      const fen1 = STARTING_POSITION.replace("kq", "");
+      const fen1 = STARTING_POSITION.replace("KQkq", "KQ");
       expect(parseFen(fen1)[2]).toEqual(0b0011);
 
-      const fen2 = STARTING_POSITION.replace("KQ", "");
+      const fen2 = STARTING_POSITION.replace("KQkq", "kq");
       expect(parseFen(fen2)[2]).toEqual(0b1100);
     });
   });
