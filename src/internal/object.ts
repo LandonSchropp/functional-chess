@@ -15,10 +15,6 @@ export function invertToArray<K extends string, V extends number>(
 ): (K | undefined)[] {
   const values: V[] = Object.values(object);
 
-  if (values.length === 0) {
-    return [];
-  }
-
   if (!values.every((value) => Number.isInteger(value))) {
     throw new TypeError("Object values must be integers.");
   }

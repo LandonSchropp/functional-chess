@@ -43,4 +43,10 @@ describe("invertToArray", () => {
       expect(() => invertToArray({ a: 0, b: -1, c: 1 })).toThrow(TypeError);
     });
   });
+
+  describe("when the object's values contains duplicates", () => {
+    it("raises an error", () => {
+      expect(() => invertToArray({ a: 0, b: 1, c: 1 })).toThrow(TypeError);
+    });
+  });
 });
