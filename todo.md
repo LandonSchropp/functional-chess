@@ -72,7 +72,7 @@ These functions update parts of the FEN that are not related to the position.
 - [x] `getCastlingRights`
 - [ ] `setCastlingRight`
 - [ ] `setCastlingRights`
-- [ ] `getEnPassantSquare`
+- [x] `getEnPassantSquare`
 - [ ] `setEnPassantSquare`
 - [ ] `getHalfMoveClock`
 - [ ] `setHalfMoveClock`

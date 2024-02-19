@@ -1,6 +1,7 @@
 export * from "./get-castling-rights";
 export * from "./get-color";
 export * from "./get-empty-squares";
+export * from "./get-en-passant-square";
 export * from "./get-piece";
 export * from "./get-pieces-with-squares";
 export * from "./is-parsable";
