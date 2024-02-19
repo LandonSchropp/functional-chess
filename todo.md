@@ -67,13 +67,13 @@ These functions will change the position in the FEN.
 
 These functions update parts of the FEN that are not related to the position.
 
-- [ ] `getColor`
+- [x] `getColor`
 - [ ] `setColor`
 - [ ] `getCastlingRights()`
 - [ ] `setCastlingRight(side: Side, canCastle: boolean)`
 - [ ] `setCastlingRights(sides: Side[])`
-- [ ] `getEnPassantTargetSquare()`
-- [ ] `setEnPassantTargetSquare(value)`
+- [ ] `getEnPassantSquare()`
+- [ ] `setEnPassantSquare()`
 - [ ] `getHalfMoveClock()`
 - [ ] `setHalfMoveClock()`
 - [ ] `getFullMoveNumber()`

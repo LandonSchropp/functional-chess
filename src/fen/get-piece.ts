@@ -10,7 +10,7 @@ import { Piece, Square } from "../types";
 /**
  * Returns the piece at the square.
  *
- * @param fen The FEN to parse.
+ * @param fen The FEN.
  * @param square The square to get the piece from.
  * @returns The piece on the square, or `null` if there is no piece.
  */

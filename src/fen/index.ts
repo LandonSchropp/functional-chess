@@ -1,3 +1,4 @@
+export * from "./get-empty-squares";
 export * from "./get-piece";
 export * from "./get-pieces-with-squares";
 export * from "./is-parsable";
@@ -8,4 +9,4 @@ export * from "./to-ascii";
 export * from "./to-board";
 export * from "./to-fen";
 export * from "./to-unicode";
-export * from "./get-empty-squares";
+export * from "./get-color";
