@@ -1,0 +1,4 @@
+[test]
+
+# Require 100% code coverage.
+coverageThreshold = 1.0

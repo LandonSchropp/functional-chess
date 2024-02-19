@@ -94,7 +94,7 @@ These functions deal with squares, independent of a FEN.
 
 ## Other
 
-- [ ] Set up code coverage
+- [x] Set up code coverage
 - [x] Set up Prettier
 - [x] Set up ESLint
 - [ ] Set up NPM package
