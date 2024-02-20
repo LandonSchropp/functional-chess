@@ -52,6 +52,7 @@ These predicate functions can answer questions about the current position.
 - [ ] `isDraw`
 - [ ] `isInsufficientMaterial`
 - [ ] `isStalemate`
+- [ ] `isSquareAttacked`
 
 ### Position Mutators
 
