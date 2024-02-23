@@ -28,8 +28,37 @@ import {
   WHITE_QUEENSIDE_0x88,
 } from "./constants";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
-import { Fen0x88, Side0x88, Square0x88 } from "./types";
+import { Color0x88, EmptyPiece0x88, Fen0x88, Piece0x88, Side0x88, Square0x88 } from "./types";
 
+/**
+ * Determines if the piece is the same color as the given color.
+ *
+ * @param piece The piece to check.
+ * @param color The color to compare against.
+ * @returns True if the piece is the same color as the given color. This will also return false if
+ *   the given piece is empty.
+ */
+function isPieceColor0x88(piece: Piece0x88 | EmptyPiece0x88, color: Color0x88): boolean {
+  return (
+    piece !== EMPTY_PIECE_0x88 &&
+    ((color === WHITE_0x88 && piece <= WHITE_KING_0x88) ||
+      (color === BLACK_0x88 && piece >= BLACK_PAWN_0x88))
+  );
+}
+
+/**
+ * Determines if the piece is the opposite color color of the given color.
+ *
+ * @param piece The piece to check.
+ * @param color The color to compare against.
+ * @returns True if the piece is the opposite color of the given color. This will also return false
+ *   if the given piece is empty.
+ */
+function isPieceOppositeColor0x88(piece: Piece0x88 | EmptyPiece0x88, color: Color0x88): boolean {
+  return isPieceColor0x88(piece, color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88);
+}
+
+/** Returns all of the legal squares that a pawn can move to from a given square. */
 function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const [board, color, , enPassantSquare] = fen;
   const piece = board[square];
@@ -68,10 +97,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
     }
 
     // Normal capture
-    if (
-      (color === WHITE_0x88 && board[target] >= BLACK_PAWN_0x88) ||
-      (color === BLACK_0x88 && board[target] <= WHITE_KING_0x88)
-    ) {
+    if (isPieceOppositeColor0x88(board[target], color)) {
       moves.push(target as Square0x88);
     }
 
@@ -116,7 +142,7 @@ function canCastle(
   return true;
 }
 
-// TODO: Add non-castling moves to this function.
+/** Returns all of the legal squares that a king can move to from a given square, including castling. */
 function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const [board, color] = fen;
   const piece = board[square];
@@ -155,19 +181,8 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
  * from a given square.
  */
 export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
-  const piece = fen[0][square];
-  const color = fen[1];
-
-  // Ensure the square is not empty
-  if (piece === EMPTY_PIECE_0x88) {
-    return [];
-  }
-
-  // Ensure the piece is the correct color
-  if (
-    (color === WHITE_0x88 && piece >= BLACK_PAWN_0x88) ||
-    (color === BLACK_0x88 && piece <= WHITE_KING_0x88)
-  ) {
+  // Ensure the square is not empty and the piece is the correct color
+  if (!isPieceColor0x88(fen[0][square], fen[1])) {
     return [];
   }
 
