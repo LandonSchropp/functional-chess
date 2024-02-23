@@ -29,7 +29,7 @@ import {
   WHITE_PAWN_0x88,
   WHITE_QUEENSIDE_0x88,
 } from "./constants";
-import { KNIGHT_OFFSETS } from "./constants/offsets";
+import { KING_OFFSETS, KNIGHT_OFFSETS } from "./constants/offsets";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
 import { Color0x88, EmptyPiece0x88, Fen0x88, Piece0x88, Side0x88, Square0x88 } from "./types";
 
@@ -145,40 +145,6 @@ function canCastle(
   return true;
 }
 
-/** Returns all of the legal squares that a king can move to from a given square, including castling. */
-function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
-  const [board, color] = fen;
-  const piece = board[square];
-
-  // If the piece is not a king, ignore it
-  if (piece !== WHITE_KING_0x88 && piece !== BLACK_KING_0x88) {
-    return [];
-  }
-
-  const moves: Square0x88[] = [];
-
-  // Castling
-  if (color === WHITE_0x88 && square === E1_0x88) {
-    if (canCastle(fen, WHITE_KINGSIDE_0x88, F1_0x88, G1_0x88)) {
-      moves.push(G1_0x88);
-    }
-
-    if (canCastle(fen, WHITE_QUEENSIDE_0x88, D1_0x88, C1_0x88)) {
-      moves.push(C1_0x88);
-    }
-  } else if (color === BLACK_0x88 && square === E8_0x88) {
-    if (canCastle(fen, BLACK_KINGSIDE_0x88, F8_0x88, G8_0x88)) {
-      moves.push(G8_0x88);
-    }
-
-    if (canCastle(fen, BLACK_QUEENSIDE_0x88, D8_0x88, C8_0x88)) {
-      moves.push(C8_0x88);
-    }
-  }
-
-  return moves;
-}
-
 /** Returns all of the legal squares that a knight can move to from a given square. */
 function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const [board, color] = fen;
@@ -196,6 +162,49 @@ function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[]
 
     if (!(target & OUT_OF_BOUNDS_0x88) && !isPieceColor0x88(board[target], color)) {
       moves.push(target);
+    }
+  }
+
+  return moves;
+}
+
+/** Returns all of the legal squares that a king can move to from a given square, including castling. */
+function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
+  const [board, color] = fen;
+  const piece = board[square];
+
+  // If the piece is not a king, ignore it
+  if (piece !== WHITE_KING_0x88 && piece !== BLACK_KING_0x88) {
+    return [];
+  }
+
+  const moves: Square0x88[] = [];
+
+  // Normal moves
+  for (const offset of KING_OFFSETS) {
+    const target = (square + offset) as Square0x88;
+
+    if (!(target & OUT_OF_BOUNDS_0x88) && !isPieceColor0x88(board[target], color)) {
+      moves.push(target);
+    }
+  }
+
+  // Castling
+  if (color === WHITE_0x88 && square === E1_0x88) {
+    if (canCastle(fen, WHITE_KINGSIDE_0x88, F1_0x88, G1_0x88)) {
+      moves.push(G1_0x88);
+    }
+
+    if (canCastle(fen, WHITE_QUEENSIDE_0x88, D1_0x88, C1_0x88)) {
+      moves.push(C1_0x88);
+    }
+  } else if (color === BLACK_0x88 && square === E8_0x88) {
+    if (canCastle(fen, BLACK_KINGSIDE_0x88, F8_0x88, G8_0x88)) {
+      moves.push(G8_0x88);
+    }
+
+    if (canCastle(fen, BLACK_QUEENSIDE_0x88, D8_0x88, C8_0x88)) {
+      moves.push(C8_0x88);
     }
   }
 
