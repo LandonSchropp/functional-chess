@@ -4,6 +4,7 @@ import {
   BLACK_0x88,
   BLACK_KINGSIDE_0x88,
   BLACK_KING_0x88,
+  BLACK_KNIGHT_0x88,
   BLACK_PAWN_0x88,
   BLACK_QUEENSIDE_0x88,
   BOARD_WIDTH_0x88,
@@ -24,9 +25,11 @@ import {
   WHITE_0x88,
   WHITE_KINGSIDE_0x88,
   WHITE_KING_0x88,
+  WHITE_KNIGHT_0x88,
   WHITE_PAWN_0x88,
   WHITE_QUEENSIDE_0x88,
 } from "./constants";
+import { KNIGHT_OFFSETS } from "./constants/offsets";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
 import { Color0x88, EmptyPiece0x88, Fen0x88, Piece0x88, Side0x88, Square0x88 } from "./types";
 
@@ -176,6 +179,29 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   return moves;
 }
 
+/** Returns all of the legal squares that a knight can move to from a given square. */
+function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
+  const [board, color] = fen;
+  const piece = board[square];
+
+  // If the piece is not a knight, ignore it
+  if (piece !== WHITE_KNIGHT_0x88 && piece !== BLACK_KNIGHT_0x88) {
+    return [];
+  }
+
+  const moves: Square0x88[] = [];
+
+  for (const offset of KNIGHT_OFFSETS) {
+    const target = (square + offset) as Square0x88;
+
+    if (!(target & OUT_OF_BOUNDS_0x88) && !isPieceColor0x88(board[target], color)) {
+      moves.push(target);
+    }
+  }
+
+  return moves;
+}
+
 /**
  * This is an internal helper function that generates all of the legal squares that can be moved to
  * from a given square.
@@ -186,5 +212,9 @@ export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[
     return [];
   }
 
-  return [...getLegalPawnMoves0x88(fen, square), ...getLegalKingMoves0x88(fen, square)];
+  return [
+    ...getLegalPawnMoves0x88(fen, square),
+    ...getLegalKnightMoves0x88(fen, square),
+    ...getLegalKingMoves0x88(fen, square),
+  ];
 }
