@@ -41,10 +41,10 @@ export type Board0x88 = Tuple<Piece0x88 | EmptyPiece0x88, 128>;
 
 /** A parsed FEN represented with integers. */
 export type Fen0x88 = [
-  position: Board0x88,
+  board: Board0x88,
   color: Color0x88,
-  castling: number,
-  enPassant: EnPassantSquare,
-  halfMove: number,
-  fullMove: number,
+  castlingRights: number,
+  enPassantSquare: EnPassantSquare,
+  halfMoveClock: number,
+  fullMoveNumber: number,
 ];
