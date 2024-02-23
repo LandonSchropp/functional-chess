@@ -15,16 +15,17 @@ import {
   WHITE_ROOK_0x88,
 } from "../internal/constants";
 import { Color0x88, Fen0x88, Square0x88 } from "../internal/types";
-
-const WHITE_PAWN_OFFSETS = [-15, -17];
-const BLACK_PAWN_OFFSETS = [15, 17];
-const KNIGHT_OFFSETS = [-33, -31, -18, -14, 14, 18, 31, 33];
-const BISHOP_OFFSETS = [-15, -17, 15, 17];
-const ROOK_OFFSETS = [-1, -16, 1, 16];
-const KING_OFFSETS = [-1, -16, 1, 16, -15, -17, 15, 17];
+import {
+  KNIGHT_OFFSETS,
+  KING_OFFSETS,
+  BISHOP_OFFSETS,
+  ROOK_OFFSETS,
+  BLACK_PAWN_CAPTURE_OFFSETS,
+  WHITE_PAWN_CAPTURE_OFFSETS,
+} from "./constants/offsets";
 
 /**
- * Determines if the given square is attacked by the provided color.
+ * Determines if the given square is currently attacked by the provided color.
  *
  * @param fen - The FEN.
  * @param square - The square to check.
@@ -37,7 +38,9 @@ export function isSquareAttacked0x88(fen: Fen0x88, square: Square0x88, color: Co
   // Pawns
   const pawn = color === WHITE_0x88 ? WHITE_PAWN_0x88 : BLACK_PAWN_0x88;
 
-  for (const offset of color === WHITE_0x88 ? WHITE_PAWN_OFFSETS : BLACK_PAWN_OFFSETS) {
+  for (const offset of color === WHITE_0x88
+    ? WHITE_PAWN_CAPTURE_OFFSETS
+    : BLACK_PAWN_CAPTURE_OFFSETS) {
     const target = square + offset;
 
     if (!(target & OUT_OF_BOUNDS_0x88) && board[target] === pawn) {
