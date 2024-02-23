@@ -100,3 +100,5 @@ These functions deal with squares, independent of a FEN.
 - [x] Set up ESLint
 - [ ] Set up NPM package
 - [x] Make the library handle both 0x88 boards _and_ strings
+- [ ] When parsing a FEN, sanitize the castling rights. We should ignore castling when it doesn't
+      make sense.
