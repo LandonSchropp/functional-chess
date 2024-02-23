@@ -1,12 +1,15 @@
 import {
+  A1_0x88,
   A2_0x88,
   A7_0x88,
+  A8_0x88,
   BLACK_0x88,
   BLACK_KINGSIDE_0x88,
   BLACK_KING_0x88,
   BLACK_KNIGHT_0x88,
   BLACK_PAWN_0x88,
   BLACK_QUEENSIDE_0x88,
+  BLACK_ROOK_0x88,
   BOARD_WIDTH_0x88,
   C1_0x88,
   C8_0x88,
@@ -19,8 +22,10 @@ import {
   F8_0x88,
   G1_0x88,
   G8_0x88,
+  H1_0x88,
   H2_0x88,
   H7_0x88,
+  H8_0x88,
   OUT_OF_BOUNDS_0x88,
   WHITE_0x88,
   WHITE_KINGSIDE_0x88,
@@ -28,6 +33,7 @@ import {
   WHITE_KNIGHT_0x88,
   WHITE_PAWN_0x88,
   WHITE_QUEENSIDE_0x88,
+  WHITE_ROOK_0x88,
 } from "./constants";
 import { KING_OFFSETS, KNIGHT_OFFSETS } from "./constants/offsets";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
@@ -119,12 +125,18 @@ function canCastle(
   side: Side0x88,
   throughSquare: Square0x88,
   targetSquare: Square0x88,
+  rookSquare: Square0x88,
 ): boolean {
   const [board, color, castlingRights] = fen;
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // Ensure the castling right is available
   if (!(castlingRights & side)) {
+    return false;
+  }
+
+  // Ensure the rook is on the correct square
+  if (board[rookSquare] !== (color === WHITE_0x88 ? WHITE_ROOK_0x88 : BLACK_ROOK_0x88)) {
     return false;
   }
 
@@ -191,19 +203,19 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
 
   // Castling
   if (color === WHITE_0x88 && square === E1_0x88) {
-    if (canCastle(fen, WHITE_KINGSIDE_0x88, F1_0x88, G1_0x88)) {
+    if (canCastle(fen, WHITE_KINGSIDE_0x88, F1_0x88, G1_0x88, H1_0x88)) {
       moves.push(G1_0x88);
     }
 
-    if (canCastle(fen, WHITE_QUEENSIDE_0x88, D1_0x88, C1_0x88)) {
+    if (canCastle(fen, WHITE_QUEENSIDE_0x88, D1_0x88, C1_0x88, A1_0x88)) {
       moves.push(C1_0x88);
     }
   } else if (color === BLACK_0x88 && square === E8_0x88) {
-    if (canCastle(fen, BLACK_KINGSIDE_0x88, F8_0x88, G8_0x88)) {
+    if (canCastle(fen, BLACK_KINGSIDE_0x88, F8_0x88, G8_0x88, H8_0x88)) {
       moves.push(G8_0x88);
     }
 
-    if (canCastle(fen, BLACK_QUEENSIDE_0x88, D8_0x88, C8_0x88)) {
+    if (canCastle(fen, BLACK_QUEENSIDE_0x88, D8_0x88, C8_0x88, A8_0x88)) {
       moves.push(C8_0x88);
     }
   }
