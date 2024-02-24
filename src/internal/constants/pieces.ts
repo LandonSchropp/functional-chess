@@ -15,12 +15,12 @@ import {
 import { invertToArray } from "../object";
 import { WHITE_0x88, BLACK_0x88 } from "./colors";
 
-export const PAWN_0x88 = 0b0001;
-export const KNIGHT_0x88 = 0b0010;
-export const BISHOP_0x88 = 0b0011;
-export const ROOK_0x88 = 0b0100;
-export const QUEEN_0x88 = 0b0101;
-export const KING_0x88 = 0b0110;
+export const PAWN_0x88 = 0b00000100;
+export const KNIGHT_0x88 = 0b00001000;
+export const BISHOP_0x88 = 0b00010000;
+export const ROOK_0x88 = 0b00100000;
+export const QUEEN_0x88 = 0b01000000;
+export const KING_0x88 = 0b10000000;
 
 export const WHITE_PAWN_0x88 = WHITE_0x88 | PAWN_0x88;
 export const WHITE_KNIGHT_0x88 = WHITE_0x88 | KNIGHT_0x88;
@@ -37,6 +37,12 @@ export const BLACK_KING_0x88 = BLACK_0x88 | KING_0x88;
 
 /** Represents the lack of a piece. */
 export const NO_PIECE_0x88 = 0;
+
+/**
+ * A convenience constant that can be combined with the bitwise & operator to determine if a piece
+ * is white.
+ */
+export const IS_WHITE_0x88 = WHITE_0x88 | 0b111;
 
 /** A readonly object that converts a string piece into its 0x88 representation. */
 export const PIECE_TO_PIECE_0x88 = {

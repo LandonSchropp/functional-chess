@@ -103,3 +103,4 @@ These functions deal with squares, independent of a FEN.
 - [ ] Write a [Perft function](https://www.chessprogramming.org/Move_Generation#Debugging) for
       testing the accuracy of the move generator. Check out the positions provided in
       [this table](https://www.chessprogramming.org/Move_Generation#Debugging).
+- [ ] Switch from `invertToArray` to `invertToMap` now that I'm using disjoint piece flags.
