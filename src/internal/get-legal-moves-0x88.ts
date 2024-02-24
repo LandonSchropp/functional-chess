@@ -41,8 +41,6 @@ import {
   WHITE_ROOK_0x88,
 } from "./constants";
 import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS, ROOK_OFFSETS } from "./constants/offsets";
-import { isPieceColor0x88 } from "./is-piece-color-0x88";
-import { isPieceOppositeColor0x88 } from "./is-piece-opposite-color-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
 import { Side0x88, Square0x88 } from "./types";
 
@@ -50,6 +48,7 @@ import { Side0x88, Square0x88 } from "./types";
 function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const [board, color, , enPassantSquare] = fen;
   const piece = board[square];
+  const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a pawn, ignore it
   if (piece !== WHITE_PAWN_0x88 && piece !== BLACK_PAWN_0x88) {
@@ -85,7 +84,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
     }
 
     // Normal capture
-    if (isPieceOppositeColor0x88(board[target], color)) {
+    if (board[target] & oppositeColor) {
       moves.push(target as Square0x88);
     }
 
@@ -154,7 +153,7 @@ function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[]
   for (const offset of KNIGHT_OFFSETS) {
     const target = (square + offset) as Square0x88;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && !isPieceColor0x88(board[target], color)) {
+    if (!(target & OUT_OF_BOUNDS_0x88) && !(board[target] & color)) {
       moves.push(target);
     }
   }
@@ -178,7 +177,7 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   for (const offset of KING_OFFSETS) {
     const target = (square + offset) as Square0x88;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && !isPieceColor0x88(board[target], color)) {
+    if (!(target & OUT_OF_BOUNDS_0x88) && !(board[target] & color)) {
       moves.push(target);
     }
   }
@@ -213,6 +212,7 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
 function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const [board, color] = fen;
   const piece = board[square];
+  const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a bishop or queen, ignore it
   if (
@@ -232,12 +232,12 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
     // Loop through the attack ray until we can't go any further
     while (!(target & OUT_OF_BOUNDS_0x88)) {
       // When connecting with a piece of the same color, we're done
-      if (isPieceColor0x88(board[target], color)) {
+      if (board[target] & color) {
         break;
       }
 
       // When connecting with a piece of the opposite color add the move and then quit.
-      if (isPieceOppositeColor0x88(board[target], color)) {
+      if (board[target] & oppositeColor) {
         moves.push(target);
         break;
       }
@@ -263,6 +263,7 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
 function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const [board, color] = fen;
   const piece = board[square];
+  const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a rook or queen, ignore it
   if (
@@ -282,12 +283,12 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
     // Loop through the attack ray until we can't go any further
     while (!(target & OUT_OF_BOUNDS_0x88)) {
       // When connecting with a piece of the same color, we're done
-      if (isPieceColor0x88(board[target], color)) {
+      if (board[target] & color) {
         break;
       }
 
       // When connecting with a piece of the opposite color add the move and then quit.
-      if (isPieceOppositeColor0x88(board[target], color)) {
+      if (board[target] & oppositeColor) {
         moves.push(target);
         break;
       }
@@ -311,7 +312,7 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
  */
 export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   // Ensure the square is not empty and the piece is the correct color
-  if (!isPieceColor0x88(fen[0][square], fen[1])) {
+  if (!(fen[0][square] & fen[1])) {
     return [];
   }
 
