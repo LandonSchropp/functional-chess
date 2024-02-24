@@ -1,5 +1,5 @@
 import { BOARD_SIZE } from "../constants";
-import { EMPTY_PIECE_0x88, PIECE_0x88_TO_PIECE } from "../internal/constants";
+import { NO_PIECE_0x88, PIECE_0x88_TO_PIECE } from "../internal/constants";
 import { convertIndicesToSquare0x88 } from "../internal/convert-indices-to-square-0x88";
 import { deriveFromFen } from "../internal/derive-from-fen";
 import { Fen0x88 } from "../internal/types";
@@ -21,7 +21,7 @@ export const toBoard = deriveFromFen((fen: Fen0x88): Board => {
     for (let fileIndex = 0; fileIndex < BOARD_SIZE; fileIndex++) {
       const piece = fen[0][convertIndicesToSquare0x88(BOARD_SIZE - rankIndex - 1, fileIndex)];
 
-      if (piece !== EMPTY_PIECE_0x88) {
+      if (piece !== NO_PIECE_0x88) {
         board[BOARD_SIZE - rankIndex - 1][fileIndex] = PIECE_0x88_TO_PIECE[piece]!;
       }
     }

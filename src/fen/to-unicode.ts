@@ -6,7 +6,7 @@ import {
   BLACK_PAWN_0x88,
   BLACK_QUEEN_0x88,
   BLACK_ROOK_0x88,
-  EMPTY_PIECE_0x88,
+  NO_PIECE_0x88,
   WHITE_BISHOP_0x88,
   WHITE_KING_0x88,
   WHITE_KNIGHT_0x88,
@@ -32,7 +32,7 @@ export const PIECE_0x88_TO_PIECE_UNICODE = invertToArray({
   "♖": BLACK_ROOK_0x88,
   "♕": BLACK_QUEEN_0x88,
   "♔": BLACK_KING_0x88,
-  "·": EMPTY_PIECE_0x88,
+  "·": NO_PIECE_0x88,
 } as const);
 
 /**

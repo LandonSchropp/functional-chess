@@ -1,7 +1,7 @@
 import {
   BLACK_0x88,
   BLACK_PAWN_0x88,
-  EMPTY_PIECE_0x88,
+  NO_PIECE_0x88,
   PIECES_0x88,
   WHITE_0x88,
   WHITE_KING_0x88,
@@ -13,7 +13,7 @@ describe("isPieceColor0x88", () => {
   describe("when the provided color white", () => {
     describe("when the piece is empty", () => {
       it("returns false", () => {
-        expect(isPieceColor0x88(EMPTY_PIECE_0x88, WHITE_0x88)).toBe(false);
+        expect(isPieceColor0x88(NO_PIECE_0x88, WHITE_0x88)).toBe(false);
       });
     });
 
@@ -41,7 +41,7 @@ describe("isPieceColor0x88", () => {
   describe("when the provided color black", () => {
     describe("when the piece is empty", () => {
       it("returns false", () => {
-        expect(isPieceColor0x88(EMPTY_PIECE_0x88, BLACK_0x88)).toBe(false);
+        expect(isPieceColor0x88(NO_PIECE_0x88, BLACK_0x88)).toBe(false);
       });
     });
 

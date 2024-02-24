@@ -1,8 +1,4 @@
-import {
-  SQUARE_TO_SQUARE_0x88,
-  EMPTY_PIECE_0x88,
-  PIECE_TO_PIECE_0x88,
-} from "../internal/constants";
+import { SQUARE_TO_SQUARE_0x88, NO_PIECE_0x88, PIECE_TO_PIECE_0x88 } from "../internal/constants";
 import { transformFen } from "../internal/transform-fen";
 import { Fen0x88 } from "../internal/types";
 import { Square, Piece } from "../types";
@@ -18,7 +14,7 @@ import { Square, Piece } from "../types";
 export const setPiece = transformFen(
   (fen: Fen0x88, square: Square, piece: Piece | null): Fen0x88 => {
     const square0x88 = SQUARE_TO_SQUARE_0x88[square];
-    const piece0x88 = piece === null ? EMPTY_PIECE_0x88 : PIECE_TO_PIECE_0x88[piece];
+    const piece0x88 = piece === null ? NO_PIECE_0x88 : PIECE_TO_PIECE_0x88[piece];
 
     return [
       [...fen[0].slice(0, square0x88), piece0x88, ...fen[0].slice(square0x88 + 1)],

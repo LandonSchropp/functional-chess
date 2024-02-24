@@ -14,7 +14,7 @@ import {
   WHITE_QUEEN_0x88,
   WHITE_KING_0x88,
   BOARD_WIDTH_0x88,
-  EMPTY_PIECE_0x88,
+  NO_PIECE_0x88,
   WHITE_PAWN_0x88,
   BLACK_PAWN_0x88,
   BLACK_ROOK_0x88,
@@ -45,12 +45,12 @@ const STARTING_POSITION_BOARD_0x88: Board0x88 = [
   WHITE_BISHOP_0x88,
   WHITE_KNIGHT_0x88,
   WHITE_ROOK_0x88,
-  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_PIECE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(NO_PIECE_0x88),
   ...new Array(BOARD_SIZE).fill(WHITE_PAWN_0x88),
-  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_PIECE_0x88),
-  ...new Array(BOARD_WIDTH_0x88 * 4).fill(EMPTY_PIECE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(NO_PIECE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 * 4).fill(NO_PIECE_0x88),
   ...new Array(BOARD_SIZE).fill(BLACK_PAWN_0x88),
-  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_PIECE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(NO_PIECE_0x88),
   BLACK_ROOK_0x88,
   BLACK_KNIGHT_0x88,
   BLACK_BISHOP_0x88,
@@ -59,7 +59,7 @@ const STARTING_POSITION_BOARD_0x88: Board0x88 = [
   BLACK_BISHOP_0x88,
   BLACK_KNIGHT_0x88,
   BLACK_ROOK_0x88,
-  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_PIECE_0x88),
+  ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(NO_PIECE_0x88),
 ] as Board0x88;
 
 describe("parseFen", () => {
@@ -144,9 +144,9 @@ describe("parseFen", () => {
       expect(parseFen(fen)).toEqual([
         [
           WHITE_KING_0x88,
-          ...new Array(BOARD_WIDTH_0x88 * BOARD_SIZE - BOARD_SIZE - 2).fill(EMPTY_PIECE_0x88),
+          ...new Array(BOARD_WIDTH_0x88 * BOARD_SIZE - BOARD_SIZE - 2).fill(NO_PIECE_0x88),
           BLACK_KING_0x88,
-          ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_PIECE_0x88),
+          ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(NO_PIECE_0x88),
         ] as Board0x88,
         WHITE_0x88,
         0b0000,
@@ -160,7 +160,7 @@ describe("parseFen", () => {
   describe("when the position is empty", () => {
     it("parses the FEN", () => {
       expect(parseFen(EMPTY_POSITION)).toEqual([
-        new Array(BOARD_WIDTH_0x88 * BOARD_SIZE).fill(EMPTY_PIECE_0x88) as Board0x88,
+        new Array(BOARD_WIDTH_0x88 * BOARD_SIZE).fill(NO_PIECE_0x88) as Board0x88,
         WHITE_0x88,
         0b0000,
         EMPTY_EN_PASSANT_SQUARE_0x88,
@@ -179,7 +179,7 @@ describe("parseFen", () => {
         new Array(BOARD_SIZE)
           .fill([
             ...new Array(BOARD_SIZE).fill(WHITE_KING_0x88),
-            ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(EMPTY_PIECE_0x88),
+            ...new Array(BOARD_WIDTH_0x88 - BOARD_SIZE).fill(NO_PIECE_0x88),
           ])
           .flat() as Board0x88,
         WHITE_0x88,

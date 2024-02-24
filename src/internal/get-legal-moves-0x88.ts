@@ -19,7 +19,7 @@ import {
   D8_0x88,
   E1_0x88,
   E8_0x88,
-  EMPTY_PIECE_0x88,
+  NO_PIECE_0x88,
   F1_0x88,
   F8_0x88,
   G1_0x88,
@@ -242,7 +242,7 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
       }
 
       // When the square is empty, add it to the list of moves
-      if (board[target] === EMPTY_PIECE_0x88) {
+      if (board[target] === NO_PIECE_0x88) {
         moves.push(target);
       }
 
@@ -292,7 +292,7 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
       }
 
       // When the square is empty, add it to the list of moves
-      if (board[target] === EMPTY_PIECE_0x88) {
+      if (board[target] === NO_PIECE_0x88) {
         moves.push(target);
       }
 

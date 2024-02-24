@@ -5,7 +5,7 @@ import {
   SIDES_0x88,
   SIDE_0x88_TO_SIDE,
   COLOR_0x88_TO_COLOR,
-  EMPTY_PIECE_0x88,
+  NO_PIECE_0x88,
   PIECE_TO_PIECE_0x88,
 } from "../internal/constants";
 import { invertToArray } from "../internal/object";
@@ -13,7 +13,7 @@ import { Board0x88, Fen0x88 } from "../internal/types";
 
 const PIECE_0x88_TO_FEN_PIECE = invertToArray({
   ...PIECE_TO_PIECE_0x88,
-  "1": EMPTY_PIECE_0x88,
+  "1": NO_PIECE_0x88,
 });
 
 const EN_PASSANT_SQUARE_0x88_TO_SQUARE = invertToArray({
