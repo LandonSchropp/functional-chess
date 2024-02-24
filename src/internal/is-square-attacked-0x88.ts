@@ -77,7 +77,7 @@ export function isSquareAttacked0x88(fen: Fen0x88, square: Square0x88, color: Co
   for (const offset of BISHOP_OFFSETS) {
     let target = square + offset;
 
-    // Loop over the attack ray until we're out of bounds
+    // Loop through the attack ray until we can't go any further
     while (!(target & OUT_OF_BOUNDS_0x88)) {
       // If we hit a bishop or queen, we're done!
       if ((!(target & OUT_OF_BOUNDS_0x88) && board[target] === bishop) || board[target] === queen) {

@@ -4,11 +4,13 @@ import {
   A7_0x88,
   A8_0x88,
   BLACK_0x88,
+  BLACK_BISHOP_0x88,
   BLACK_KINGSIDE_0x88,
   BLACK_KING_0x88,
   BLACK_KNIGHT_0x88,
   BLACK_PAWN_0x88,
   BLACK_QUEENSIDE_0x88,
+  BLACK_QUEEN_0x88,
   BLACK_ROOK_0x88,
   BOARD_WIDTH_0x88,
   C1_0x88,
@@ -17,6 +19,7 @@ import {
   D8_0x88,
   E1_0x88,
   E8_0x88,
+  EMPTY_PIECE_0x88,
   F1_0x88,
   F8_0x88,
   G1_0x88,
@@ -27,14 +30,16 @@ import {
   H8_0x88,
   OUT_OF_BOUNDS_0x88,
   WHITE_0x88,
+  WHITE_BISHOP_0x88,
   WHITE_KINGSIDE_0x88,
   WHITE_KING_0x88,
   WHITE_KNIGHT_0x88,
   WHITE_PAWN_0x88,
   WHITE_QUEENSIDE_0x88,
+  WHITE_QUEEN_0x88,
   WHITE_ROOK_0x88,
 } from "./constants";
-import { KING_OFFSETS, KNIGHT_OFFSETS } from "./constants/offsets";
+import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS } from "./constants/offsets";
 import { isPieceColor0x88 } from "./is-piece-color-0x88";
 import { isPieceOppositeColor0x88 } from "./is-piece-opposite-color-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
@@ -200,6 +205,56 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
 }
 
 /**
+ * Returns all of the legal squares that a bishop or queen can diagonally move to from a given
+ * square. The diagonal queen moves are included since there's no reason to loop loop through the
+ * squares more than once.
+ */
+function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88[] {
+  const [board, color] = fen;
+  const piece = board[square];
+
+  // If the piece is not a bishop or queen, ignore it
+  if (
+    piece !== WHITE_BISHOP_0x88 &&
+    piece !== BLACK_BISHOP_0x88 &&
+    piece !== WHITE_QUEEN_0x88 &&
+    piece !== BLACK_QUEEN_0x88
+  ) {
+    return [];
+  }
+
+  const moves: Square0x88[] = [];
+
+  for (const offset of BISHOP_OFFSETS) {
+    let target = (square + offset) as Square0x88;
+
+    // Loop through the attack ray until we can't go any further
+    while (!(target & OUT_OF_BOUNDS_0x88)) {
+      // When connecting with a piece of the same color, we're done
+      if (isPieceColor0x88(board[target], color)) {
+        break;
+      }
+
+      // When connecting with a piece of the opposite color add the move and then quit.
+      if (isPieceOppositeColor0x88(board[target], color)) {
+        moves.push(target);
+        break;
+      }
+
+      // When the square is empty, add it to the list of moves
+      if (board[target] === EMPTY_PIECE_0x88) {
+        moves.push(target);
+      }
+
+      // Increment the target square by the offset
+      target += offset;
+    }
+  }
+
+  return moves;
+}
+
+/**
  * This is an internal helper function that generates all of the legal squares that can be moved to
  * from a given square.
  */
@@ -213,5 +268,6 @@ export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[
     ...getLegalPawnMoves0x88(fen, square),
     ...getLegalKnightMoves0x88(fen, square),
     ...getLegalKingMoves0x88(fen, square),
+    ...getLegalBishopAndQueenMoves(fen, square),
   ];
 }
