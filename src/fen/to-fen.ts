@@ -9,7 +9,8 @@ import {
   PIECE_TO_PIECE_0x88,
 } from "../internal/constants";
 import { invertToArray } from "../internal/object";
-import { Board0x88, Fen0x88 } from "../internal/types";
+import { Board0x88 } from "../internal/types";
+import { Fen0x88 } from "../types";
 
 const PIECE_0x88_TO_FEN_PIECE = invertToArray({
   ...PIECE_TO_PIECE_0x88,

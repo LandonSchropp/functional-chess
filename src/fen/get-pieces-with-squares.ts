@@ -4,8 +4,7 @@ import {
   SQUARE_0x88_TO_SQUARE,
 } from "../internal/constants";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88 } from "../internal/types";
-import { Piece, Square } from "../types";
+import { Fen0x88, Piece, Square } from "../types";
 
 type PieceWithSquare = { square: Square; piece: Piece };
 

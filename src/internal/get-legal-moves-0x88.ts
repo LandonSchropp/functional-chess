@@ -1,3 +1,4 @@
+import { Fen0x88 } from "../types";
 import {
   A1_0x88,
   A2_0x88,
@@ -43,7 +44,7 @@ import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS, ROOK_OFFSETS } from "./co
 import { isPieceColor0x88 } from "./is-piece-color-0x88";
 import { isPieceOppositeColor0x88 } from "./is-piece-opposite-color-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
-import { Fen0x88, Side0x88, Square0x88 } from "./types";
+import { Side0x88, Square0x88 } from "./types";
 
 /** Returns all of the legal squares that a pawn can move to from a given square. */
 function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {

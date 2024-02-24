@@ -1,5 +1,5 @@
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88 } from "../internal/types";
+import { Fen0x88 } from "../types";
 
 /**
  * Returns the full move number for the FEN.

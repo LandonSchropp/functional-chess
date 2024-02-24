@@ -1,7 +1,7 @@
 import { OUT_OF_BOUNDS_0x88, SQUARE_0x88_TO_SQUARE } from "../internal/constants";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88, Square0x88 } from "../internal/types";
-import { Square } from "../types";
+import { Square0x88 } from "../internal/types";
+import { Fen0x88, Square } from "../types";
 
 /**
  * Returns the empty squares in the FEN.

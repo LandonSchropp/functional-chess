@@ -1,7 +1,6 @@
 import { SIDE_TO_SIDE_0x88 } from "../internal/constants";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88 } from "../internal/types";
-import { Side } from "../types";
+import { Fen0x88, Side } from "../types";
 
 /**
  * Returns true if the provided can castle.

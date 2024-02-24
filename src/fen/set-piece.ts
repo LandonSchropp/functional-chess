@@ -1,7 +1,6 @@
 import { SQUARE_TO_SQUARE_0x88, NO_PIECE_0x88, PIECE_TO_PIECE_0x88 } from "../internal/constants";
 import { transformFen } from "../internal/transform-fen";
-import { Fen0x88 } from "../internal/types";
-import { Square, Piece } from "../types";
+import { Square, Piece, Fen0x88 } from "../types";
 
 /**
  * Sets a piece on the board.

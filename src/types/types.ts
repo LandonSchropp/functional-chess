@@ -1,4 +1,5 @@
 import { COLORS, FILES, PIECES, RANKS, SIDES, SQUARES } from "../constants";
+import { Board0x88, Color0x88, EnPassantSquare } from "../internal/types";
 
 // Match
 export type Vector = [number, number];
@@ -41,3 +42,17 @@ type Tuple8<T> = [T, T, T, T, T, T, T, T];
  * left_ of the board.
  */
 export type Board = Tuple8<Tuple8<Piece | null>>;
+
+/**
+ * An internal representation of a parsed FEN, stored as arrays of integers for efficiency. This is
+ * not meant to be read directly—rather, you should convert it to another format using one of the
+ * `to` functions, such as `toFen`.
+ */
+export type Fen0x88 = [
+  board: Board0x88,
+  color: Color0x88,
+  castlingRights: number,
+  enPassantSquare: EnPassantSquare,
+  halfMoveClock: number,
+  fullMoveNumber: number,
+];

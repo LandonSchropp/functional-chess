@@ -1,7 +1,6 @@
 import { SQUARE_0x88_TO_SQUARE } from "../internal/constants";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88 } from "../internal/types";
-import { Square } from "../types";
+import { Fen0x88, Square } from "../types";
 
 /**
  * Returns the en passant square for the FEN.

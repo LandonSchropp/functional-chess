@@ -1,7 +1,6 @@
 import { COLOR_TO_COLOR_0x88 } from "../internal/constants";
 import { transformFen } from "../internal/transform-fen";
-import { Fen0x88 } from "../internal/types";
-import { Color } from "../types";
+import { Color, Fen0x88 } from "../types";
 
 /**
  * Sets the active color for the FEN.

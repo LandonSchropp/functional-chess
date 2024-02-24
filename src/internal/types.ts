@@ -32,19 +32,5 @@ export type EmptyEnPassantSquare0x88 = typeof EMPTY_EN_PASSANT_SQUARE_0x88;
 /** All of the possible values for an en passant square. */
 export type EnPassantSquare = Square0x88 | EmptyEnPassantSquare0x88;
 
-/**
- * A 0x88 game board.
- *
- * @private
- */
+/** A 0x88 board. This is used to keep track of piece placement within a chessboard. */
 export type Board0x88 = Tuple<Piece0x88 | NoPiece0x88, 128>;
-
-/** A parsed FEN represented with integers. */
-export type Fen0x88 = [
-  board: Board0x88,
-  color: Color0x88,
-  castlingRights: number,
-  enPassantSquare: EnPassantSquare,
-  halfMoveClock: number,
-  fullMoveNumber: number,
-];

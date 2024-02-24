@@ -1,7 +1,6 @@
 import { NO_PIECE_0x88, PIECE_0x88_TO_PIECE, SQUARE_TO_SQUARE_0x88 } from "../internal/constants";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88 } from "../internal/types";
-import { Piece, Square } from "../types";
+import { Fen0x88, Piece, Square } from "../types";
 
 /**
  * Returns the piece at the square.

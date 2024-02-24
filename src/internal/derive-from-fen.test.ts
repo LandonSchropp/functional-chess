@@ -1,9 +1,8 @@
 import { BLACK, STARTING_POSITION, WHITE } from "../constants";
 import { parseFen } from "../fen";
-import { Color } from "../types";
+import { Color, Fen0x88 } from "../types";
 import { WHITE_0x88, COLOR_TO_COLOR_0x88 } from "./constants";
 import { deriveFromFen } from "./derive-from-fen";
-import { Fen0x88 } from "./types";
 import { describe, it, expect } from "bun:test";
 
 describe("deriveFromFen", () => {

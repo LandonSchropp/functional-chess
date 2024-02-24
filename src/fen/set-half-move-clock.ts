@@ -1,5 +1,5 @@
 import { transformFen } from "../internal/transform-fen";
-import { Fen0x88 } from "../internal/types";
+import { Fen0x88 } from "../types";
 
 /**
  * Sets the half move clock for the FEN.

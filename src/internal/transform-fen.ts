@@ -1,5 +1,5 @@
 import { toFen, parseFen } from "../fen";
-import { Fen0x88 } from "./types";
+import { Fen0x88 } from "../types";
 
 /* eslint "@typescript-eslint/no-explicit-any": "off" */
 

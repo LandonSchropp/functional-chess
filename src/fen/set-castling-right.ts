@@ -1,7 +1,6 @@
 import { SIDE_TO_SIDE_0x88 } from "../internal/constants";
 import { transformFen } from "../internal/transform-fen";
-import { Fen0x88 } from "../internal/types";
-import { Side } from "../types";
+import { Fen0x88, Side } from "../types";
 
 /**
  * Sets the castling right for the provided side.

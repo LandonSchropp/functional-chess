@@ -1,7 +1,6 @@
 import { EMPTY_EN_PASSANT_SQUARE_0x88, SQUARE_TO_SQUARE_0x88 } from "../internal/constants";
 import { transformFen } from "../internal/transform-fen";
-import { Fen0x88 } from "../internal/types";
-import { Square } from "../types";
+import { Fen0x88, Square } from "../types";
 
 /**
  * Sets the en passant square for the FEN.

@@ -1,6 +1,6 @@
 /* eslint "@typescript-eslint/no-explicit-any": "off" */
 import { parseFen } from "../fen";
-import { Fen0x88 } from "./types";
+import { Fen0x88 } from "../types";
 
 /**
  * Wraps a function that derives a value from a FEN, returning a similar function whose FEN

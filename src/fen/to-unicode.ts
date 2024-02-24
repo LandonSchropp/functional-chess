@@ -17,7 +17,7 @@ import {
 import { convertIndicesToSquare0x88 } from "../internal/convert-indices-to-square-0x88";
 import { deriveFromFen } from "../internal/derive-from-fen";
 import { invertToArray } from "../internal/object";
-import { Fen0x88 } from "../internal/types";
+import { Fen0x88 } from "../types";
 
 export const PIECE_0x88_TO_PIECE_UNICODE = invertToArray({
   "♟︎": WHITE_PAWN_0x88,

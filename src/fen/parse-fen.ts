@@ -9,15 +9,8 @@ import {
   SQUARE_TO_SQUARE_0x88,
   EMPTY_EN_PASSANT_SQUARE_0x88,
 } from "../internal/constants";
-import {
-  NoPiece0x88,
-  Piece0x88,
-  Board0x88,
-  Color0x88,
-  Fen0x88,
-  EnPassantSquare,
-} from "../internal/types";
-import { isColor, isPiece, isSide, isSquare } from "../types";
+import { NoPiece0x88, Piece0x88, Board0x88, Color0x88, EnPassantSquare } from "../internal/types";
+import { Fen0x88, isColor, isPiece, isSide, isSquare } from "../types";
 
 const UNOCCUPIED_SQUARES = Array.from(
   { length: BOARD_WIDTH_0x88 - BOARD_SIZE },

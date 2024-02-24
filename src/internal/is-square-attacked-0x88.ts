@@ -14,7 +14,8 @@ import {
   WHITE_QUEEN_0x88,
   WHITE_ROOK_0x88,
 } from "../internal/constants";
-import { Color0x88, Fen0x88, Square0x88 } from "../internal/types";
+import { Color0x88, Square0x88 } from "../internal/types";
+import { Fen0x88 } from "../types";
 import {
   KNIGHT_OFFSETS,
   KING_OFFSETS,

@@ -2,8 +2,7 @@ import { BOARD_SIZE } from "../constants";
 import { NO_PIECE_0x88, PIECE_0x88_TO_PIECE } from "../internal/constants";
 import { convertIndicesToSquare0x88 } from "../internal/convert-indices-to-square-0x88";
 import { deriveFromFen } from "../internal/derive-from-fen";
-import { Fen0x88 } from "../internal/types";
-import { Board } from "../types";
+import { Board, Fen0x88 } from "../types";
 
 /**
  * Returns a 2D array of the board.
