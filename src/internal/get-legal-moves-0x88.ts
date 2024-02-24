@@ -36,20 +36,9 @@ import {
 } from "./constants";
 import { KING_OFFSETS, KNIGHT_OFFSETS } from "./constants/offsets";
 import { isPieceColor0x88 } from "./is-piece-color-0x88";
+import { isPieceOppositeColor0x88 } from "./is-piece-opposite-color-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
-import { Color0x88, EmptyPiece0x88, Fen0x88, Piece0x88, Side0x88, Square0x88 } from "./types";
-
-/**
- * Determines if the piece is the opposite color color of the given color.
- *
- * @param piece The piece to check.
- * @param color The color to compare against.
- * @returns True if the piece is the opposite color of the given color. This will also return false
- *   if the given piece is empty.
- */
-function isPieceOppositeColor0x88(piece: Piece0x88 | EmptyPiece0x88, color: Color0x88): boolean {
-  return isPieceColor0x88(piece, color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88);
-}
+import { Fen0x88, Side0x88, Square0x88 } from "./types";
 
 /** Returns all of the legal squares that a pawn can move to from a given square. */
 function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
@@ -103,7 +92,10 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   return moves;
 }
 
-/** Determines if the player is allowed to castle based on the castling rights and the position. */
+/**
+ * Determines if the player is allowed to castle to a specific side based on the castling rights and
+ * the position.
+ */
 function canCastle(
   fen: Fen0x88,
   side: Side0x88,
