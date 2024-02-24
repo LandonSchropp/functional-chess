@@ -13,19 +13,27 @@ import {
   BLACK_KING,
 } from "../../constants";
 import { invertToArray } from "../object";
+import { WHITE_0x88, BLACK_0x88 } from "./colors";
 
-export const WHITE_PAWN_0x88 = 1;
-export const WHITE_KNIGHT_0x88 = 2;
-export const WHITE_BISHOP_0x88 = 3;
-export const WHITE_ROOK_0x88 = 4;
-export const WHITE_QUEEN_0x88 = 5;
-export const WHITE_KING_0x88 = 6;
-export const BLACK_PAWN_0x88 = 7;
-export const BLACK_KNIGHT_0x88 = 8;
-export const BLACK_BISHOP_0x88 = 9;
-export const BLACK_ROOK_0x88 = 10;
-export const BLACK_QUEEN_0x88 = 11;
-export const BLACK_KING_0x88 = 12;
+export const PAWN_0x88 = 0b0001;
+export const KNIGHT_0x88 = 0b0010;
+export const BISHOP_0x88 = 0b0011;
+export const ROOK_0x88 = 0b0100;
+export const QUEEN_0x88 = 0b0101;
+export const KING_0x88 = 0b0110;
+
+export const WHITE_PAWN_0x88 = WHITE_0x88 | PAWN_0x88;
+export const WHITE_KNIGHT_0x88 = WHITE_0x88 | KNIGHT_0x88;
+export const WHITE_BISHOP_0x88 = WHITE_0x88 | BISHOP_0x88;
+export const WHITE_ROOK_0x88 = WHITE_0x88 | ROOK_0x88;
+export const WHITE_QUEEN_0x88 = WHITE_0x88 | QUEEN_0x88;
+export const WHITE_KING_0x88 = WHITE_0x88 | KING_0x88;
+export const BLACK_PAWN_0x88 = BLACK_0x88 | PAWN_0x88;
+export const BLACK_KNIGHT_0x88 = BLACK_0x88 | KNIGHT_0x88;
+export const BLACK_BISHOP_0x88 = BLACK_0x88 | BISHOP_0x88;
+export const BLACK_ROOK_0x88 = BLACK_0x88 | ROOK_0x88;
+export const BLACK_QUEEN_0x88 = BLACK_0x88 | QUEEN_0x88;
+export const BLACK_KING_0x88 = BLACK_0x88 | KING_0x88;
 
 /** Represents the lack of a piece. */
 export const NO_PIECE_0x88 = 0;

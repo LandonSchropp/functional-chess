@@ -2,10 +2,10 @@ import { WHITE, BLACK } from "../../constants";
 import { invertToArray } from "../object";
 
 /** The 0x88 representation of white. */
-export const WHITE_0x88 = 0b01;
+export const WHITE_0x88 = 0b0000;
 
 /** The 0x88 representation of black. */
-export const BLACK_0x88 = 0b10;
+export const BLACK_0x88 = 0b1000;
 
 /** An array of the 0x88 colors. */
 export const COLORS_0x88 = [WHITE_0x88, BLACK_0x88] as const;
