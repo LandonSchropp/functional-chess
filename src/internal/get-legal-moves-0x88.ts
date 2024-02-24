@@ -17,7 +17,6 @@ import {
   D8_0x88,
   E1_0x88,
   E8_0x88,
-  EMPTY_PIECE_0x88,
   F1_0x88,
   F8_0x88,
   G1_0x88,
@@ -36,24 +35,9 @@ import {
   WHITE_ROOK_0x88,
 } from "./constants";
 import { KING_OFFSETS, KNIGHT_OFFSETS } from "./constants/offsets";
+import { isPieceColor0x88 } from "./is-piece-color-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
 import { Color0x88, EmptyPiece0x88, Fen0x88, Piece0x88, Side0x88, Square0x88 } from "./types";
-
-/**
- * Determines if the piece is the same color as the given color.
- *
- * @param piece The piece to check.
- * @param color The color to compare against.
- * @returns True if the piece is the same color as the given color. This will also return false if
- *   the given piece is empty.
- */
-function isPieceColor0x88(piece: Piece0x88 | EmptyPiece0x88, color: Color0x88): boolean {
-  return (
-    piece !== EMPTY_PIECE_0x88 &&
-    ((color === WHITE_0x88 && piece <= WHITE_KING_0x88) ||
-      (color === BLACK_0x88 && piece >= BLACK_PAWN_0x88))
-  );
-}
 
 /**
  * Determines if the piece is the opposite color color of the given color.
