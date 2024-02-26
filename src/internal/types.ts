@@ -6,7 +6,9 @@ import {
   SIDES_0x88,
   SQUARES_0x88,
 } from "./constants";
+import { FLAGS_0x88 } from "./constants/moves";
 
+/** A utility type that creates a tuple of a given length and type. */
 type Tuple<T, N extends number, R extends T[] = []> = R["length"] extends N
   ? R
   : Tuple<T, N, [T, ...R]>;
@@ -51,3 +53,6 @@ export type Board0x88 = Tuple<Piece0x88 | NoPiece0x88, 128>;
  * - `X`: Unused
  */
 export type Move0x88 = number;
+
+/** A flag that can be set on a move. */
+export type Flag0x88 = (typeof FLAGS_0x88)[number];
