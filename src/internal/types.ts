@@ -34,3 +34,20 @@ export type EnPassantSquare = Square0x88 | EmptyEnPassantSquare0x88;
 
 /** A 0x88 board. This is used to keep track of piece placement within a chessboard. */
 export type Board0x88 = Tuple<Piece0x88 | NoPiece0x88, 128>;
+
+/**
+ * A 0x88 Move. This is a 32-bit number that represents all of the properties in a move. It's
+ * encoded as follows:
+ *
+ *     XXXX LEDC PPPP PPPP TTTT TTTT FFFF FFFF
+ *
+ * - `F`: The from square
+ * - `T`: The to square
+ * - `P`: The promoted piece
+ * - `C`: Capture flag
+ * - `D`: Double pawn flag
+ * - `E`: En passant flag
+ * - `L`: Castle flag
+ * - `X`: Unused
+ */
+export type Move0x88 = number;
