@@ -1,6 +1,7 @@
 import { BOARD_WIDTH_0x88 } from "./board";
 
 /** Offsets that can be added to a square to determine legal white pawn captures moves. */
+// TODO: Rename this to positive and negaitve diagonal offsets or something like that.
 export const WHITE_PAWN_CAPTURE_OFFSETS = [-BOARD_WIDTH_0x88 - 1, -BOARD_WIDTH_0x88 + 1];
 
 /** Offsets that can be added to a square to determine legal black pawn captures moves. */

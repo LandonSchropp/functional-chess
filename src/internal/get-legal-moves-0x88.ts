@@ -5,13 +5,8 @@ import {
   A7_0x88,
   A8_0x88,
   BLACK_0x88,
-  BLACK_BISHOP_0x88,
   BLACK_KINGSIDE_0x88,
-  BLACK_KING_0x88,
-  BLACK_KNIGHT_0x88,
-  BLACK_PAWN_0x88,
   BLACK_QUEENSIDE_0x88,
-  BLACK_QUEEN_0x88,
   BLACK_ROOK_0x88,
   BOARD_WIDTH_0x88,
   C1_0x88,
@@ -31,14 +26,15 @@ import {
   H8_0x88,
   OUT_OF_BOUNDS_0x88,
   WHITE_0x88,
-  WHITE_BISHOP_0x88,
   WHITE_KINGSIDE_0x88,
-  WHITE_KING_0x88,
-  WHITE_KNIGHT_0x88,
-  WHITE_PAWN_0x88,
   WHITE_QUEENSIDE_0x88,
-  WHITE_QUEEN_0x88,
   WHITE_ROOK_0x88,
+  PAWN_0x88,
+  BISHOP_0x88,
+  QUEEN_0x88,
+  KNIGHT_0x88,
+  ROOK_0x88,
+  KING_0x88,
 } from "./constants";
 import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS, ROOK_OFFSETS } from "./constants/offsets";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
@@ -51,7 +47,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a pawn, ignore it
-  if (piece !== WHITE_PAWN_0x88 && piece !== BLACK_PAWN_0x88) {
+  if (!(piece & PAWN_0x88)) {
     return [];
   }
 
@@ -144,7 +140,7 @@ function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[]
   const piece = board[square];
 
   // If the piece is not a knight, ignore it
-  if (piece !== WHITE_KNIGHT_0x88 && piece !== BLACK_KNIGHT_0x88) {
+  if (!(piece & KNIGHT_0x88)) {
     return [];
   }
 
@@ -167,7 +163,7 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
   const piece = board[square];
 
   // If the piece is not a king, ignore it
-  if (piece !== WHITE_KING_0x88 && piece !== BLACK_KING_0x88) {
+  if (!(piece & KING_0x88)) {
     return [];
   }
 
@@ -215,12 +211,7 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a bishop or queen, ignore it
-  if (
-    piece !== WHITE_BISHOP_0x88 &&
-    piece !== BLACK_BISHOP_0x88 &&
-    piece !== WHITE_QUEEN_0x88 &&
-    piece !== BLACK_QUEEN_0x88
-  ) {
+  if (!(piece & BISHOP_0x88) && !(piece & QUEEN_0x88)) {
     return [];
   }
 
@@ -266,12 +257,7 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a rook or queen, ignore it
-  if (
-    piece !== WHITE_ROOK_0x88 &&
-    piece !== BLACK_ROOK_0x88 &&
-    piece !== WHITE_QUEEN_0x88 &&
-    piece !== BLACK_QUEEN_0x88
-  ) {
+  if (!(piece & ROOK_0x88) && !(piece & QUEEN_0x88)) {
     return [];
   }
 

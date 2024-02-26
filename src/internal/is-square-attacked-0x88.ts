@@ -1,18 +1,12 @@
 import {
-  BLACK_BISHOP_0x88,
-  BLACK_KING_0x88,
-  BLACK_KNIGHT_0x88,
-  BLACK_PAWN_0x88,
-  BLACK_QUEEN_0x88,
-  BLACK_ROOK_0x88,
+  BISHOP_0x88,
+  KING_0x88,
+  KNIGHT_0x88,
   OUT_OF_BOUNDS_0x88,
+  PAWN_0x88,
+  QUEEN_0x88,
+  ROOK_0x88,
   WHITE_0x88,
-  WHITE_BISHOP_0x88,
-  WHITE_KING_0x88,
-  WHITE_KNIGHT_0x88,
-  WHITE_PAWN_0x88,
-  WHITE_QUEEN_0x88,
-  WHITE_ROOK_0x88,
 } from "../internal/constants";
 import { Color0x88, Square0x88 } from "../internal/types";
 import { Fen0x88 } from "../types";
@@ -37,51 +31,45 @@ export function isSquareAttacked0x88(fen: Fen0x88, square: Square0x88, color: Co
   const board = fen[0];
 
   // Pawns
-  const pawn = color === WHITE_0x88 ? WHITE_PAWN_0x88 : BLACK_PAWN_0x88;
-
   for (const offset of color === WHITE_0x88
     ? WHITE_PAWN_CAPTURE_OFFSETS
     : BLACK_PAWN_CAPTURE_OFFSETS) {
     const target = square + offset;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] === pawn) {
+    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] & PAWN_0x88) {
       return true;
     }
   }
 
   // Knights
-  const knight = color === WHITE_0x88 ? WHITE_KNIGHT_0x88 : BLACK_KNIGHT_0x88;
-
   for (const offset of KNIGHT_OFFSETS) {
     const target = square + offset;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] === knight) {
+    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] & KNIGHT_0x88) {
       return true;
     }
   }
 
   // Kings
-  const king = color === WHITE_0x88 ? WHITE_KING_0x88 : BLACK_KING_0x88;
-
   for (const offset of KING_OFFSETS) {
     const target = square + offset;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] === king) {
+    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] & KING_0x88) {
       return true;
     }
   }
 
   // Bishops and queens
-  const bishop = color === WHITE_0x88 ? WHITE_BISHOP_0x88 : BLACK_BISHOP_0x88;
-  const queen = color === WHITE_0x88 ? WHITE_QUEEN_0x88 : BLACK_QUEEN_0x88;
-
   for (const offset of BISHOP_OFFSETS) {
     let target = square + offset;
 
     // Loop through the attack ray until we can't go any further
     while (!(target & OUT_OF_BOUNDS_0x88)) {
       // If we hit a bishop or queen, we're done!
-      if ((!(target & OUT_OF_BOUNDS_0x88) && board[target] === bishop) || board[target] === queen) {
+      if (
+        !(target & OUT_OF_BOUNDS_0x88) &&
+        (board[target] & BISHOP_0x88 || board[target] & QUEEN_0x88)
+      ) {
         return true;
       }
 
@@ -96,15 +84,16 @@ export function isSquareAttacked0x88(fen: Fen0x88, square: Square0x88, color: Co
   }
 
   // Rooks and queens
-  const rook = color === WHITE_0x88 ? WHITE_ROOK_0x88 : BLACK_ROOK_0x88;
-
   for (const offset of ROOK_OFFSETS) {
     let target = square + offset;
 
     // Loop over the attack ray until we're out of bounds
     while (!(target & OUT_OF_BOUNDS_0x88)) {
       // If we hit a rook or queen, we're done!
-      if ((!(target & OUT_OF_BOUNDS_0x88) && board[target] === rook) || board[target] === queen) {
+      if (
+        (!(target & OUT_OF_BOUNDS_0x88) && board[target] & ROOK_0x88) ||
+        board[target] & QUEEN_0x88
+      ) {
         return true;
       }
 
