@@ -36,12 +36,19 @@ import {
   ROOK_0x88,
   KING_0x88,
 } from "./constants";
+import {
+  CAPTURE_FLAG_0x88,
+  CASTLE_FLAG_0x88,
+  DOUBLE_PAWN_FLAG_0x88,
+  EN_PASSANT_FLAG_0x88,
+} from "./constants/moves";
 import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS, ROOK_OFFSETS } from "./constants/offsets";
+import { encodeMove0x88 } from "./encode-move-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
-import { Side0x88, Square0x88 } from "./types";
+import { Move0x88, Side0x88, Square0x88 } from "./types";
 
 /** Returns all of the legal squares that a pawn can move to from a given square. */
-function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
+function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color, , enPassantSquare] = fen;
   const piece = board[square];
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
@@ -51,27 +58,39 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
     return [];
   }
 
-  const moves: Square0x88[] = [];
+  const moves: Move0x88[] = [];
   const rankOffset = color === WHITE_0x88 ? BOARD_WIDTH_0x88 : -BOARD_WIDTH_0x88;
 
   // Pawn moving forward one square
-  const oneSquareForward = square + rankOffset;
+  const oneSquare = (square + rankOffset) as Square0x88;
 
-  if (!(oneSquareForward & OUT_OF_BOUNDS_0x88) && board[oneSquareForward]) {
-    moves.push(oneSquareForward as Square0x88);
+  if (!(oneSquare & OUT_OF_BOUNDS_0x88) && !board[oneSquare]) {
+    if (
+      (color === WHITE_0x88 && oneSquare >= A8_0x88) ||
+      (color === BLACK_0x88 && oneSquare <= H1_0x88)
+    ) {
+      moves.push(encodeMove0x88(square, oneSquare, NO_PIECE_0x88));
+    } else {
+      moves.push(encodeMove0x88(square, oneSquare, color & QUEEN_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color & ROOK_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color & BISHOP_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color & KNIGHT_0x88));
+    }
   }
 
   // Pawn moving forward two squares
-  const twoSquaresForward = square + rankOffset * 2;
-  const secondRankASquare = color === WHITE_0x88 ? A2_0x88 : A7_0x88;
-  const secondRankHSquare = color === WHITE_0x88 ? H2_0x88 : H7_0x88;
+  const twoSquares = (square + rankOffset * 2) as Square0x88;
 
-  if (square >= secondRankASquare && square <= secondRankHSquare && !board[twoSquaresForward]) {
-    moves.push(twoSquaresForward as Square0x88);
+  if (!(twoSquares & OUT_OF_BOUNDS_0x88) && !board[oneSquare] && !board[twoSquares]) {
+    if (color === WHITE_0x88 && square >= A2_0x88 && square <= H2_0x88) {
+      moves.push(encodeMove0x88(square, twoSquares, NO_PIECE_0x88, DOUBLE_PAWN_FLAG_0x88));
+    } else if (color === BLACK_0x88 && square >= A7_0x88 && square <= H7_0x88) {
+      moves.push(encodeMove0x88(square, twoSquares, NO_PIECE_0x88, DOUBLE_PAWN_FLAG_0x88));
+    }
   }
 
   // Pawn moving diagonally
-  const diagonals = [square + rankOffset - 1, square + rankOffset + 1];
+  const diagonals = [square + rankOffset - 1, square + rankOffset + 1] as Square0x88[];
 
   for (const target of diagonals) {
     // Ensure the square is on the board
@@ -81,12 +100,24 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
 
     // Normal capture
     if (board[target] & oppositeColor) {
-      moves.push(target as Square0x88);
+      if (
+        (color === WHITE_0x88 && target >= A8_0x88) ||
+        (color === BLACK_0x88 && target <= H1_0x88)
+      ) {
+        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
+      } else {
+        moves.push(encodeMove0x88(square, target, color & QUEEN_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, color & ROOK_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, color & BISHOP_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, color & KNIGHT_0x88, CAPTURE_FLAG_0x88));
+      }
     }
 
     // En passant capture
     if (board[target] === enPassantSquare) {
-      moves.push(target as Square0x88);
+      moves.push(
+        encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88 | EN_PASSANT_FLAG_0x88),
+      );
     }
   }
 
@@ -135,7 +166,7 @@ function canCastle(
 }
 
 /** Returns all of the legal squares that a knight can move to from a given square. */
-function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
+function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
 
@@ -144,13 +175,15 @@ function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[]
     return [];
   }
 
-  const moves: Square0x88[] = [];
+  const moves: Move0x88[] = [];
 
   for (const offset of KNIGHT_OFFSETS) {
     const target = (square + offset) as Square0x88;
 
     if (!(target & OUT_OF_BOUNDS_0x88) && !(board[target] & color)) {
-      moves.push(target);
+      moves.push(
+        encodeMove0x88(square, target, NO_PIECE_0x88, board[target] ? CAPTURE_FLAG_0x88 : 0),
+      );
     }
   }
 
@@ -158,7 +191,7 @@ function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[]
 }
 
 /** Returns all of the legal squares that a king can move to from a given square, including castling. */
-function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
+function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
 
@@ -167,33 +200,35 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
     return [];
   }
 
-  const moves: Square0x88[] = [];
+  const moves: Move0x88[] = [];
 
   // Normal moves
   for (const offset of KING_OFFSETS) {
     const target = (square + offset) as Square0x88;
 
     if (!(target & OUT_OF_BOUNDS_0x88) && !(board[target] & color)) {
-      moves.push(target);
+      moves.push(
+        encodeMove0x88(square, target, NO_PIECE_0x88, board[target] ? CAPTURE_FLAG_0x88 : 0),
+      );
     }
   }
 
   // Castling
   if (color === WHITE_0x88 && square === E1_0x88) {
     if (canCastle(fen, WHITE_KINGSIDE_0x88, F1_0x88, G1_0x88, H1_0x88)) {
-      moves.push(G1_0x88);
+      moves.push(encodeMove0x88(square, G1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
 
     if (canCastle(fen, WHITE_QUEENSIDE_0x88, D1_0x88, C1_0x88, A1_0x88)) {
-      moves.push(C1_0x88);
+      moves.push(encodeMove0x88(square, C1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
   } else if (color === BLACK_0x88 && square === E8_0x88) {
     if (canCastle(fen, BLACK_KINGSIDE_0x88, F8_0x88, G8_0x88, H8_0x88)) {
-      moves.push(G8_0x88);
+      moves.push(encodeMove0x88(square, G8_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
 
     if (canCastle(fen, BLACK_QUEENSIDE_0x88, D8_0x88, C8_0x88, A8_0x88)) {
-      moves.push(C8_0x88);
+      moves.push(encodeMove0x88(square, C8_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
   }
 
@@ -205,7 +240,7 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
  * square. The diagonal queen moves are included since there's no reason to loop loop through the
  * squares more than once.
  */
-function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88[] {
+function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
@@ -215,7 +250,7 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
     return [];
   }
 
-  const moves: Square0x88[] = [];
+  const moves: Move0x88[] = [];
 
   for (const offset of BISHOP_OFFSETS) {
     let target = (square + offset) as Square0x88;
@@ -229,13 +264,13 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
 
       // When connecting with a piece of the opposite color add the move and then quit.
       if (board[target] & oppositeColor) {
-        moves.push(target);
+        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88));
         break;
       }
 
       // When the square is empty, add it to the list of moves
       if (board[target] === NO_PIECE_0x88) {
-        moves.push(target);
+        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
       }
 
       // Increment the target square by the offset
@@ -251,7 +286,7 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x
  * The diagonal queen moves are included since there's no reason to loop loop through the squares
  * more than once.
  */
-function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88[] {
+function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
@@ -261,7 +296,7 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
     return [];
   }
 
-  const moves: Square0x88[] = [];
+  const moves: Move0x88[] = [];
 
   for (const offset of ROOK_OFFSETS) {
     let target = (square + offset) as Square0x88;
@@ -275,13 +310,13 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
 
       // When connecting with a piece of the opposite color add the move and then quit.
       if (board[target] & oppositeColor) {
-        moves.push(target);
+        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88));
         break;
       }
 
       // When the square is empty, add it to the list of moves
       if (board[target] === NO_PIECE_0x88) {
-        moves.push(target);
+        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
       }
 
       // Increment the target square by the offset
@@ -296,7 +331,7 @@ function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Square0x88
  * This is an internal helper function that generates all of the legal squares that can be moved to
  * from a given square.
  */
-export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Square0x88[] {
+export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   // Ensure the square is not empty and the piece is the correct color
   if (!(fen[0][square] & fen[1])) {
     return [];
