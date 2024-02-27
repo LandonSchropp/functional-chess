@@ -1,7 +1,7 @@
 import { BOARD_SIZE } from "../constants";
 import {
   SQUARE_TO_SQUARE_0x88,
-  EMPTY_EN_PASSANT_SQUARE_0x88,
+  NO_SQUARE_0x88,
   SIDES_0x88,
   SIDE_0x88_TO_SIDE,
   COLOR_0x88_TO_COLOR,
@@ -19,7 +19,7 @@ const PIECE_0x88_TO_FEN_PIECE = invertToArray({
 
 const EN_PASSANT_SQUARE_0x88_TO_SQUARE = invertToArray({
   ...SQUARE_TO_SQUARE_0x88,
-  "-": EMPTY_EN_PASSANT_SQUARE_0x88,
+  "-": NO_SQUARE_0x88,
 });
 
 function unparsePosition(position: Board0x88): string {

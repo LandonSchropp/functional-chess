@@ -86,5 +86,5 @@ export const SQUARE_0x88_TO_SQUARE = invertToArray(SQUARE_TO_SQUARE_0x88);
 /** An array of all of the possible 0x88 squares. */
 export const SQUARES_0x88 = Object.values(SQUARE_TO_SQUARE_0x88);
 
-/** An empty 0x88 en passant square in a FEN. */
-export const EMPTY_EN_PASSANT_SQUARE_0x88 = BOARD_WIDTH_0x88 * BOARD_SIZE;
+/** An empty square. */
+export const NO_SQUARE_0x88 = BOARD_WIDTH_0x88 * BOARD_SIZE;

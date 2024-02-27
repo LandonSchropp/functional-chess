@@ -25,7 +25,7 @@ import {
   WHITE_0x88,
   BLACK_0x88,
   SQUARE_TO_SQUARE_0x88,
-  EMPTY_EN_PASSANT_SQUARE_0x88,
+  NO_SQUARE_0x88,
 } from "../internal/constants";
 import { Board0x88 } from "../internal/types";
 import { parseFen } from "./parse-fen";
@@ -130,7 +130,7 @@ describe("parseFen", () => {
         STARTING_POSITION_BOARD_0x88,
         WHITE_0x88,
         0b1111,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -150,7 +150,7 @@ describe("parseFen", () => {
         ] as Board0x88,
         WHITE_0x88,
         0b0000,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -163,7 +163,7 @@ describe("parseFen", () => {
         new Array(BOARD_WIDTH_0x88 * BOARD_SIZE).fill(NO_PIECE_0x88) as Board0x88,
         WHITE_0x88,
         0b0000,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -184,7 +184,7 @@ describe("parseFen", () => {
           .flat() as Board0x88,
         WHITE_0x88,
         0b0000,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -197,7 +197,7 @@ describe("parseFen", () => {
         STARTING_POSITION_BOARD_0x88,
         WHITE_0x88,
         0b1111,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -210,7 +210,7 @@ describe("parseFen", () => {
         STARTING_POSITION_BOARD_0x88,
         WHITE_0x88,
         0b1111,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -223,7 +223,7 @@ describe("parseFen", () => {
         STARTING_POSITION_BOARD_0x88,
         WHITE_0x88,
         0b1111,
-        EMPTY_EN_PASSANT_SQUARE_0x88,
+        NO_SQUARE_0x88,
         0,
         1,
       ]);
@@ -282,7 +282,7 @@ describe("parseFen", () => {
 
   describe("when the FEN's en passant square is empty", () => {
     it("sets the en passant square of the FEN to an empty en passant square", () => {
-      expect(parseFen(STARTING_POSITION)[3]).toEqual(EMPTY_EN_PASSANT_SQUARE_0x88);
+      expect(parseFen(STARTING_POSITION)[3]).toEqual(NO_SQUARE_0x88);
     });
   });
 

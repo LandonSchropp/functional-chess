@@ -1,4 +1,4 @@
-import { EMPTY_EN_PASSANT_SQUARE_0x88, SQUARE_TO_SQUARE_0x88 } from "../internal/constants";
+import { NO_SQUARE_0x88, SQUARE_TO_SQUARE_0x88 } from "../internal/constants";
 import { transformFen } from "../internal/transform-fen";
 import { Fen0x88, Square } from "../types";
 
@@ -14,7 +14,7 @@ export const setEnPassantSquare = transformFen((fen: Fen0x88, square: Square | n
     fen[0],
     fen[1],
     fen[2],
-    square === null ? EMPTY_EN_PASSANT_SQUARE_0x88 : SQUARE_TO_SQUARE_0x88[square],
+    square === null ? NO_SQUARE_0x88 : SQUARE_TO_SQUARE_0x88[square],
     fen[4],
     fen[5],
   ];

@@ -7,7 +7,7 @@ import {
   COLOR_TO_COLOR_0x88,
   SIDE_TO_SIDE_0x88,
   SQUARE_TO_SQUARE_0x88,
-  EMPTY_EN_PASSANT_SQUARE_0x88,
+  NO_SQUARE_0x88,
 } from "../internal/constants";
 import { NoPiece0x88, Piece0x88, Board0x88, Color0x88, EnPassantSquare } from "../internal/types";
 import { Fen0x88, isColor, isPiece, isSide, isSquare } from "../types";
@@ -82,7 +82,7 @@ function parseCastling(fen: string, castling: string): number {
 
 function parseEnPassant(fen: string, enPassant: string): EnPassantSquare {
   if (enPassant === "-") {
-    return EMPTY_EN_PASSANT_SQUARE_0x88;
+    return NO_SQUARE_0x88;
   }
 
   if (!isSquare(enPassant)) {
