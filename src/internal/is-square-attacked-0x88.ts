@@ -20,8 +20,11 @@ import {
 } from "./constants/offsets";
 
 /**
- * Determines if the given square is currently attacked by the provided color.
+ * Determines if the given square is currently attacked by the provided color. Since this is an
+ * internal function and is intended for use with `getLegalMoves0x88`, it doesn't check for the
+ * color of the piece on the square.
  *
+ * @private
  * @param fen - The FEN.
  * @param square - The square to check.
  * @param color - The color of the attacking side.
@@ -34,76 +37,90 @@ export function isSquareAttacked0x88(fen: Fen0x88, square: Square0x88, color: Co
   for (const offset of color === WHITE_0x88
     ? WHITE_PAWN_CAPTURE_OFFSETS
     : BLACK_PAWN_CAPTURE_OFFSETS) {
-    const target = square + offset;
+    const fromSquare = square + offset;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] & PAWN_0x88) {
+    if (
+      !(fromSquare & OUT_OF_BOUNDS_0x88) &&
+      board[fromSquare] & PAWN_0x88 &&
+      board[fromSquare] & color
+    ) {
       return true;
     }
   }
 
   // Knights
   for (const offset of KNIGHT_OFFSETS) {
-    const target = square + offset;
+    const fromSquare = square + offset;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] & KNIGHT_0x88) {
+    if (
+      !(fromSquare & OUT_OF_BOUNDS_0x88) &&
+      board[fromSquare] & KNIGHT_0x88 &&
+      board[fromSquare] & color
+    ) {
       return true;
     }
   }
 
   // Kings
   for (const offset of KING_OFFSETS) {
-    const target = square + offset;
+    const fromSquare = square + offset;
 
-    if (!(target & OUT_OF_BOUNDS_0x88) && board[target] & KING_0x88) {
+    if (
+      !(fromSquare & OUT_OF_BOUNDS_0x88) &&
+      board[fromSquare] & KING_0x88 &&
+      board[fromSquare] & color
+    ) {
       return true;
     }
   }
 
   // Bishops and queens
   for (const offset of BISHOP_OFFSETS) {
-    let target = square + offset;
+    let fromSquare = square + offset;
 
     // Loop through the attack ray until we can't go any further
-    while (!(target & OUT_OF_BOUNDS_0x88)) {
+    while (!(fromSquare & OUT_OF_BOUNDS_0x88)) {
       // If we hit a bishop or queen, we're done!
       if (
-        !(target & OUT_OF_BOUNDS_0x88) &&
-        (board[target] & BISHOP_0x88 || board[target] & QUEEN_0x88)
+        !(fromSquare & OUT_OF_BOUNDS_0x88) &&
+        (board[fromSquare] & BISHOP_0x88 || board[fromSquare] & QUEEN_0x88) &&
+        board[fromSquare] & color
       ) {
         return true;
       }
 
       // Break if we hit a different piece
-      if (board[target]) {
+      if (board[fromSquare]) {
         break;
       }
 
       // Increment the target square by the offset
-      target += offset;
+      fromSquare += offset;
     }
   }
 
   // Rooks and queens
   for (const offset of ROOK_OFFSETS) {
-    let target = square + offset;
+    let fromSquare = square + offset;
 
     // Loop over the attack ray until we're out of bounds
-    while (!(target & OUT_OF_BOUNDS_0x88)) {
+    while (!(fromSquare & OUT_OF_BOUNDS_0x88)) {
       // If we hit a rook or queen, we're done!
       if (
-        (!(target & OUT_OF_BOUNDS_0x88) && board[target] & ROOK_0x88) ||
-        board[target] & QUEEN_0x88
+        !(fromSquare & OUT_OF_BOUNDS_0x88) &&
+        (board[fromSquare] & ROOK_0x88 || board[fromSquare] & QUEEN_0x88) &&
+        board[fromSquare] & color
       ) {
         return true;
       }
 
       // Break if we hit a different piece
-      if (board[target]) {
+      if (board[fromSquare]) {
         break;
       }
 
       // Increment the target square by the offset
-      target += offset;
+      fromSquare += offset;
     }
   }
 
