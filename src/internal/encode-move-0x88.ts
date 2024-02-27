@@ -17,5 +17,5 @@ export function encodeMove0x88(
   promotedPiece: Piece0x88 | NoPiece0x88,
   flags: number = 0,
 ): Move0x88 {
-  return from | (to << 8) | (promotedPiece << 16) | flags;
+  return from | (to << 8) | (promotedPiece << 16) | (flags << 24);
 }
