@@ -114,6 +114,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
     }
 
     // En passant capture
+    // TODO: Double check if this is correct. This seems suspect.
     if (board[target] === enPassantSquare) {
       moves.push(
         encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88 | EN_PASSANT_FLAG_0x88),
