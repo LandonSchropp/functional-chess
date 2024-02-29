@@ -16,6 +16,7 @@ import {
   isBishop,
   isBlackPiece,
   isColor,
+  isFen0x88,
   isFile,
   isKing,
   isKnight,
@@ -31,7 +32,7 @@ import {
   isWhitePiece,
 } from "./type-guards";
 
-/** A helper function or creating type assertions. */
+/** A helper function for creating type assertions. */
 function assertType<T>(
   guard: (value: unknown) => value is T,
   typeName: string,
@@ -176,3 +177,11 @@ export const assertSide = assertType(isSide, "Side");
  * @throws Throws an error if the value is not a Move.
  */
 export const assertMove = assertType(isMove, "Move");
+
+/**
+ * Asserts that the provided value is a Fen0x88.
+ *
+ * @param value The value to check.
+ * @throws Throws an error if the value is not a Fen0x88.
+ */
+export const assertFen0x88 = assertType(isFen0x88, "Fen0x88");

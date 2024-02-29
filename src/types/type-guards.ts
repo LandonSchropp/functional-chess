@@ -6,6 +6,7 @@ import {
   BLACK_PIECES,
   BLACK_QUEEN,
   BLACK_ROOK,
+  BOARD_SIZE,
   COLORS,
   FILES,
   PIECES,
@@ -20,7 +21,17 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK,
 } from "../constants";
-import { Color, File, Move, Piece, Rank, Side, Square, Vector } from "./types";
+import {
+  BOARD_WIDTH_0x88,
+  COLORS_0x88,
+  NO_PIECE_0x88,
+  NO_SQUARE_0x88,
+  OUT_OF_BOUNDS_0x88,
+  PIECES_0x88,
+  SIDES_0x88,
+  SQUARES_0x88,
+} from "../internal/constants";
+import { Color, Fen0x88, File, Move, Piece, Rank, Side, Square, Vector } from "./types";
 
 /**
  * Determines if the provided value is a Vector.
@@ -199,5 +210,32 @@ export function isMove(value: unknown): value is Move {
     (isPiece(value.promotion) || value.promotion === null) &&
     "algebraic" in value &&
     typeof value.algebraic === "string"
+  );
+}
+
+const NOT_A_SIDE = ~SIDES_0x88.reduce((sides, side) => sides | side, 0);
+
+export function isFen0x88(fen: unknown): fen is Fen0x88 {
+  return (
+    Array.isArray(fen) &&
+    fen.length === 6 &&
+    Array.isArray(fen[0]) &&
+    fen[0].length === BOARD_SIZE * BOARD_WIDTH_0x88 &&
+    fen[0].every((piece) => typeof piece === "number") &&
+    fen[0].every((piece, square) => {
+      return (
+        piece === NO_PIECE_0x88 || (!(square & OUT_OF_BOUNDS_0x88) && PIECES_0x88.includes(piece))
+      );
+    }) &&
+    COLORS_0x88.includes(fen[1]) &&
+    typeof fen[2] === "number" &&
+    !(fen[2] & NOT_A_SIDE) &&
+    [...SQUARES_0x88, NO_SQUARE_0x88].includes(fen[3]) &&
+    typeof fen[4] === "number" &&
+    Number.isInteger(fen[4]) &&
+    fen[4] >= 0 &&
+    typeof fen[5] === "number" &&
+    Number.isInteger(fen[5]) &&
+    fen[5] >= 1
   );
 }

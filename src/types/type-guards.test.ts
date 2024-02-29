@@ -6,6 +6,7 @@ import {
   BLACK_PIECES,
   BLACK_QUEEN,
   BLACK_ROOK,
+  BOARD_SIZE,
   COLORS,
   FILES,
   PIECES,
@@ -21,8 +22,18 @@ import {
   WHITE_ROOK,
 } from "../constants";
 import {
+  BLACK_0x88,
+  BOARD_WIDTH_0x88,
+  NO_PIECE_0x88,
+  NO_SQUARE_0x88,
+  SIDES_0x88,
+  WHITE_0x88,
+  WHITE_PAWN_0x88,
+} from "../internal/constants";
+import {
   isBishop,
   isColor,
+  isFen0x88,
   isFile,
   isKing,
   isKnight,
@@ -37,6 +48,7 @@ import {
   isVector,
   isWhitePiece,
 } from "./type-guards";
+import { Fen0x88 } from "./types";
 import { beforeEach, describe, expect, it } from "bun:test";
 
 describe("isVector", () => {
@@ -528,6 +540,209 @@ describe("isMove", () => {
       it("returns true", () => {
         expect(isMove(move)).toBe(true);
       });
+    });
+  });
+});
+
+describe("isFen0x88", () => {
+  let fen: Fen0x88;
+
+  beforeEach(() => {
+    const board = Array.from(
+      { length: BOARD_WIDTH_0x88 * BOARD_SIZE },
+      () => NO_PIECE_0x88,
+    ) as Fen0x88[0];
+
+    fen = [board, WHITE_0x88, 0, NO_SQUARE_0x88, 0, 1];
+  });
+
+  describe("when the value is null", () => {
+    it("returns false", () => {
+      expect(isFen0x88(null)).toBe(false);
+    });
+  });
+
+  describe("when the value is not an array", () => {
+    it("returns false", () => {
+      expect(isFen0x88({})).toBe(false);
+    });
+  });
+
+  describe("when the array does not contain six items", () => {
+    it("returns false", () => {
+      expect(isFen0x88(fen.slice(0, 5))).toBe(false);
+      expect(isFen0x88([...fen, 0])).toBe(false);
+    });
+  });
+
+  describe("when the first item in the array is not an array", () => {
+    it("returns false", () => {
+      expect(isFen0x88([{}, ...fen.slice(1)])).toBe(false);
+    });
+  });
+
+  describe("when the first item in the array does not contain 128 items", () => {
+    it("returns false", () => {
+      expect(isFen0x88([fen[0].slice(0, 127), ...fen.slice(1)])).toBe(false);
+      expect(isFen0x88([...[fen[0], NO_PIECE_0x88], ...fen.slice(1)])).toBe(false);
+    });
+  });
+
+  describe("when the first item in the array contains invalid pieces", () => {
+    it("returns false", () => {
+      fen[0][0] = -1;
+      expect(isFen0x88(fen)).toBe(false);
+    });
+  });
+
+  describe("when the out-of-bounds squares contain pieces", () => {
+    it("returns false", () => {
+      fen[0][BOARD_SIZE] = WHITE_PAWN_0x88;
+      expect(isFen0x88(fen)).toBe(false);
+    });
+  });
+
+  describe("when the second item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isFen0x88([fen[0], "banana", ...fen.slice(2)])).toBe(false);
+    });
+  });
+
+  describe("when the second item in the array is not a color", () => {
+    it("returns false", () => {
+      expect(isFen0x88([fen[0], -1, ...fen.slice(2)])).toBe(false);
+    });
+  });
+
+  describe("when the second item is white", () => {
+    it("returns true", () => {
+      expect(isFen0x88([fen[0], WHITE_0x88, ...fen.slice(2)])).toBe(true);
+    });
+  });
+
+  describe("when the second item is black", () => {
+    it("returns true", () => {
+      expect(isFen0x88([fen[0], BLACK_0x88, ...fen.slice(2)])).toBe(true);
+    });
+  });
+
+  describe("when the third item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 2), "banana", ...fen.slice(3)])).toBe(false);
+    });
+  });
+
+  describe("when the third item contains an invalid side bit", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 2), 0xff, ...fen.slice(3)])).toBe(false);
+    });
+  });
+
+  describe("when the third item contains no side bits", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 2), 0, ...fen.slice(3)])).toBe(true);
+    });
+  });
+
+  describe("when the third item contains all side bits", () => {
+    it("returns true", () => {
+      expect(
+        isFen0x88([
+          ...fen.slice(0, 2),
+          SIDES_0x88.reduce((sides, side) => sides | side, 0),
+          ...fen.slice(3),
+        ]),
+      ).toBe(true);
+    });
+  });
+
+  describe("when the fourth item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 3), "banana", ...fen.slice(4)])).toBe(false);
+    });
+  });
+
+  describe("when the fourth item contains an invalid square", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 3), -1, ...fen.slice(4)])).toBe(false);
+    });
+  });
+
+  describe("when the fourth item contains a valid square", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 3), 0, ...fen.slice(4)])).toBe(true);
+    });
+  });
+
+  describe("whent he fourth item contains NO_SQUARE_0x88", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 3), NO_SQUARE_0x88, ...fen.slice(4)])).toBe(true);
+    });
+  });
+
+  describe("when the fifth item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 4), "banana", ...fen.slice(5)])).toBe(false);
+    });
+  });
+
+  describe("when the fifth item is not an integer", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 4), 0.5, ...fen.slice(5)])).toBe(false);
+    });
+  });
+
+  describe("when the fifth item is less than 0", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 4), -1, ...fen.slice(5)])).toBe(false);
+    });
+  });
+
+  describe("when the fifth item is 0", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 4), 0, ...fen.slice(5)])).toBe(true);
+    });
+  });
+
+  describe("when the fifth item is greater than 0", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 4), 1, ...fen.slice(5)])).toBe(true);
+    });
+  });
+
+  describe("when the sixth item in the array is not a number", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 5), "banana"])).toBe(false);
+    });
+  });
+
+  describe("when the sixth item is not an integer", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 5), 1.5])).toBe(false);
+    });
+  });
+
+  describe("when the sixth item is less than 0", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 5), -1])).toBe(false);
+    });
+  });
+
+  describe("when the sixth item is 0", () => {
+    it("returns false", () => {
+      expect(isFen0x88([...fen.slice(0, 5), 0])).toBe(false);
+    });
+  });
+
+  describe("when the sixth item is greater 1", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 5), 1])).toBe(true);
+    });
+  });
+
+  describe("when the sixth item is greater than 1", () => {
+    it("returns true", () => {
+      expect(isFen0x88([...fen.slice(0, 5), 2])).toBe(true);
     });
   });
 });

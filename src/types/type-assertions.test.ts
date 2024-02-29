@@ -6,6 +6,7 @@ import {
   BLACK_PIECES,
   BLACK_QUEEN,
   BLACK_ROOK,
+  BOARD_SIZE,
   COLORS,
   FILES,
   PIECES,
@@ -20,10 +21,12 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK,
 } from "../constants";
+import { BOARD_WIDTH_0x88, NO_PIECE_0x88, WHITE_0x88, NO_SQUARE_0x88 } from "../internal/constants";
 import {
   assertBishop,
   assertBlackPiece,
   assertColor,
+  assertFen0x88,
   assertFile,
   assertKing,
   assertKnight,
@@ -38,6 +41,7 @@ import {
   assertVector,
   assertWhitePiece,
 } from "./type-assertions";
+import { Fen0x88 } from "./types";
 import { describe, expect, it } from "bun:test";
 
 describe("assertVector", () => {
@@ -313,6 +317,27 @@ describe("assertMove", () => {
       };
 
       expect(() => assertMove(move)).not.toThrow();
+    });
+  });
+});
+
+describe("assertFen0x88", () => {
+  describe("when the value is not a fen0x88", () => {
+    it("throws an error", () => {
+      expect(() => assertFen0x88("banana")).toThrow("Expected 'banana' to have type Fen0x88.");
+    });
+  });
+
+  describe("when the value is a fen0x88", () => {
+    it("does not throw an error", () => {
+      const board = Array.from(
+        { length: BOARD_WIDTH_0x88 * BOARD_SIZE },
+        () => NO_PIECE_0x88,
+      ) as Fen0x88[0];
+
+      const fen = [board, WHITE_0x88, 0, NO_SQUARE_0x88, 0, 1];
+
+      expect(() => assertFen0x88(fen)).not.toThrow();
     });
   });
 });
