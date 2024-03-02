@@ -2,3 +2,6 @@
 
 # Require 100% code coverage.
 coverageThreshold = 1.0
+
+# Load a setup file before running the tests.
+preload = ["./test-setup.ts"]
