@@ -1,3 +1,4 @@
+import { NO_PIECE_0x88 } from "./constants";
 import { Move0x88, NoPiece0x88, Piece0x88, Square0x88 } from "./types";
 
 /**
@@ -14,7 +15,7 @@ import { Move0x88, NoPiece0x88, Piece0x88, Square0x88 } from "./types";
 export function encodeMove0x88(
   from: Square0x88,
   to: Square0x88,
-  promotedPiece: Piece0x88 | NoPiece0x88,
+  promotedPiece: Piece0x88 | NoPiece0x88 = NO_PIECE_0x88,
   flags: number = 0,
 ): Move0x88 {
   return from | (to << 8) | (promotedPiece << 16) | (flags << 24);

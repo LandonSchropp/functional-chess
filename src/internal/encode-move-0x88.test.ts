@@ -9,9 +9,9 @@ import { encodeMove0x88 } from "./encode-move-0x88";
 import { expect, describe, it } from "bun:test";
 
 describe("encodeMove0x88", () => {
-  describe("when the mvoe has no flags", () => {
+  describe("when the mvoe has no flags or promoted piece", () => {
     it("encodes the move", () => {
-      const move = encodeMove0x88(A8_0x88, H1_0x88, NO_PIECE_0x88);
+      const move = encodeMove0x88(A8_0x88, H1_0x88);
       expect(move).toEqual(0b0000_0000_0000_0000_0000_0111_0111_0000);
     });
   });
