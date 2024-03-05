@@ -4,4 +4,4 @@
 coverageThreshold = 1.0
 
 # Load a setup file before running the tests.
-preload = ["./test-setup.ts"]
+preload = ["./test/test-setup.ts"]
