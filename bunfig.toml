@@ -1,7 +1,8 @@
 [test]
 
 # Require 100% code coverage.
-coverageThreshold = 1.0
+# BUG: This is not set to 100% due to a [bug in Bun](https://github.com/oven-sh/bun/issues/9008).
+coverageThreshold = 0.9998
 
 # Load a setup file before running the tests.
 preload = ["./test/test-setup.ts"]
