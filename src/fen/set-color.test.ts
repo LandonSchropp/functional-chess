@@ -6,19 +6,21 @@ import { expect, it, describe } from "bun:test";
 describe("setColor", () => {
   describe("when the color is the same", () => {
     it("returns the same FEN", () => {
-      expect(setColor(STARTING_POSITION, WHITE)).toEqual(STARTING_POSITION);
+      expect(setColor(STARTING_POSITION, WHITE)).toEqualFen(STARTING_POSITION);
     });
   });
 
   describe("when the color is different", () => {
     it("when the color is different", () => {
-      expect(setColor(STARTING_POSITION, BLACK)).toEqual(STARTING_POSITION.replace(WHITE, BLACK));
+      expect(setColor(STARTING_POSITION, BLACK)).toEqualFen(
+        STARTING_POSITION.replace(WHITE, BLACK),
+      );
     });
   });
 
   describe("when the FEN is a Fen0x88", () => {
     it("sets the color", () => {
-      expect(setColor(parseFen(STARTING_POSITION), BLACK)).toEqual(
+      expect(setColor(parseFen(STARTING_POSITION), BLACK)).toEqualFen(
         parseFen(STARTING_POSITION.replace(WHITE, BLACK)),
       );
     });

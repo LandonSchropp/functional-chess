@@ -13,7 +13,7 @@ import { expect, it, describe } from "bun:test";
 describe("setCastlingRights", () => {
   describe("when all sides are provided", () => {
     it("sets the castling rights to all of the sides", () => {
-      expect(setCastlingRights(EMPTY_POSITION, SIDES as unknown as Side[])).toEqual(
+      expect(setCastlingRights(EMPTY_POSITION, SIDES as unknown as Side[])).toEqualFen(
         EMPTY_POSITION.replace("-", "KQkq"),
       );
     });
@@ -21,7 +21,7 @@ describe("setCastlingRights", () => {
 
   describe("when an empty array is provided", () => {
     it("sets the castling rights to none", () => {
-      expect(setCastlingRights(STARTING_POSITION, [])).toEqual(
+      expect(setCastlingRights(STARTING_POSITION, [])).toEqualFen(
         STARTING_POSITION.replace("KQkq", "-"),
       );
     });
@@ -29,7 +29,7 @@ describe("setCastlingRights", () => {
 
   describe("when some of the sides are provided", () => {
     it("sets the castling rights to the matching sides", () => {
-      expect(setCastlingRights(EMPTY_POSITION, [BLACK_KINGSIDE, BLACK_QUEENSIDE])).toEqual(
+      expect(setCastlingRights(EMPTY_POSITION, [BLACK_KINGSIDE, BLACK_QUEENSIDE])).toEqualFen(
         EMPTY_POSITION.replace("-", "kq"),
       );
     });
@@ -37,7 +37,7 @@ describe("setCastlingRights", () => {
 
   describe("when the FEN is a Fen0x88", () => {
     it("sets the castling rights", () => {
-      expect(setCastlingRights(parseFen(STARTING_POSITION), [])).toEqual(
+      expect(setCastlingRights(parseFen(STARTING_POSITION), [])).toEqualFen(
         parseFen(STARTING_POSITION.replace("KQkq", "-")),
       );
     });

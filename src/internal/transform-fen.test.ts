@@ -21,7 +21,7 @@ describe("transformFen", () => {
     describe("when the transformation function is called with a string FEN", () => {
       it("returns the transformed FEN string", () => {
         const expected = STARTING_POSITION.replace(WHITE, BLACK);
-        expect(flipColor(STARTING_POSITION)).toEqual(expected);
+        expect(flipColor(STARTING_POSITION)).toEqualFen(expected);
       });
     });
 
@@ -30,7 +30,7 @@ describe("transformFen", () => {
         const fen = parseFen(STARTING_POSITION);
         const expected: Fen0x88 = [fen[0], BLACK_0x88, fen[2], fen[3], fen[4], fen[5]];
 
-        expect(flipColor(fen)).toEqual(expected);
+        expect(flipColor(fen)).toEqualFen(expected);
       });
     });
   });
@@ -43,7 +43,7 @@ describe("transformFen", () => {
     describe("when the transformation function is called with a string FEN", () => {
       it("returns the transformed FEN0x88", () => {
         const expected = STARTING_POSITION.replace(WHITE, BLACK);
-        expect(setColor(STARTING_POSITION, BLACK)).toEqual(expected);
+        expect(setColor(STARTING_POSITION, BLACK)).toEqualFen(expected);
       });
     });
 
@@ -52,7 +52,7 @@ describe("transformFen", () => {
         const fen = parseFen(STARTING_POSITION);
         const expected: Fen0x88 = [fen[0], BLACK_0x88, fen[2], fen[3], fen[4], fen[5]];
 
-        expect(setColor(fen, BLACK)).toEqual(expected);
+        expect(setColor(fen, BLACK)).toEqualFen(expected);
       });
     });
   });
