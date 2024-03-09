@@ -1,8 +1,11 @@
+import { BOARD_SIZE } from "../constants";
 import { Fen0x88 } from "../types";
 import {
   A1_0x88,
   A8_0x88,
   BLACK_0x88,
+  BLACK_KINGSIDE_0x88,
+  BLACK_QUEENSIDE_0x88,
   BOARD_WIDTH_0x88,
   C1_0x88,
   C8_0x88,
@@ -16,13 +19,40 @@ import {
   H8_0x88,
   NO_PIECE_0x88,
   NO_SQUARE_0x88,
+  PAWN_0x88,
   WHITE_0x88,
   WHITE_KINGSIDE_0x88,
   WHITE_QUEENSIDE_0x88,
 } from "./constants";
-import { CASTLE_FLAG_0x88, DOUBLE_PAWN_FLAG_0x88, EN_PASSANT_FLAG_0x88 } from "./constants/moves";
+import {
+  CAPTURE_FLAG_0x88,
+  CASTLE_FLAG_0x88,
+  DOUBLE_PAWN_FLAG_0x88,
+  EN_PASSANT_FLAG_0x88,
+} from "./constants/moves";
 import { decodeMove0x88 } from "./decode-move-0x88";
 import { Board0x88, Move0x88 } from "./types";
+
+const ALL_CASTLING_RIGHTS =
+  WHITE_KINGSIDE_0x88 | WHITE_QUEENSIDE_0x88 | BLACK_KINGSIDE_0x88 | BLACK_QUEENSIDE_0x88;
+
+/** Defines the updates to apply to castling rights when moving from a square. */
+// TODO: Verify this generated data.
+const CASTLING_UPDATES = [
+  ~WHITE_QUEENSIDE_0x88,
+  ...Array.from({ length: 3 }, () => ALL_CASTLING_RIGHTS),
+  ~(WHITE_KINGSIDE_0x88 | WHITE_QUEENSIDE_0x88),
+  ...Array.from({ length: 2 }, () => ALL_CASTLING_RIGHTS),
+  ~WHITE_KINGSIDE_0x88,
+  ...Array.from({ length: BOARD_SIZE }, () => ALL_CASTLING_RIGHTS),
+  ...Array.from({ length: BOARD_WIDTH_0x88 * (BOARD_SIZE - 2) }, () => ALL_CASTLING_RIGHTS),
+  ~BLACK_QUEENSIDE_0x88,
+  ...Array.from({ length: 3 }, () => ALL_CASTLING_RIGHTS),
+  ~(BLACK_KINGSIDE_0x88 | BLACK_QUEENSIDE_0x88),
+  ...Array.from({ length: 2 }, () => ALL_CASTLING_RIGHTS),
+  ~BLACK_KINGSIDE_0x88,
+  ...Array.from({ length: BOARD_SIZE }, () => ALL_CASTLING_RIGHTS),
+];
 
 /**
  * Move a piece in a Fen0x88. This function does not care if the move results in an invalid
@@ -38,8 +68,20 @@ export function movePiece0x88(fen: Fen0x88, move: Move0x88): Fen0x88 {
 
   const board: Board0x88 = [...fen[0]];
   const color = fen[1];
-  let castlingRights = fen[2];
+  let [, , castlingRights, , halfMoveClock, fullMoveNumber] = fen;
   const [from, to, promotion, flags] = decodeMove0x88(move);
+
+  // Update the half move clock
+  if (flags & CAPTURE_FLAG_0x88 || board[from] & PAWN_0x88) {
+    halfMoveClock = 0;
+  } else {
+    halfMoveClock++;
+  }
+
+  // Update the full move clock
+  if (color === BLACK_0x88) {
+    fullMoveNumber++;
+  }
 
   // Move the piece (with promotion if necessary)
   board[to] = promotion || board[from];
@@ -47,24 +89,24 @@ export function movePiece0x88(fen: Fen0x88, move: Move0x88): Fen0x88 {
 
   // Remove the pawn during an en passant capture, if necessary
   if (flags & EN_PASSANT_FLAG_0x88) {
-    board[to + color === WHITE_0x88 ? BOARD_WIDTH_0x88 : -BOARD_WIDTH_0x88] = NO_PIECE_0x88;
+    board[to + (color === WHITE_0x88 ? -BOARD_WIDTH_0x88 : BOARD_WIDTH_0x88)] = NO_PIECE_0x88;
   }
 
-  // Set the end passant square
+  // Set the en passant square
   const enPassantSquare =
     flags & DOUBLE_PAWN_FLAG_0x88
       ? to + (color === WHITE_0x88 ? -BOARD_WIDTH_0x88 : BOARD_WIDTH_0x88)
       : NO_SQUARE_0x88;
 
-  // Handle castling
+  // TODO: Update the king position (if necessary)
+
+  // Castling
   if (flags & CASTLE_FLAG_0x88) {
     switch (to) {
       // White kingside castling
       case G1_0x88:
         board[F1_0x88] = board[H1_0x88];
         board[H1_0x88] = NO_PIECE_0x88;
-        castlingRights &= ~WHITE_KINGSIDE_0x88;
-        castlingRights &= ~WHITE_QUEENSIDE_0x88;
         break;
 
       // White queenside castling
@@ -87,14 +129,16 @@ export function movePiece0x88(fen: Fen0x88, move: Move0x88): Fen0x88 {
     }
   }
 
-  // TODO: Update the king position (if necessary)
+  // Update the castling rights
+  castlingRights &= CASTLING_UPDATES[from];
+  castlingRights &= CASTLING_UPDATES[to];
 
   return [
     board,
     fen[1] === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88,
     castlingRights,
     enPassantSquare,
-    fen[4],
-    fen[5],
+    halfMoveClock,
+    fullMoveNumber,
   ];
 }
