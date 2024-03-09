@@ -9,13 +9,6 @@ export const toEqualFen: CustomMatcher<unknown, [Fen0x88 | string]> = function (
     received = toFen(received);
   }
 
-  if (typeof received !== "string") {
-    return {
-      message: () => `Expected ${this.utils.printReceived(received)} to be a Fen0x88 or a string.`,
-      pass: false,
-    };
-  }
-
   if (isFen0x88(expected)) {
     expected = toFen(expected);
   }
