@@ -69,12 +69,12 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
       (color === WHITE_0x88 && oneSquare >= A8_0x88) ||
       (color === BLACK_0x88 && oneSquare <= H1_0x88)
     ) {
-      moves.push(encodeMove0x88(square, oneSquare, NO_PIECE_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color | QUEEN_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color | ROOK_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color | BISHOP_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, color | KNIGHT_0x88));
     } else {
-      moves.push(encodeMove0x88(square, oneSquare, color & QUEEN_0x88));
-      moves.push(encodeMove0x88(square, oneSquare, color & ROOK_0x88));
-      moves.push(encodeMove0x88(square, oneSquare, color & BISHOP_0x88));
-      moves.push(encodeMove0x88(square, oneSquare, color & KNIGHT_0x88));
+      moves.push(encodeMove0x88(square, oneSquare, NO_PIECE_0x88));
     }
   }
 
@@ -101,21 +101,20 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
     // Normal capture
     if (board[target] & oppositeColor) {
       if (
-        (color === WHITE_0x88 && target >= A8_0x88) ||
-        (color === BLACK_0x88 && target <= H1_0x88)
+        (color === WHITE_0x88 && oneSquare >= A8_0x88) ||
+        (color === BLACK_0x88 && oneSquare <= H1_0x88)
       ) {
-        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
+        moves.push(encodeMove0x88(square, target, color | QUEEN_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, color | ROOK_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, color | BISHOP_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, color | KNIGHT_0x88, CAPTURE_FLAG_0x88));
       } else {
-        moves.push(encodeMove0x88(square, target, color & QUEEN_0x88, CAPTURE_FLAG_0x88));
-        moves.push(encodeMove0x88(square, target, color & ROOK_0x88, CAPTURE_FLAG_0x88));
-        moves.push(encodeMove0x88(square, target, color & BISHOP_0x88, CAPTURE_FLAG_0x88));
-        moves.push(encodeMove0x88(square, target, color & KNIGHT_0x88, CAPTURE_FLAG_0x88));
+        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88));
       }
     }
 
     // En passant capture
-    // TODO: Double check if this is correct. This seems suspect.
-    if (board[target] === enPassantSquare) {
+    if (target === enPassantSquare) {
       moves.push(
         encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88 | EN_PASSANT_FLAG_0x88),
       );
