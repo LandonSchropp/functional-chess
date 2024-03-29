@@ -227,7 +227,20 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
     }
   }
 
-  // Castling
+  return moves;
+}
+
+function getLegalCastlingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
+  const [board, color] = fen;
+  const piece = board[square];
+
+  // If the piece is not a king, ignore it
+  if (!(piece & KING_0x88)) {
+    return [];
+  }
+
+  const moves: Move0x88[] = [];
+
   if (color === WHITE_0x88 && square === E1_0x88) {
     if (canCastle(fen, WHITE_KINGSIDE_0x88, E1_0x88, F1_0x88, G1_0x88, H1_0x88)) {
       moves.push(encodeMove0x88(square, G1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
@@ -356,6 +369,7 @@ export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] 
     ...getLegalPawnMoves0x88(fen, square),
     ...getLegalKnightMoves0x88(fen, square),
     ...getLegalKingMoves0x88(fen, square),
+    ...getLegalCastlingMoves0x88(fen, square),
     ...getLegalBishopAndQueenMoves(fen, square),
     ...getLegalRookAndQueenMoves(fen, square),
   ];
