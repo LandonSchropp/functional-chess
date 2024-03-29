@@ -45,7 +45,20 @@ import {
 import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS, ROOK_OFFSETS } from "./constants/offsets";
 import { encodeMove0x88 } from "./encode-move-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
+import { movePiece0x88 } from "./move-piece-0x88";
 import { Move0x88, Side0x88, Square0x88 } from "./types";
+
+/** Returns true if the provided move would leave the king is check. */
+function isMoveIllegal(fen: Fen0x88, move: Move0x88): boolean {
+  const fenAfterMove = movePiece0x88(fen, move);
+
+  // TODO: It would be more efficient to keep track of this square instead.
+  const kingSquare = fenAfterMove[0].findIndex((piece) => {
+    return piece & KING_0x88 && piece & fen[1];
+  }) as Square0x88;
+
+  return isSquareAttacked0x88(fenAfterMove, kingSquare, fenAfterMove[1]);
+}
 
 /** Returns all of the legal squares that a pawn can move to from a given square. */
 function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
@@ -131,6 +144,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
 function canCastle(
   fen: Fen0x88,
   side: Side0x88,
+  fromSquare: Square0x88,
   throughSquare: Square0x88,
   targetSquare: Square0x88,
   rookSquare: Square0x88,
@@ -153,11 +167,11 @@ function canCastle(
     return false;
   }
 
-  // Ensure the king and the through square are not attacked (the destination square will be checked
-  // later).
+  // Ensure the king and the through square are not attacked (the target square will be checked
+  // later when we ensure the resulting position is not illegal).
   if (
-    isSquareAttacked0x88(fen, throughSquare, oppositeColor) ||
-    isSquareAttacked0x88(fen, targetSquare, oppositeColor)
+    isSquareAttacked0x88(fen, fromSquare, oppositeColor) ||
+    isSquareAttacked0x88(fen, throughSquare, oppositeColor)
   ) {
     return false;
   }
@@ -215,19 +229,19 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
 
   // Castling
   if (color === WHITE_0x88 && square === E1_0x88) {
-    if (canCastle(fen, WHITE_KINGSIDE_0x88, F1_0x88, G1_0x88, H1_0x88)) {
+    if (canCastle(fen, WHITE_KINGSIDE_0x88, E1_0x88, F1_0x88, G1_0x88, H1_0x88)) {
       moves.push(encodeMove0x88(square, G1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
 
-    if (canCastle(fen, WHITE_QUEENSIDE_0x88, D1_0x88, C1_0x88, A1_0x88)) {
+    if (canCastle(fen, WHITE_QUEENSIDE_0x88, E1_0x88, D1_0x88, C1_0x88, A1_0x88)) {
       moves.push(encodeMove0x88(square, C1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
   } else if (color === BLACK_0x88 && square === E8_0x88) {
-    if (canCastle(fen, BLACK_KINGSIDE_0x88, F8_0x88, G8_0x88, H8_0x88)) {
+    if (canCastle(fen, BLACK_KINGSIDE_0x88, E8_0x88, F8_0x88, G8_0x88, H8_0x88)) {
       moves.push(encodeMove0x88(square, G8_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
 
-    if (canCastle(fen, BLACK_QUEENSIDE_0x88, D8_0x88, C8_0x88, A8_0x88)) {
+    if (canCastle(fen, BLACK_QUEENSIDE_0x88, E8_0x88, D8_0x88, C8_0x88, A8_0x88)) {
       moves.push(encodeMove0x88(square, C8_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
   }
@@ -337,11 +351,15 @@ export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] 
     return [];
   }
 
-  return [
+  // Combine all of the potential moves from the different pieces.
+  const moves = [
     ...getLegalPawnMoves0x88(fen, square),
     ...getLegalKnightMoves0x88(fen, square),
     ...getLegalKingMoves0x88(fen, square),
     ...getLegalBishopAndQueenMoves(fen, square),
     ...getLegalRookAndQueenMoves(fen, square),
   ];
+
+  // Filter out any moves that result in an illegal position.
+  return moves.filter((move) => !isMoveIllegal(fen, move));
 }
