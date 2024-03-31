@@ -7,7 +7,6 @@ import {
   BLACK_0x88,
   BLACK_KINGSIDE_0x88,
   BLACK_QUEENSIDE_0x88,
-  BLACK_ROOK_0x88,
   BOARD_WIDTH_0x88,
   C1_0x88,
   C8_0x88,
@@ -28,7 +27,6 @@ import {
   WHITE_0x88,
   WHITE_KINGSIDE_0x88,
   WHITE_QUEENSIDE_0x88,
-  WHITE_ROOK_0x88,
   PAWN_0x88,
   BISHOP_0x88,
   QUEEN_0x88,
@@ -46,10 +44,10 @@ import { BISHOP_OFFSETS, KING_OFFSETS, KNIGHT_OFFSETS, ROOK_OFFSETS } from "./co
 import { encodeMove0x88 } from "./encode-move-0x88";
 import { isSquareAttacked0x88 } from "./is-square-attacked-0x88";
 import { movePiece0x88 } from "./move-piece-0x88";
-import { Move0x88, Side0x88, Square0x88 } from "./types";
+import { Color0x88, Move0x88, Side0x88, Square0x88 } from "./types";
 
 /** Returns true if the provided move would leave the king is check. */
-function isMoveIllegal(fen: Fen0x88, move: Move0x88): boolean {
+function isKingInCheckAfterMove(fen: Fen0x88, move: Move0x88): boolean {
   const fenAfterMove = movePiece0x88(fen, move);
 
   // TODO: It would be more efficient to keep track of this square instead.
@@ -60,18 +58,33 @@ function isMoveIllegal(fen: Fen0x88, move: Move0x88): boolean {
   return isSquareAttacked0x88(fenAfterMove, kingSquare, fenAfterMove[1]);
 }
 
+/**
+ * This is a helper method that's similar to encodeMove0x88, except it generates an array of all
+ * possible pawn promotions.
+ */
+function encodeMoveWithPromotions0x88(
+  fromSquare: Square0x88,
+  toSquare: Square0x88,
+  color: Color0x88,
+  flags: number = 0,
+): Move0x88[] {
+  return [QUEEN_0x88, ROOK_0x88, BISHOP_0x88, KNIGHT_0x88].map((promotionPiece) =>
+    encodeMove0x88(fromSquare, toSquare, color | promotionPiece, flags),
+  );
+}
+
 /** Returns all of the legal squares that a pawn can move to from a given square. */
 function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color, , enPassantSquare] = fen;
   const piece = board[square];
+  const moves: Move0x88[] = [];
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // If the piece is not a pawn, ignore it
   if (!(piece & PAWN_0x88)) {
-    return [];
+    return moves;
   }
 
-  const moves: Move0x88[] = [];
   const rankOffset = color === WHITE_0x88 ? BOARD_WIDTH_0x88 : -BOARD_WIDTH_0x88;
 
   // Pawn moving forward one square
@@ -82,10 +95,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
       (color === WHITE_0x88 && oneSquare >= A8_0x88) ||
       (color === BLACK_0x88 && oneSquare <= H1_0x88)
     ) {
-      moves.push(encodeMove0x88(square, oneSquare, color | QUEEN_0x88));
-      moves.push(encodeMove0x88(square, oneSquare, color | ROOK_0x88));
-      moves.push(encodeMove0x88(square, oneSquare, color | BISHOP_0x88));
-      moves.push(encodeMove0x88(square, oneSquare, color | KNIGHT_0x88));
+      moves.push(...encodeMoveWithPromotions0x88(square, oneSquare, color));
     } else {
       moves.push(encodeMove0x88(square, oneSquare, NO_PIECE_0x88));
     }
@@ -117,10 +127,7 @@ function getLegalPawnMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
         (color === WHITE_0x88 && oneSquare >= A8_0x88) ||
         (color === BLACK_0x88 && oneSquare <= H1_0x88)
       ) {
-        moves.push(encodeMove0x88(square, target, color | QUEEN_0x88, CAPTURE_FLAG_0x88));
-        moves.push(encodeMove0x88(square, target, color | ROOK_0x88, CAPTURE_FLAG_0x88));
-        moves.push(encodeMove0x88(square, target, color | BISHOP_0x88, CAPTURE_FLAG_0x88));
-        moves.push(encodeMove0x88(square, target, color | KNIGHT_0x88, CAPTURE_FLAG_0x88));
+        moves.push(...encodeMoveWithPromotions0x88(square, target, color, CAPTURE_FLAG_0x88));
       } else {
         moves.push(encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88));
       }
@@ -153,71 +160,44 @@ function canCastle(
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
   // Ensure the castling right is available
-  if (!(castlingRights & side)) {
-    return false;
-  }
+  const isCastlingRightAvailable = !!(castlingRights & side);
 
   // Ensure the rook is on the correct square
-  if (board[rookSquare] !== (color === WHITE_0x88 ? WHITE_ROOK_0x88 : BLACK_ROOK_0x88)) {
-    return false;
-  }
+  const isRookOnCorrectSquare = !!(board[rookSquare] & (ROOK_0x88 | color));
 
   // Ensure the squares are empty
-  if (board[throughSquare] || board[targetSquare]) {
-    return false;
-  }
+  const areSquaresEmpty = !board[throughSquare] && !board[targetSquare];
 
-  // Ensure the king and the through square are not attacked (the target square will be checked
+  // Ensure the king is not in check or castling through check (the target square will be checked
   // later when we ensure the resulting position is not illegal).
-  if (
-    isSquareAttacked0x88(fen, fromSquare, oppositeColor) ||
-    isSquareAttacked0x88(fen, throughSquare, oppositeColor)
-  ) {
-    return false;
-  }
+  const isKingOrThroughSquareNotAttacked =
+    !isSquareAttacked0x88(fen, fromSquare, oppositeColor) &&
+    !isSquareAttacked0x88(fen, throughSquare, oppositeColor);
 
-  return true;
+  return (
+    isCastlingRightAvailable &&
+    isRookOnCorrectSquare &&
+    areSquaresEmpty &&
+    isKingOrThroughSquareNotAttacked
+  );
 }
 
-/** Returns all of the legal squares that a knight can move to from a given square. */
-function getLegalKnightMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
+/** Returns all of the legal squares for pieces that leap (the knight and king) from a given square. */
+function getLegalLeapMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
-
-  // If the piece is not a knight, ignore it
-  if (!(piece & KNIGHT_0x88)) {
-    return [];
-  }
-
   const moves: Move0x88[] = [];
 
-  for (const offset of KNIGHT_OFFSETS) {
-    const target = (square + offset) as Square0x88;
-
-    if (!(target & OUT_OF_BOUNDS_0x88) && !(board[target] & color)) {
-      moves.push(
-        encodeMove0x88(square, target, NO_PIECE_0x88, board[target] ? CAPTURE_FLAG_0x88 : 0),
-      );
-    }
+  // If the piece is not a king or knight, ignore it
+  if (!(piece & (KING_0x88 | KNIGHT_0x88))) {
+    return moves;
   }
 
-  return moves;
-}
-
-/** Returns all of the legal squares that a king can move to from a given square, including castling. */
-function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
-  const [board, color] = fen;
-  const piece = board[square];
-
-  // If the piece is not a king, ignore it
-  if (!(piece & KING_0x88)) {
-    return [];
-  }
-
-  const moves: Move0x88[] = [];
+  // Determine the offsets to use based on the piece type.
+  const offsets = piece & KING_0x88 ? KING_OFFSETS : KNIGHT_OFFSETS;
 
   // Normal moves
-  for (const offset of KING_OFFSETS) {
+  for (const offset of offsets) {
     const target = (square + offset) as Square0x88;
 
     if (!(target & OUT_OF_BOUNDS_0x88) && !(board[target] & color)) {
@@ -233,13 +213,12 @@ function getLegalKingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
 function getLegalCastlingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
+  const moves: Move0x88[] = [];
 
   // If the piece is not a king, ignore it
   if (!(piece & KING_0x88)) {
-    return [];
+    return moves;
   }
-
-  const moves: Move0x88[] = [];
 
   if (color === WHITE_0x88 && square === E1_0x88) {
     if (canCastle(fen, WHITE_KINGSIDE_0x88, E1_0x88, F1_0x88, G1_0x88, H1_0x88)) {
@@ -263,23 +242,32 @@ function getLegalCastlingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[]
 }
 
 /**
- * Returns all of the legal squares that a bishop or queen can diagonally move to from a given
- * square. The diagonal queen moves are included since there's no reason to loop loop through the
- * squares more than once.
+ * Returns all of the legal squares for pieces that slide (the bishop, rook and queen) from a given
+ * square.
  */
-function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Move0x88[] {
+function getLegalSlidingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   const [board, color] = fen;
   const piece = board[square];
+  const moves: Move0x88[] = [];
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
 
-  // If the piece is not a bishop or queen, ignore it
-  if (!(piece & BISHOP_0x88) && !(piece & QUEEN_0x88)) {
-    return [];
+  // If the piece is not a bishop, rook, or queen, ignore it
+  if (!(piece & (BISHOP_0x88 | ROOK_0x88 | QUEEN_0x88))) {
+    return moves;
   }
 
-  const moves: Move0x88[] = [];
+  // Determine the directions to use based on the piece type
+  let offsets: number[];
 
-  for (const offset of BISHOP_OFFSETS) {
+  if (piece & BISHOP_0x88) {
+    offsets = BISHOP_OFFSETS;
+  } else if (piece & ROOK_0x88) {
+    offsets = ROOK_OFFSETS;
+  } else {
+    offsets = KING_OFFSETS;
+  }
+
+  for (const offset of offsets) {
     let target = (square + offset) as Square0x88;
 
     // Loop through the attack ray until we can't go any further
@@ -295,56 +283,8 @@ function getLegalBishopAndQueenMoves(fen: Fen0x88, square: Square0x88): Move0x88
         break;
       }
 
-      // When the square is empty, add it to the list of moves
-      if (board[target] === NO_PIECE_0x88) {
-        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
-      }
-
-      // Increment the target square by the offset
-      target += offset;
-    }
-  }
-
-  return moves;
-}
-
-/**
- * Returns all of the legal squares that a rook or queen can diagonally move to from a given square.
- * The diagonal queen moves are included since there's no reason to loop loop through the squares
- * more than once.
- */
-function getLegalRookAndQueenMoves(fen: Fen0x88, square: Square0x88): Move0x88[] {
-  const [board, color] = fen;
-  const piece = board[square];
-  const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
-
-  // If the piece is not a rook or queen, ignore it
-  if (!(piece & ROOK_0x88) && !(piece & QUEEN_0x88)) {
-    return [];
-  }
-
-  const moves: Move0x88[] = [];
-
-  for (const offset of ROOK_OFFSETS) {
-    let target = (square + offset) as Square0x88;
-
-    // Loop through the attack ray until we can't go any further
-    while (!(target & OUT_OF_BOUNDS_0x88)) {
-      // When connecting with a piece of the same color, we're done
-      if (board[target] & color) {
-        break;
-      }
-
-      // When connecting with a piece of the opposite color add the move and then quit.
-      if (board[target] & oppositeColor) {
-        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88, CAPTURE_FLAG_0x88));
-        break;
-      }
-
-      // When the square is empty, add it to the list of moves
-      if (board[target] === NO_PIECE_0x88) {
-        moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
-      }
+      // Otherwise, the square is empty, so add it to the list of moves.
+      moves.push(encodeMove0x88(square, target, NO_PIECE_0x88));
 
       // Increment the target square by the offset
       target += offset;
@@ -367,13 +307,11 @@ export function getLegalMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] 
   // Combine all of the potential moves from the different pieces.
   const moves = [
     ...getLegalPawnMoves0x88(fen, square),
-    ...getLegalKnightMoves0x88(fen, square),
-    ...getLegalKingMoves0x88(fen, square),
+    ...getLegalLeapMoves0x88(fen, square),
     ...getLegalCastlingMoves0x88(fen, square),
-    ...getLegalBishopAndQueenMoves(fen, square),
-    ...getLegalRookAndQueenMoves(fen, square),
+    ...getLegalSlidingMoves0x88(fen, square),
   ];
 
   // Filter out any moves that result in an illegal position.
-  return moves.filter((move) => !isMoveIllegal(fen, move));
+  return moves.filter((move) => !isKingInCheckAfterMove(fen, move));
 }
