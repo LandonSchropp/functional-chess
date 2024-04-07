@@ -21,8 +21,8 @@ import {
 
 /**
  * Determines if the given square is currently attacked by the provided color. Since this is an
- * internal function and is intended for use with `getLegalMoves0x88`, it doesn't check for the
- * color of the piece on the square.
+ * internal function and is intended for use with `getLegalMovesForSquare0x88`, it doesn't check for
+ * the color of the piece on the square.
  *
  * @private
  * @param fen - The FEN.
