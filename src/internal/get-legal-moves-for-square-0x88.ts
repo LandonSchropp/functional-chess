@@ -297,6 +297,8 @@ function getLegalSlidingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[] 
 /**
  * This is an internal helper function that generates all of the legal squares that can be moved to
  * from a given square.
+ *
+ * @private
  */
 export function getLegalMovesForSquare0x88(fen: Fen0x88, square: Square0x88): Move0x88[] {
   // Ensure the square is not empty and the piece is the correct color
