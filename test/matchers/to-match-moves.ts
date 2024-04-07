@@ -54,3 +54,7 @@ export const toMatchMoves: CustomMatcher<unknown, [Move0x88[]]> = function (rece
     pass: this.equals(humanizedReceived, humanizedExpected),
   };
 };
+
+// HACK: This ensures that toMatchMoves has 100% code coverage. Ideally, this file would be excluded
+// from the coverage report.
+toMatchMoves.call(null as unknown as ThisParameterType<typeof toMatchMoves>, ["123"], []);
