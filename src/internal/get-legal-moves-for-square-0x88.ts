@@ -10,13 +10,9 @@ import {
   BOARD_WIDTH_0x88,
   C1_0x88,
   C8_0x88,
-  D1_0x88,
-  D8_0x88,
   E1_0x88,
   E8_0x88,
   NO_PIECE_0x88,
-  F1_0x88,
-  F8_0x88,
   G1_0x88,
   G8_0x88,
   H1_0x88,
@@ -33,6 +29,7 @@ import {
   KNIGHT_0x88,
   ROOK_0x88,
   KING_0x88,
+  KINGSIDE_0x88,
 } from "./constants";
 import {
   CAPTURE_FLAG_0x88,
@@ -152,34 +149,38 @@ function canCastle(
   fen: Fen0x88,
   side: Side0x88,
   fromSquare: Square0x88,
-  throughSquare: Square0x88,
-  targetSquare: Square0x88,
   rookSquare: Square0x88,
 ): boolean {
   const [board, color, castlingRights] = fen;
   const oppositeColor = color === WHITE_0x88 ? BLACK_0x88 : WHITE_0x88;
+  const direction = side & KINGSIDE_0x88 ? 1 : -1;
 
   // Ensure the castling right is available
-  const isCastlingRightAvailable = !!(castlingRights & side);
+  if (!(castlingRights & side)) {
+    return false;
+  }
 
   // Ensure the rook is on the correct square
-  const isRookOnCorrectSquare = !!(board[rookSquare] & (ROOK_0x88 | color));
+  if (!(board[rookSquare] & (ROOK_0x88 | color))) {
+    return false;
+  }
 
-  // Ensure the squares are empty
-  const areSquaresEmpty = !board[throughSquare] && !board[targetSquare];
+  // Ensure the squares between the king and the rook are empty
+  for (let square = fromSquare + direction; square !== rookSquare; square += direction) {
+    if (board[square]) {
+      return false;
+    }
+  }
 
-  // Ensure the king is not in check or castling through check (the target square will be checked
-  // later when we ensure the resulting position is not illegal).
-  const isKingOrThroughSquareNotAttacked =
-    !isSquareAttacked0x88(fen, fromSquare, oppositeColor) &&
-    !isSquareAttacked0x88(fen, throughSquare, oppositeColor);
+  // Ensure the king and the square next to it are not attacked.
+  if (
+    isSquareAttacked0x88(fen, fromSquare, oppositeColor) ||
+    isSquareAttacked0x88(fen, (fromSquare + direction) as Square0x88, oppositeColor)
+  ) {
+    return false;
+  }
 
-  return (
-    isCastlingRightAvailable &&
-    isRookOnCorrectSquare &&
-    areSquaresEmpty &&
-    isKingOrThroughSquareNotAttacked
-  );
+  return true;
 }
 
 /** Returns all of the legal squares for pieces that leap (the knight and king) from a given square. */
@@ -221,19 +222,19 @@ function getLegalCastlingMoves0x88(fen: Fen0x88, square: Square0x88): Move0x88[]
   }
 
   if (color === WHITE_0x88 && square === E1_0x88) {
-    if (canCastle(fen, WHITE_KINGSIDE_0x88, E1_0x88, F1_0x88, G1_0x88, H1_0x88)) {
+    if (canCastle(fen, WHITE_KINGSIDE_0x88, E1_0x88, H1_0x88)) {
       moves.push(encodeMove0x88(square, G1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
 
-    if (canCastle(fen, WHITE_QUEENSIDE_0x88, E1_0x88, D1_0x88, C1_0x88, A1_0x88)) {
+    if (canCastle(fen, WHITE_QUEENSIDE_0x88, E1_0x88, A1_0x88)) {
       moves.push(encodeMove0x88(square, C1_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
   } else if (color === BLACK_0x88 && square === E8_0x88) {
-    if (canCastle(fen, BLACK_KINGSIDE_0x88, E8_0x88, F8_0x88, G8_0x88, H8_0x88)) {
+    if (canCastle(fen, BLACK_KINGSIDE_0x88, E8_0x88, H8_0x88)) {
       moves.push(encodeMove0x88(square, G8_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
 
-    if (canCastle(fen, BLACK_QUEENSIDE_0x88, E8_0x88, D8_0x88, C8_0x88, A8_0x88)) {
+    if (canCastle(fen, BLACK_QUEENSIDE_0x88, E8_0x88, A8_0x88)) {
       moves.push(encodeMove0x88(square, C8_0x88, NO_PIECE_0x88, CASTLE_FLAG_0x88));
     }
   }

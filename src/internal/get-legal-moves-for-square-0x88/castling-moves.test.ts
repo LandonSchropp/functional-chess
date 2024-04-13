@@ -17,7 +17,9 @@ import { encodeMove0x88 } from "../encode-move-0x88";
 import { getLegalMovesForSquare0x88 } from "../get-legal-moves-for-square-0x88";
 import { expect, describe, it } from "bun:test";
 
-describe("getLegalMovesForSquare0x88 (empty squares)", () => {
+// TODO: Add tests for when the rook is not on the correct square.
+
+describe("getLegalMovesForSquare0x88 (castling)", () => {
   describe("when the king is attempting to castling kingside", () => {
     describe("when the king is not attacked", () => {
       describe("when the king has castling rights", () => {
@@ -259,14 +261,14 @@ describe("getLegalMovesForSquare0x88 (empty squares)", () => {
 
     describe("when the through square is not empty", () => {
       describe("when the player is white", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r2qkb1r/3ppp2/8/8/8/8/3PPP2/R2QKB1R w KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E1_0x88)).toMatchMoves([]);
         });
       });
 
       describe("when the player is black", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r2qkb1r/3ppp2/8/8/8/8/3PPP2/R2QKB1R b KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E8_0x88)).toMatchMoves([]);
         });
@@ -275,7 +277,7 @@ describe("getLegalMovesForSquare0x88 (empty squares)", () => {
 
     describe("when the target square is not empty", () => {
       describe("when the player is white", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r2qk1nr/3ppp2/8/8/8/8/3PPP2/R2QK1NR w KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E1_0x88)).toMatchMoves([
             encodeMove0x88(E1_0x88, F1_0x88, NO_PIECE_0x88),
@@ -284,7 +286,7 @@ describe("getLegalMovesForSquare0x88 (empty squares)", () => {
       });
 
       describe("when the player is black", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r2qk1nr/3ppp2/8/8/8/8/3PPP2/R2QK1NR b KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E8_0x88)).toMatchMoves([
             encodeMove0x88(E8_0x88, F8_0x88, NO_PIECE_0x88),
@@ -535,14 +537,14 @@ describe("getLegalMovesForSquare0x88 (empty squares)", () => {
 
     describe("when the through square is not empty", () => {
       describe("when the player is white", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r2qkb1r/3ppp2/8/8/8/8/3PPP2/R2QKB1R w KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E1_0x88)).toMatchMoves([]);
         });
       });
 
       describe("when the player is black", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r2qkb1r/3ppp2/8/8/8/8/3PPP2/R2QKB1R b KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E8_0x88)).toMatchMoves([]);
         });
@@ -551,7 +553,7 @@ describe("getLegalMovesForSquare0x88 (empty squares)", () => {
 
     describe("when the target square is not empty", () => {
       describe("when the player is white", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r1b1kb1r/3ppp2/8/8/8/8/3PPP2/R1B1KB1R w KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E1_0x88)).toMatchMoves([
             encodeMove0x88(E1_0x88, D1_0x88, NO_PIECE_0x88),
@@ -560,8 +562,28 @@ describe("getLegalMovesForSquare0x88 (empty squares)", () => {
       });
 
       describe("when the player is black", () => {
-        it("includes the castling move", () => {
+        it("does not include the castling move", () => {
           const fen = parseFen("r1b1kb1r/3ppp2/8/8/8/8/3PPP2/R1B1KB1R b KQkq - 0 1");
+          expect(getLegalMovesForSquare0x88(fen, E8_0x88)).toMatchMoves([
+            encodeMove0x88(E8_0x88, D8_0x88, NO_PIECE_0x88),
+          ]);
+        });
+      });
+    });
+
+    describe("when the square next to the rook not empty", () => {
+      describe("when the player is white", () => {
+        it("does not include the castling move", () => {
+          const fen = parseFen("rn2kb1r/3ppp2/8/8/8/8/3PPP2/RN2KB1R w KQkq - 0 1");
+          expect(getLegalMovesForSquare0x88(fen, E1_0x88)).toMatchMoves([
+            encodeMove0x88(E1_0x88, D1_0x88, NO_PIECE_0x88),
+          ]);
+        });
+      });
+
+      describe("when the player is black", () => {
+        it("does not include the castling move", () => {
+          const fen = parseFen("rn2kb1r/3ppp2/8/8/8/8/3PPP2/RN2KB1R b KQkq - 0 1");
           expect(getLegalMovesForSquare0x88(fen, E8_0x88)).toMatchMoves([
             encodeMove0x88(E8_0x88, D8_0x88, NO_PIECE_0x88),
           ]);
